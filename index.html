@@ -16,122 +16,128 @@
   <style>
     :root {
       color-scheme: light;
-      --canvas-bg: linear-gradient(180deg, #f6e5be 0%, #edd6a3 38%, #dfc788 100%);
-      --text-main: #143e34;
+      --canvas-bg: linear-gradient(180deg, #f7e6c4 0%, #edd49e 42%, #e0c682 100%);
+      --text-main: #133e34;
       --text-muted: #38594d;
-      --text-faint: #5b786d;
-      --line-dark: #176e5c;
-      --card-shadow: 0 6px 0 rgba(23, 110, 92, 0.20);
-      --card-shadow-hover: 0 9px 0 rgba(23, 110, 92, 0.32);
+      --text-faint: #5a766c;
+      --line-dark: #156d5b;
+      --card-shadow: 0 5px 0 rgba(72, 46, 14, 0.16);
+      --card-shadow-hover: 0 8px 0 rgba(72, 46, 14, 0.28);
       
-      --sidebar-bg: #0e6b59;
-      --sidebar-text: #fff6da;
-      --sidebar-border: #085244;
+      --sidebar-bg: #0b6b58;
+      --sidebar-text: #fff7dd;
+      --sidebar-border: #075243;
       --sidebar-mark-bg: #f5b728;
-      --sidebar-mark-text: #143e34;
-      --sidebar-link-bg: rgba(255, 255, 255, 0.08);
+      --sidebar-mark-text: #133e34;
+      --sidebar-link-bg: rgba(255, 255, 255, 0.09);
       --sidebar-link-hover-bg: #f4be38;
-      --sidebar-link-hover-text: #143f35;
+      --sidebar-link-hover-text: #133f35;
       
-      --intro-bg: linear-gradient(125deg, #f8ca4d 0%, #f29452 42%, #52bcd0 100%);
-      --intro-border: #176e5c;
-      --intro-text: #133f36;
-      --intro-mountain: linear-gradient(150deg, #156f62 0 28%, #4ca878 28% 51%, #e5c45b 51% 68%, #f4e4b5 68%);
-      --search-panel-bg: rgba(255, 244, 218, 0.94);
-      --search-input-bg: #fffcf2;
-      --search-input-border: #177562;
-      --search-input-text: #153f36;
+      --intro-bg: linear-gradient(120deg, #f7c748 0 40%, #f18e4a 40% 61%, #4fbcd2 61% 100%);
+      --intro-border: #156d5b;
+      --intro-text: #123e35;
+      --intro-mountain: linear-gradient(150deg, #136b5e 0 28%, #49a775 28% 51%, #e5c357 51% 68%, #f4e3b2 68%);
+      --search-panel-bg: rgba(255, 243, 214, 0.94);
+      --search-input-bg: #fffbf0;
+      --search-input-border: #167460;
+      --search-input-text: #143e35;
       
       --clock-card-bg: #f5bd32;
-      --clock-card-text: #17453a;
-      --weather-card-bg: #52bad1;
-      --weather-card-text: #13423d;
-      --quote-card-bg: #ef815a;
-      --quote-card-text: #21423b;
+      --clock-card-text: #164237;
+      --clock-card-border: #bb881c;
+      --weather-card-bg: #52bdd2;
+      --weather-card-text: #12413c;
+      --weather-card-border: #227c92;
+      --quote-card-bg: #ee8057;
+      --quote-card-text: #204139;
+      --quote-card-border: #b84d23;
       
-      --posts-panel-bg: #166f5e;
-      --posts-panel-border: #0c5446;
-      --posts-title-color: #fff6da;
-      --posts-meta-color: #ffe088;
-      --posts-item-border: rgba(255, 246, 218, 0.35);
+      --posts-panel-bg: #167664;
+      --posts-panel-border: #0c5749;
+      --posts-title-color: #fff8e2;
+      --posts-meta-color: #ffe18c;
+      --posts-item-border: rgba(255, 248, 226, 0.38);
       
-      --sec1-bg: #f4c84b; --sec1-border: #b8861d; --sec1-title: #174237;
-      --sec2-bg: #60c497; --sec2-border: #247b56; --sec2-title: #133f34;
-      --sec3-bg: #ef8e60; --sec3-border: #b95224; --sec3-title: #1f3e36;
-      --sec4-bg: #5abdd3; --sec4-border: #217a90; --sec4-title: #143e3b;
-      --sec5-bg: #dcb558; --sec5-border: #9b7720; --sec5-title: #174036;
-      --sec6-bg: #8c83c4; --sec6-border: #584d93; --sec6-title: #1a283e;
+      --sec1-bg: #f5c94c; --sec1-border: #b9861a; --sec1-title: #164136;
+      --sec2-bg: #63c59a; --sec2-border: #227e57; --sec2-title: #123e33;
+      --sec3-bg: #f08c5f; --sec3-border: #ba5122; --sec3-title: #1f3d35;
+      --sec4-bg: #59bed4; --sec4-border: #207b91; --sec4-title: #133e3b;
+      --sec5-bg: #dcb759; --sec5-border: #9c781d; --sec5-title: #163f35;
+      --sec6-bg: #8b80c3; --sec6-border: #564a93; --sec6-title: #19273d;
       
-      --card-bg: #fffbf2;
-      --card-hover-bg: #ffffff;
-      --card-border: #bb8d4c;
-      --card-title: #183e35;
-      --card-desc: #486358;
-      --card-badge-bg: #e3eed7;
-      --card-badge-text: #146a57;
-      --card-icon-bg: #ffe5b8;
-      --card-icon-border: #dcae61;
-      --footer-text: #617a70;
+      --card-bg: #fff5d6;
+      --card-hover-bg: #fffcf2;
+      --card-border: #b87e38;
+      --card-title: #143e34;
+      --card-desc: #4a6358;
+      --card-badge-bg: #e1edd5;
+      --card-badge-text: #0e6753;
+      --card-icon-bg: #fedda2;
+      --card-icon-border: #dca34b;
+      --footer-text: #5f7a6f;
     }
     
     html[data-theme="dark"] {
       color-scheme: dark;
-      --canvas-bg: linear-gradient(180deg, #0c1815 0%, #11241f 45%, #0a1512 100%);
-      --text-main: #edf6f0;
-      --text-muted: #a4c4b6;
-      --text-faint: #739889;
-      --line-dark: #285b4e;
-      --card-shadow: 0 6px 0 rgba(0, 0, 0, 0.40);
-      --card-shadow-hover: 0 9px 0 rgba(0, 0, 0, 0.58);
+      --canvas-bg: linear-gradient(180deg, #0d1b17 0%, #132722 45%, #0b1613 100%);
+      --text-main: #edf7f1;
+      --text-muted: #a3c4b5;
+      --text-faint: #729788;
+      --line-dark: #265f51;
+      --card-shadow: 0 5px 0 rgba(0, 0, 0, 0.45);
+      --card-shadow-hover: 0 8px 0 rgba(0, 0, 0, 0.65);
       
-      --sidebar-bg: #0f2b23;
-      --sidebar-text: #e8f5ee;
-      --sidebar-border: #1f5446;
+      --sidebar-bg: #10352b;
+      --sidebar-text: #e7f6ed;
+      --sidebar-border: #1e5647;
       --sidebar-mark-bg: #f5b728;
-      --sidebar-mark-text: #143e34;
-      --sidebar-link-bg: rgba(255, 255, 255, 0.05);
-      --sidebar-link-hover-bg: #276251;
-      --sidebar-link-hover-text: #7ff8c7;
+      --sidebar-mark-text: #133e34;
+      --sidebar-link-bg: rgba(255, 255, 255, 0.06);
+      --sidebar-link-hover-bg: #266352;
+      --sidebar-link-hover-text: #7ef0be;
       
-      --intro-bg: linear-gradient(125deg, #183e34 0%, #205347 45%, #184854 100%);
-      --intro-border: #2b6c5d;
+      --intro-bg: linear-gradient(125deg, #1b4b3e 0%, #225a4d 45%, #184b57 100%);
+      --intro-border: #296d5d;
       --intro-text: #edf7f2;
-      --intro-mountain: linear-gradient(150deg, #0e3029 0 28%, #1f563d 28% 51%, #5c4e24 51% 68%, #36423b 68%);
-      --search-panel-bg: rgba(18, 41, 34, 0.92);
-      --search-input-bg: #142a22;
-      --search-input-border: #306f5e;
+      --intro-mountain: linear-gradient(150deg, #0d322a 0 28%, #1d583e 28% 51%, #5c4e22 51% 68%, #35443d 68%);
+      --search-panel-bg: rgba(18, 43, 35, 0.94);
+      --search-input-bg: #132c23;
+      --search-input-border: #2f7160;
       --search-input-text: #edf7f2;
       
-      --clock-card-bg: #382a12;
-      --clock-card-text: #ffebb8;
-      --weather-card-bg: #133944;
-      --weather-card-text: #bcf2ff;
-      --quote-card-bg: #3f2016;
-      --quote-card-text: #ffd3c2;
+      --clock-card-bg: #3c2c10;
+      --clock-card-text: #ffd866;
+      --clock-card-border: #c4952c;
+      --weather-card-bg: #143d4a;
+      --weather-card-text: #7ee3f7;
+      --weather-card-border: #2ba8c4;
+      --quote-card-bg: #421f14;
+      --quote-card-text: #ffad94;
+      --quote-card-border: #d8613e;
       
-      --posts-panel-bg: #12352b;
-      --posts-panel-border: #235c4e;
-      --posts-title-color: #edf6f0;
-      --posts-meta-color: #ffd875;
-      --posts-item-border: rgba(255, 255, 255, 0.14);
+      --posts-panel-bg: #134034;
+      --posts-panel-border: #246b58;
+      --posts-title-color: #eaf8f1;
+      --posts-meta-color: #ffd870;
+      --posts-item-border: rgba(255, 255, 255, 0.15);
       
-      --sec1-bg: #332710; --sec1-border: #997526; --sec1-title: #fedb7b;
-      --sec2-bg: #123426; --sec2-border: #2b8b64; --sec2-title: #7bf8c7;
-      --sec3-bg: #391e15; --sec3-border: #aa502e; --sec3-title: #ffb79b;
-      --sec4-bg: #13303d; --sec4-border: #267c94; --sec4-title: #89e4ff;
-      --sec5-bg: #352b13; --sec5-border: #987e2d; --sec5-title: #f9e28f;
-      --sec6-bg: #251e39; --sec6-border: #6c5da5; --sec6-title: #d0caff;
+      --sec1-bg: #33250b; --sec1-border: #c4952c; --sec1-title: #ffd566;
+      --sec2-bg: #113324; --sec2-border: #38aa78; --sec2-title: #7ef0be;
+      --sec3-bg: #391c12; --sec3-border: #c75b34; --sec3-title: #ffaa8e;
+      --sec4-bg: #11303c; --sec4-border: #339eb8; --sec4-title: #7ee4fb;
+      --sec5-bg: #34290e; --sec5-border: #bfa038; --sec5-title: #fae07a;
+      --sec6-bg: #241b38; --sec6-border: #7f6db8; --sec6-title: #d4cbff;
       
-      --card-bg: #162a23;
-      --card-hover-bg: #1e362e;
-      --card-border: #274f42;
-      --card-title: #edf6f0;
-      --card-desc: #9cb6a9;
-      --card-badge-bg: #23483c;
-      --card-badge-text: #7ae8b7;
-      --card-icon-bg: #1d372e;
-      --card-icon-border: #2c5c4e;
-      --footer-text: #78998b;
+      --card-bg: #18332a;
+      --card-hover-bg: #204237;
+      --card-border: #2b5a4b;
+      --card-title: #f0faf4;
+      --card-desc: #a5c5b7;
+      --card-badge-bg: #254d3f;
+      --card-badge-text: #7ef0be;
+      --card-icon-bg: #1d3d32;
+      --card-icon-border: #346a59;
+      --footer-text: #769a8b;
     }
     
     * { box-sizing: border-box; }
@@ -187,7 +193,7 @@
       box-shadow: 0 3px 0 rgba(0,0,0,0.15);
     }
     .brand strong { font-family: "Noto Serif SC", serif; font-size: 19px; letter-spacing: 0.06em; }
-    .brand small { display: block; color: var(--text-faint); opacity: 0.85; font-size: 10px; letter-spacing: 0.12em; margin-top: 2px; }
+    .brand small { display: block; color: var(--sidebar-text); opacity: 0.75; font-size: 10px; letter-spacing: 0.12em; margin-top: 2px; }
     
     .side-note { margin: 40px 0 24px; font-family: "Noto Serif SC", serif; font-size: 22px; line-height: 1.55; font-weight: 600; }
     .side-note em { display: block; color: var(--sidebar-mark-bg); font-style: normal; }
@@ -316,9 +322,9 @@
       box-shadow: var(--card-shadow);
       transition: transform 0.18s, box-shadow 0.18s, background 0.25s ease, border-color 0.25s ease;
     }
-    .daily-card.clock-card { background: var(--clock-card-bg); color: var(--clock-card-text); }
-    .daily-card.weather-card { background: var(--weather-card-bg); color: var(--weather-card-text); }
-    .daily-card.quote-card { background: var(--quote-card-bg); color: var(--quote-card-text); }
+    .daily-card.clock-card { background: var(--clock-card-bg); color: var(--clock-card-text); border-color: var(--clock-card-border); }
+    .daily-card.weather-card { background: var(--weather-card-bg); color: var(--weather-card-text); border-color: var(--weather-card-border); }
+    .daily-card.quote-card { background: var(--quote-card-bg); color: var(--quote-card-text); border-color: var(--quote-card-border); }
     
     .daily-label { display: flex; align-items: center; justify-content: space-between; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.85; }
     .daily-label svg { width: 16px; height: 16px; }
