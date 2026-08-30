@@ -1,67 +1,92 @@
 # 🌿 Forest Nav · 个人导航页
 
-> **A Clean, Flat & Modern Personal Portal & Navigation Dashboard**  
-> 基于 **Cloudflare Pages + 原生现代 Web 技术栈** 构建的清新扁平旅行手帐风个人导航页。
+> 高饱和旅行海报风个人门户，基于原生 HTML/CSS/JavaScript 与 Cloudflare Pages Functions 构建。
 
 <p align="center">
-  <a href="https://0000996.xyz"><img src="https://img.shields.io/badge/Demo-0000996.xyz-2D5A46?style=flat-square&logo=cloudflare" alt="Online Demo" /></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square" alt="License" /></a>
-  <img src="https://img.shields.io/badge/Cloudflare_Pages-Ready-F38020?style=flat-square&logo=cloudflarepages" alt="Cloudflare Pages" />
-  <img src="https://img.shields.io/badge/Zero_Framework-Pure_HTML%2FCSS%2FJS-brightgreen?style=flat-square" alt="Zero Framework" />
+  <a href="https://0000996.xyz"><img src="https://img.shields.io/badge/在线预览-0000996.xyz-087D69?style=flat-square&logo=cloudflare" alt="在线预览" /></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/开源协议-MIT-E66F3E?style=flat-square" alt="MIT License" /></a>
+  <img src="https://img.shields.io/badge/Cloudflare_Pages-Ready-F5B728?style=flat-square&logo=cloudflarepages" alt="Cloudflare Pages" />
 </p>
 
----
+## 🚀 一键部署
 
-## ✨ 核心特性
-
-- 🎨 **清新旅行插画美学**：大面积奶油米白（`#FAF7EE`）与青绿（`#2D5A46`）主视觉，搭配天蓝与暖杏点缀，告别传统暗黑沉重运维面板。
-- 🌤️ **动态全球天气**：集成 Open-Meteo 免 Key 全球实时天气、本地时间与每日一句随笔轮播。
-- 📰 **Halo 博客动态文章流**：自动展示来自 Halo 生产博客的最新技术与实践手记。
-- 📱 **全视口响应式适配**：完美适配桌面大屏、iPad 与手机端双列卡片流，无横向溢出。
-- 🌙 **自适应暗色模式**：自动跟随系统偏好，支持平滑暗色模式切换。
-- ⚡ **极致轻量无依赖**：纯 HTML/CSS/Vanilla JS 构建，零打包器依赖，全球 CDN 边缘秒开（TTFB < 120ms）。
-- ⌨️ **快捷键支持**：按 `/` 键快速聚焦搜索框，按 `Esc` 一键清空。
-
----
-
-## 🎨 视觉配色规范
-
-| 视觉元素 | 取色 Hex | 设计语义与应用场景 |
-|---|---|---|
-| **页面底色** | `#FAF7EE` | 温暖柔和的奶油米白，提供长时间浏览的舒适背景 |
-| **主强调色** | `#2D5A46` | 青绿/松石绿，用于核心标题、卡片边框与主要按钮 |
-| **次强调色** | `#4A90E2` | 天蓝，用于云服务/API类卡片装饰与状态徽标 |
-| **点缀色** | `#F5A623` | 暖杏橙，用于天气、标签与高亮指示器 |
-| **文字主色** | `#2C3E50` | 深灰青墨色，提供比纯黑更柔和的高对比度阅读体验 |
-
----
-
-## 🚀 快速部署到 Cloudflare Pages
-
-### 方式一：GitHub 联动自动部署（推荐）
-
-1. Fork 本仓库到你的 GitHub。
-2. 登录 [Cloudflare Dashboard](https://dash.cloudflare.com/)，进入 **Workers & Pages** -> **Create application** -> **Pages**。
-3. 选择 **Connect to Git**，绑定刚 Fork 的仓库。
-4. 构建设置：
-   - **Framework preset**: `None`
-   - **Build command**: （留空）
-   - **Build output directory**: `/`
-5. 点击 **Save and Deploy** 即可完成全球边缘上线！
-
-### 方式二：Wrangler CLI 本地部署
+在 Linux、macOS 或 WSL 中执行：
 
 ```bash
-# 1. 克隆代码
-git clone https://github.com/shali10/forest-nav.git
-cd forest-nav
-
-# 2. 一键发布至 Cloudflare Pages
-npx wrangler pages deploy . --project-name=my-nav --branch=main
+curl -fsSL https://raw.githubusercontent.com/shali10/forest-nav/main/deploy.sh | bash
 ```
 
----
+脚本会自动完成：
+
+1. 检查 Git、Node.js 18+ 与 Wrangler；
+2. 拉取最新版源码；
+3. 引导登录 Cloudflare（已有 `CLOUDFLARE_API_TOKEN` 时直接使用）；
+4. 自动创建或复用 `forest-nav` Pages 项目；
+5. 上传静态页面、图标和 Pages Functions；
+6. 输出最终 `pages.dev` 访问地址。
+
+### 自定义项目名
+
+```bash
+PROJECT_NAME=my-nav curl -fsSL https://raw.githubusercontent.com/shali10/forest-nav/main/deploy.sh | bash
+```
+
+> 管道执行时如果尚未登录 Cloudflare，请先运行 `npx wrangler login`；无浏览器服务器可使用具备 Pages 编辑权限的 `CLOUDFLARE_API_TOKEN`。
+
+## 📦 其他部署方式
+
+### GitHub 联动自动部署
+
+1. Fork 本仓库；
+2. 在 [Cloudflare Dashboard](https://dash.cloudflare.com/) 进入 **Workers & Pages → Create application → Pages → Connect to Git**；
+3. 选择 Fork 后的仓库；
+4. 配置：Framework preset 选 `None`，Build command 留空，Build output directory 填 `/`；
+5. 保存部署。此后每次推送 `main` 都会自动发布。
+
+### 克隆后部署
+
+```bash
+git clone https://github.com/shali10/forest-nav.git
+cd forest-nav
+npm install
+npm run check
+PROJECT_NAME=my-nav npm run deploy
+```
+
+## ✨ 功能
+
+- 🎨 明黄、暖橙、湖蓝、草绿和深青绿组成的旅行海报视觉；
+- 🌤️ Open-Meteo 实时天气、本地时间与每日一句；
+- 📰 自动读取 Halo RSS，展示最新 4 篇文章；
+- 🔎 42 个快捷入口及即时搜索；
+- 📱 桌面、平板、手机响应式布局；
+- 🌙 手动暗色模式；
+- ⚡ 无前端框架、无构建步骤，直接运行在 Cloudflare 边缘。
+
+## 🗂️ 项目结构
+
+```text
+.
+├── index.html                 # 页面、样式和交互
+├── icons/                     # 服务图标
+├── functions/api/posts.js     # Halo RSS 转换接口
+├── functions/api/weather.js   # Open-Meteo 天气接口
+├── deploy.sh                  # Cloudflare Pages 一键部署
+├── package.json               # 检查与部署命令
+└── CHANGELOG.md               # 更新日志
+```
+
+## 📝 自定义
+
+- 入口、分类和页面文案：编辑 `index.html`；
+- 最近文章来源：编辑 `functions/api/posts.js` 中的 RSS 地址；
+- 项目名：设置 `PROJECT_NAME`；
+- 自定义域名：部署后在 Cloudflare Pages 项目的 **Custom domains** 中绑定。
+
+## 📋 更新日志
+
+版本变更见 [CHANGELOG.md](CHANGELOG.md)。
 
 ## 📄 开源协议
 
-本项目基于 [MIT License](LICENSE) 协议开源。
+本项目基于 [MIT License](LICENSE) 开源。
