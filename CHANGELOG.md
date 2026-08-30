@@ -2,6 +2,26 @@
 
 本项目遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [1.1.0] - 2026-08-30
+
+### 新增
+
+- README 增加 Cloudflare 官方 **Deploy to Cloudflare** 一键部署按钮；
+- 新增 `wrangler.jsonc`，供 Cloudflare 自动识别和创建 Worker；
+- 新增 `worker.js`，以 Workers Static Assets 托管页面、图标和 API；
+- 一键部署后自动复制 GitHub 仓库、创建 Worker 并建立持续部署。
+
+### 兼容
+
+- 保留原有 `functions/api/`，继续支持传统 Cloudflare Pages 部署；
+- Workers 与 Pages 两条部署路径共用相同页面，并提供一致的 `/api/posts` 和 `/api/weather` 接口。
+
+### 变更
+
+- `npm run deploy` 改为标准 `wrangler deploy`；
+- README 将 Cloudflare 官方按钮置于部署章节首位；
+- 更新项目版本至 `1.1.0`。
+
 ## [1.0.0] - 2026-08-30
 
 ### 新增
@@ -31,4 +51,5 @@
 - 移除 Note 文章混流与服务状态模块；
 - 修复长标题单行截断导致信息显示不完整的问题。
 
+[1.1.0]: https://github.com/shali10/forest-nav/releases/tag/v1.1.0
 [1.0.0]: https://github.com/shali10/forest-nav/releases/tag/v1.0.0

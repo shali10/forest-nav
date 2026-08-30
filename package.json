@@ -1,11 +1,12 @@
 {
   "name": "forest-nav",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
-  "description": "高饱和旅行海报风个人导航页，支持 Cloudflare Pages Functions。",
+  "description": "高饱和旅行海报风个人导航页，支持 Cloudflare 一键部署。",
   "scripts": {
-    "deploy": "wrangler pages deploy . --project-name=${PROJECT_NAME:-forest-nav} --branch=${BRANCH:-main} --commit-dirty=true",
-    "check": "node --check functions/api/posts.js && node --check functions/api/weather.js"
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev",
+    "check": "node --check worker.js && node --check functions/api/posts.js && node --check functions/api/weather.js"
   },
   "devDependencies": {
     "wrangler": "^4.127.1"
