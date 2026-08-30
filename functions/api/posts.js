@@ -27,17 +27,16 @@ export async function onRequestGet({ request }) {
       if (rawDate) {
         try {
           const d = new Date(rawDate);
-          const yyyy = d.getFullYear();
           const mm = String(d.getMonth() + 1).padStart(2, '0');
           const dd = String(d.getDate()).padStart(2, '0');
-          dateStr = `${yyyy}-${mm}-${dd}`;
+          dateStr = `${mm}/${dd}`;
         } catch (e) {
           dateStr = "";
         }
       }
       
       if (title && link) {
-        items.push({ title, url: link, date: dateStr });
+        items.push({ title, url: link, source: "Halo 博客", date: dateStr });
       }
     }
     
