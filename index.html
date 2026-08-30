@@ -11,6 +11,443 @@
   <link rel="icon" href="/icons/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700&family=Noto+Serif+SC:wght@500;600;700&family=LXGW+WenKai&display=swap" rel="stylesheet">
-  </body>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700&family=Noto+Serif+SC:wght@500;600;700&display=swap" rel="stylesheet">
+  <script>try{const t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t;else if(matchMedia('(prefers-color-scheme:dark)').matches)document.documentElement.dataset.theme='dark'}catch(e){}</script>
+  <style>
+    :root {
+      color-scheme: light;
+      --canvas:#f3f0e8; --surface:#faf8f2; --surface-strong:#fffdf8; --ink:#1d2821;
+      --muted:#6f776f; --faint:#9ba198; --line:#d8d7cd; --accent:#315b45; --accent-soft:#dce7de;
+      --nav:#e9e7df; --shadow:0 16px 48px rgba(42,50,43,.08); --radius:18px;
+    }
+    :root[data-theme="dark"] {
+      color-scheme:dark;
+      --canvas:#151a17; --surface:#1b211d; --surface-strong:#202822; --ink:#edf0e8;
+      --muted:#aab2aa; --faint:#778179; --line:#333d36; --accent:#91b89e; --accent-soft:#263a2d;
+      --nav:#202722; --shadow:0 18px 54px rgba(0,0,0,.24);
+    }
+    *{box-sizing:border-box} html{scroll-behavior:smooth;scroll-padding-top:24px} body{margin:0;background:var(--canvas);color:var(--ink);font-family:Manrope,"PingFang SC","Microsoft YaHei",sans-serif;transition:background .25s,color .25s}
+    body::before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.34;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.055'/%3E%3C/svg%3E")}
+    a{color:inherit} button,input{font:inherit} svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+    .page-shell{width:min(1440px,100%);margin:auto;padding:24px;display:grid;grid-template-columns:268px minmax(0,1fr);gap:24px}
+    .sidebar{position:sticky;top:24px;height:calc(100vh - 48px);display:flex;flex-direction:column;padding:28px;background:var(--surface);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow)}
+    .brand{display:flex;align-items:center;gap:13px;text-decoration:none} .brand-mark{width:42px;height:42px;display:grid;place-items:center;border-radius:50%;background:var(--accent);color:var(--surface);font-family:"Noto Serif SC",serif;font-size:20px} .brand strong{font-family:"Noto Serif SC",serif;font-size:19px;letter-spacing:.08em} .brand small{display:block;color:var(--faint);font-size:10px;letter-spacing:.15em;margin-top:3px}
+    .side-note{margin:46px 0 24px;font-family:"Noto Serif SC",serif;font-size:24px;line-height:1.55;font-weight:600;letter-spacing:.03em} .side-note em{display:block;color:var(--accent);font-style:normal}
+    .section-nav{display:grid;gap:4px;margin-top:auto} .section-nav a{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:11px;text-decoration:none;color:var(--muted);font-size:13px;transition:.18s} .section-nav a span{font-size:10px;color:var(--faint);font-variant-numeric:tabular-nums} .section-nav a:hover,.section-nav a.active{background:var(--accent-soft);color:var(--accent)}
+    .side-foot{display:flex;align-items:center;justify-content:space-between;margin-top:24px;padding-top:18px;border-top:1px solid var(--line);font-size:10px;color:var(--faint);letter-spacing:.08em} .theme-toggle{width:40px;height:40px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;background:transparent;color:var(--ink);cursor:pointer} .theme-toggle:hover{background:var(--nav)}
+    .main{min-width:0} .intro{min-height:330px;padding:44px 48px;display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:40px;align-items:end;background:var(--accent);color:#f3f5ee;border-radius:24px;position:relative;overflow:hidden}
+    .intro::after{content:"林";position:absolute;right:-10px;top:-76px;font-family:"Noto Serif SC",serif;font-size:310px;line-height:1;color:rgba(255,255,255,.045);pointer-events:none} .eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.2em;opacity:.68} .intro h1{font-family:"Noto Serif SC",serif;font-size:clamp(40px,5vw,68px);line-height:1.12;letter-spacing:.04em;margin:17px 0 18px;max-width:690px} .intro p{max-width:570px;margin:0;opacity:.72;line-height:1.8;font-size:14px}
+    .search-panel{position:relative;z-index:1} .search-label{display:flex;justify-content:space-between;font-size:11px;opacity:.68;margin-bottom:10px} .search-wrap{position:relative} .search-wrap svg{position:absolute;left:16px;top:50%;transform:translateY(-50%)} .search-wrap input{width:100%;height:54px;padding:0 42px 0 48px;border:1px solid rgba(255,255,255,.25);border-radius:14px;background:rgba(255,255,255,.11);color:white;outline:none} .search-wrap input::placeholder{color:rgba(255,255,255,.56)} .search-wrap input:focus{border-color:rgba(255,255,255,.72);background:rgba(255,255,255,.16)} .clear-search{position:absolute;right:10px;top:8px;width:38px;height:38px;border:0;background:transparent;color:white;cursor:pointer;display:none;font-size:20px}
+    .mobile-bar{display:none}
+    .daily-strip{display:grid;grid-template-columns:1.05fr 1fr 1.65fr;gap:10px;margin-top:10px}
+    .daily-card{min-height:112px;padding:20px 22px;display:flex;flex-direction:column;justify-content:space-between;background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+    .daily-label{display:flex;align-items:center;justify-content:space-between;color:var(--faint);font-size:10px;letter-spacing:.12em;text-transform:uppercase}
+    .daily-label svg{width:16px;height:16px;color:var(--accent)}
+    .clock-value{font-family:"Noto Serif SC",serif;font-size:31px;font-weight:600;letter-spacing:.04em;font-variant-numeric:tabular-nums;line-height:1}
+    .clock-meta,.weather-meta{color:var(--muted);font-size:11px;margin-top:8px}
+    .weather-value{display:flex;align-items:baseline;gap:10px}.weather-value strong{font-family:"Noto Serif SC",serif;font-size:29px;line-height:1}.weather-value span{font-size:12px;color:var(--muted)}
+    .quote-text{font-family:"Noto Serif SC",serif;font-size:17px;line-height:1.72;margin:0;text-wrap:pretty}.quote-source{margin-top:8px;color:var(--faint);font-size:10px;letter-spacing:.08em}
+    .daily-card.is-loading .weather-value,.daily-card.is-loading .weather-meta{opacity:.45}
+    .collections{padding:22px 0 70px}
+    .collection{padding:34px 12px 44px;border-bottom:1px solid var(--line)} .collection:last-child{border-bottom:0} .collection-head{display:grid;grid-template-columns:minmax(240px,.75fr) 1fr auto;gap:28px;align-items:end;margin:0 6px 22px} .collection-head>div{display:flex;align-items:baseline;gap:14px} .section-index{font-size:11px;color:var(--accent);font-weight:700} .collection h2{font-family:"Noto Serif SC",serif;font-size:26px;letter-spacing:.04em;margin:0} .collection-head p{margin:0;color:var(--muted);font-size:12px;line-height:1.7} .section-total{color:var(--faint);font-size:11px;white-space:nowrap}
+    .service-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px} .service-card{min-width:0;min-height:106px;display:grid;grid-template-columns:48px minmax(0,1fr) 24px;align-items:center;gap:14px;padding:18px;border:1px solid transparent;border-radius:var(--radius);background:var(--surface);text-decoration:none;transition:transform .18s,border-color .18s,background .18s;animation:rise .35s both;animation-delay:var(--delay)} .service-card:hover{transform:translateY(-3px);border-color:var(--line);background:var(--surface-strong)} .service-card:focus-visible,.theme-toggle:focus-visible,.section-nav a:focus-visible,input:focus-visible{outline:3px solid color-mix(in srgb,var(--accent) 35%,transparent);outline-offset:3px} .service-icon{width:46px;height:46px;display:grid;place-items:center;border-radius:13px;background:var(--nav);border:1px solid var(--line)} .service-icon img{width:30px;height:30px;object-fit:contain;border-radius:7px} .service-copy{min-width:0} .service-line{display:flex;align-items:center;gap:8px;min-width:0} .service-line strong{font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis} .service-line small{padding:2px 6px;border-radius:5px;background:var(--accent-soft);color:var(--accent);font-size:9px;white-space:nowrap} .service-desc{display:block;margin-top:7px;color:var(--muted);font-size:11px;line-height:1.55;white-space:nowrap;overflow:hidden;text-overflow:ellipsis} .service-arrow{color:var(--faint);opacity:0;transform:translate(-4px,4px);transition:.18s} .service-card:hover .service-arrow{opacity:1;transform:none} .service-arrow svg{width:18px;height:18px} .service-card.is-disabled{cursor:not-allowed;opacity:.66} .service-card.is-disabled .service-arrow{display:none}
+    .empty{display:none;padding:90px 24px;text-align:center;color:var(--muted)} .empty strong{display:block;color:var(--ink);font-family:"Noto Serif SC",serif;font-size:24px;margin-bottom:8px}
+    .footer{display:flex;justify-content:space-between;gap:24px;padding:24px 18px 40px;color:var(--faint);font-size:10px;letter-spacing:.06em} .back-top{border:0;background:transparent;color:var(--muted);cursor:pointer;display:flex;align-items:center;gap:8px}
+    .hide{display:none!important}
+    @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+    @media(max-width:1100px){.page-shell{grid-template-columns:220px minmax(0,1fr)}.sidebar{padding:22px}.side-note{font-size:20px}.intro{grid-template-columns:1fr;padding:38px}.search-panel{max-width:460px}.daily-strip{grid-template-columns:1fr 1fr}.daily-card.quote-card{grid-column:1/-1}.service-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.collection-head{grid-template-columns:1fr auto}.collection-head p{grid-column:1/-1;grid-row:2}}
+    @media(max-width:760px){.page-shell{display:block;padding:12px}.sidebar{display:none}.main{width:100%}.mobile-bar{display:flex;position:sticky;top:12px;z-index:20;align-items:center;justify-content:space-between;margin-bottom:10px;padding:10px 12px;background:color-mix(in srgb,var(--surface) 88%,transparent);backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:16px}.mobile-bar .brand-mark{width:34px;height:34px;font-size:16px}.mobile-bar .brand strong{font-size:15px}.mobile-bar .brand small{display:none}.mobile-actions{display:flex;gap:6px}.mobile-actions button{width:38px;height:38px;border:0;border-radius:50%;background:transparent;color:var(--ink)}.intro{min-height:390px;padding:34px 24px;border-radius:20px;align-content:end;gap:34px}.intro::after{font-size:240px;top:-30px}.intro h1{font-size:42px}.intro p{font-size:12px}.daily-strip{grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}.daily-card{min-height:104px;padding:16px;border-radius:16px}.daily-card.quote-card{grid-column:1/-1;min-height:120px}.clock-value{font-size:25px}.weather-value strong{font-size:24px}.quote-text{font-size:15px}.collections{padding-top:8px}.collection{padding:30px 2px 36px}.collection-head{margin:0 8px 18px;gap:12px}.collection h2{font-size:22px}.collection-head p{font-size:11px}.service-grid{grid-template-columns:1fr;gap:8px}.service-card{min-height:86px;padding:14px}.service-desc{font-size:11px}.service-arrow{opacity:.45;transform:none}.footer{padding-bottom:24px}}
+    @media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
+  
+    /* LIVE BOARD (Halo 最近文章) */
+    .live-board{display:grid;grid-template-columns:1fr;margin:14px 0 16px}
+    .live-panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px;box-shadow:var(--shadow)}
+    .live-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+    .live-title-group h2{font-family:"Noto Serif SC",serif;font-size:18px;font-weight:700;color:var(--ink);margin:0;line-height:1.3}
+    .live-title-group p{margin:3px 0 0;color:var(--muted);font-size:11px;letter-spacing:.02em}
+    .live-link{font-size:12px;color:var(--accent);text-decoration:none;font-weight:600;white-space:nowrap;flex-shrink:0;padding:4px 8px;border-radius:8px;transition:background .18s}
+    .live-link:hover{background:var(--accent-soft)}
+    .post-list{display:flex;flex-direction:column;gap:3px}
+    .post-item{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:11px 12px;border-radius:10px;text-decoration:none;color:inherit;transition:background .18s,color .18s}
+    .post-item:hover{background:var(--surface-strong)}
+    .post-title{font-size:14px;font-weight:500;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;flex:1;letter-spacing:.01em}
+    .post-item:hover .post-title{color:var(--accent)}
+    .post-date{font-size:12px;color:var(--faint);font-variant-numeric:tabular-nums;white-space:nowrap;flex-shrink:0;letter-spacing:.02em}
+
+
+    @media(max-width:760px){.live-panel{padding:16px 14px}.live-head{margin-bottom:10px;padding-bottom:10px}.live-title-group h2{font-size:16px}.post-item{padding:9px 8px;gap:12px}.post-title{font-size:13px}.post-date{font-size:11px}}
+
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#top"><span class="brand-mark">林</span><span><strong>林间随笔</strong><small>PERSONAL INDEX</small></span></a>
+      <p class="side-note">把常用的东西，<em>安静地放在一起。</em></p>
+      <nav class="section-nav" aria-label="页面分类"><a href="#home" data-nav="home"><span>01</span>自建服务</a><a href="#ai" data-nav="ai"><span>02</span>AI 工作台</a><a href="#design" data-nav="design"><span>03</span>效率与设计</a><a href="#cloud" data-nav="cloud"><span>04</span>开发与云</a><a href="#community" data-nav="community"><span>05</span>技术社区</a><a href="#life" data-nav="life"><span>06</span>影音日常</a></nav>
+      <div class="side-foot"><span>0000996.XYZ</span><button class="theme-toggle" type="button" aria-label="切换主题" title="切换主题"><span class="theme-icon"></span></button></div>
+    </aside>
+    <main class="main" id="top">
+      <div class="mobile-bar"><a class="brand" href="#top"><span class="brand-mark">林</span><span><strong>林间随笔</strong></span></a><div class="mobile-actions"><button class="theme-toggle" type="button" aria-label="切换主题"><span class="theme-icon"></span></button></div></div>
+      <section class="intro">
+        <div><span class="eyebrow">Personal space · 0000996.xyz</span><h1>日常所用，<br>一页抵达。</h1><p>这里不是互联网大全，只收下真正会用到的服务、工具与阅读入口。</p></div>
+        <div class="search-panel"><label class="search-label" for="search"><span>快速查找</span><span>/ 聚焦</span></label><div class="search-wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg><input id="search" type="search" placeholder="搜索名称、用途或标签" autocomplete="off" aria-label="搜索导航入口"><button class="clear-search" type="button" aria-label="清空搜索">×</button></div></div>
+      </section>
+      <section class="daily-strip" aria-label="今日信息">
+        <article class="daily-card clock-card">
+          <div class="daily-label"><span>Local time</span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"></circle><path d="M12 7v5l3 2"></path></svg></div>
+          <div><div class="clock-value" id="clockValue">--:--</div><div class="clock-meta" id="clockMeta">正在读取本地时间</div></div>
+        </article>
+        <article class="daily-card weather-card is-loading">
+          <div class="daily-label"><span>Weather</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17h10a4 4 0 0 0 .5-8 6 6 0 0 0-11-1A4.5 4.5 0 0 0 7 17Z"></path></svg></div>
+          <div><div class="weather-value"><strong id="weatherTemp">--°</strong><span id="weatherText">读取天气</span></div><div class="weather-meta" id="weatherMeta">按访问位置自动匹配</div></div>
+        </article>
+        <article class="daily-card quote-card">
+          <div class="daily-label"><span>Daily note</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h10M7 12h7M7 17h5"></path></svg></div>
+          <div><p class="quote-text" id="dailyQuote">把复杂留给系统，把清晰留给自己。</p><div class="quote-source" id="quoteSource">林间随笔 · 今日一句</div></div>
+        </article>
+      </section>
+            <section class="live-board" aria-label="最近手记">
+        <article class="live-panel posts-panel">
+          <header class="live-head">
+            <div class="live-title-group">
+              <h2>📚 最近文章</h2>
+              <p>Halo 生产博客 · 实践与手记归档</p>
+            </div>
+            <a class="live-link" href="https://blog.0000996.xyz/archives" target="_blank" rel="noopener noreferrer">查看归档 ↗</a>
+          </header>
+          <div class="post-list" id="haloPosts">
+            <a href="https://blog.0000996.xyz/archives/hermes-patches-guide" target="_blank" rel="noopener noreferrer" class="post-item">
+              <strong class="post-title">Hermes Agent 补丁/插件分享</strong>
+              <span class="post-date">2026-08-29</span>
+            </a>
+            <a href="https://blog.0000996.xyz/archives/1panel-cert-auto-renewal" target="_blank" rel="noopener noreferrer" class="post-item">
+              <strong class="post-title">1Panel 域名证书配置与自动续期</strong>
+              <span class="post-date">2026-08-24</span>
+            </a>
+            <a href="https://blog.0000996.xyz/archives/ip-geofence-breakout" target="_blank" rel="noopener noreferrer" class="post-item">
+              <strong class="post-title">IP 送中 / Gemini 400 怎么破？三个方案从原理到踩坑全讲透</strong>
+              <span class="post-date">2026-08-23</span>
+            </a>
+            <a href="https://blog.0000996.xyz/archives/vps-benchmarking" target="_blank" rel="noopener noreferrer" class="post-item">
+              <strong class="post-title">VPS 性能测评指南：fio / NodeQuality / 融合怪从跑到读</strong>
+              <span class="post-date">2026-08-20</span>
+            </a>
+          </div>
+        </article>
+      </section>
+      <div class="collections"><section class="collection" id="home" data-section="home">
+      <header class="collection-head">
+        <div><span class="section-index">01</span><h2>自建服务</h2></div>
+        <p>自己搭建、维护，也最常回来的地方。</p>
+        <span class="section-total">8 个入口</span>
+      </header>
+      <div class="service-grid"><a href="https://blog.0000996.xyz/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="halo 博客 技术实践、运维记录与长期文章 自建" style="--delay:0ms">
+      <span class="service-icon"><img src="/icons/halo.png" alt="" width="44" height="44" loading="eager"></span>
+      <span class="service-copy"><span class="service-line"><strong>Halo 博客</strong><small>自建</small></span><span class="service-desc">技术实践、运维记录与长期文章</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://note.0000996.xyz/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="note 随笔 部署在边缘的轻量随笔与便签 cf" style="--delay:35ms">
+      <span class="service-icon"><img src="/icons/note.png" alt="" width="44" height="44" loading="eager"></span>
+      <span class="service-copy"><span class="service-line"><strong>Note 随笔</strong><small>CF</small></span><span class="service-desc">部署在边缘的轻量随笔与便签</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://danmu.0000996.xyz/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="妙妙屋 节点状态、媒体服务与日常看板 自建" style="--delay:70ms">
+      <span class="service-icon"><img src="/icons/danmu.png" alt="" width="44" height="44" loading="eager"></span>
+      <span class="service-copy"><span class="service-line"><strong>妙妙屋</strong><small>自建</small></span><span class="service-desc">节点状态、媒体服务与日常看板</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://openlist.0000996.xyz/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="openlist 云盘 聚合网盘、文件查找与分享 自建" style="--delay:105ms">
+      <span class="service-icon"><img src="/icons/openlist.png" alt="" width="44" height="44" loading="eager"></span>
+      <span class="service-copy"><span class="service-line"><strong>OpenList 云盘</strong><small>自建</small></span><span class="service-desc">聚合网盘、文件查找与分享</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<div role="link" aria-disabled="true" tabindex="0" class="service-card is-disabled" data-search="r2 相片馆 图片与静态资源存储域 资源域" style="--delay:0ms">
+      <span class="service-icon"><img src="/icons/r2.png" alt="" width="44" height="44" loading="eager"></span>
+      <span class="service-copy"><span class="service-line"><strong>R2 相片馆</strong><small>资源域</small></span><span class="service-desc">图片与静态资源存储域</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </div>
+<a href="https://panel.0000996.xyz/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="1panel 运维 生产机容器、网站与系统管理 运维" style="--delay:35ms">
+      <span class="service-icon"><img src="/icons/1panel.png" alt="" width="44" height="44" loading="eager"></span>
+      <span class="service-copy"><span class="service-line"><strong>1Panel 运维</strong><small>运维</small></span><span class="service-desc">生产机容器、网站与系统管理</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://jsq.0000996.xyz/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="vps 价值计算器 计算机器剩余价值与到期成本 工具" style="--delay:70ms">
+      <span class="service-icon"><img src="/icons/calculator.png" alt="" width="44" height="44" loading="eager"></span>
+      <span class="service-copy"><span class="service-line"><strong>VPS 价值计算器</strong><small>工具</small></span><span class="service-desc">计算机器剩余价值与到期成本</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://cpa.0000996.xyz/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="cpa 智能网关 统一接入和调度多个模型服务 api" style="--delay:105ms">
+      <span class="service-icon"><img src="/icons/cpa.png" alt="" width="44" height="44" loading="eager"></span>
+      <span class="service-copy"><span class="service-line"><strong>CPA 智能网关</strong><small>API</small></span><span class="service-desc">统一接入和调度多个模型服务</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a></div>
+    </section><section class="collection" id="ai" data-section="ai">
+      <header class="collection-head">
+        <div><span class="section-index">02</span><h2>AI 工作台</h2></div>
+        <p>对话、推理、搜索与模型实验。</p>
+        <span class="section-total">7 个入口</span>
+      </header>
+      <div class="service-grid"><a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="chatgpt 日常对话、推理与图片处理 openai" style="--delay:0ms">
+      <span class="service-icon"><img src="/icons/chatgpt.png" alt="" width="44" height="44" loading="lazy"></span>
+      <span class="service-copy"><span class="service-line"><strong>ChatGPT</strong><small>OpenAI</small></span><span class="service-desc">日常对话、推理与图片处理</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://claude.ai/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="claude 长文分析、代码协作与复杂写作 anthropic" style="--delay:35ms">
+      <span class="service-icon"><img src="/icons/claude.png" alt="" width="44" height="44" loading="lazy"></span>
+      <span class="service-copy"><span class="service-line"><strong>Claude</strong><small>Anthropic</small></span><span class="service-desc">长文分析、代码协作与复杂写作</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://gemini.google.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="google gemini 多模态理解与超长上下文任务 google" style="--delay:70ms">
+      <span class="service-icon"><img src="/icons/gemini.png" alt="" width="44" height="44" loading="lazy"></span>
+      <span class="service-copy"><span class="service-line"><strong>Google Gemini</strong><small>Google</small></span><span class="service-desc">多模态理解与超长上下文任务</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://chat.deepseek.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="deepseek 中文推理、搜索与通用问答 开源" style="--delay:105ms">
+      <span class="service-icon"><img src="/icons/deepseek.png" alt="" width="44" height="44" loading="lazy"></span>
+      <span class="service-copy"><span class="service-line"><strong>DeepSeek</strong><small>开源</small></span><span class="service-desc">中文推理、搜索与通用问答</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://kimi.moonshot.cn/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="kimi 智能助手 长文阅读与中文资料检索 长文本" style="--delay:0ms">
+      <span class="service-icon"><img src="/icons/kimi.png" alt="" width="44" height="44" loading="lazy"></span>
+      <span class="service-copy"><span class="service-line"><strong>Kimi 智能助手</strong><small>长文本</small></span><span class="service-desc">长文阅读与中文资料检索</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://grok.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="grok 实时信息、热点追踪与多模态对话 xai" style="--delay:35ms">
+      <span class="service-icon"><img src="/icons/grok.png" alt="" width="44" height="44" loading="lazy"></span>
+      <span class="service-copy"><span class="service-line"><strong>Grok</strong><small>xAI</small></span><span class="service-desc">实时信息、热点追踪与多模态对话</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://siliconflow.cn/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="siliconflow 模型 api 测试与推理服务 推理" style="--delay:70ms">
+      <span class="service-icon"><img src="/icons/siliconflow.png" alt="" width="44" height="44" loading="lazy"></span>
+      <span class="service-copy"><span class="service-line"><strong>SiliconFlow</strong><small>推理</small></span><span class="service-desc">模型 API 测试与推理服务</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a></div>
+    </section><section class="collection" id="design" data-section="design">
+      <header class="collection-head">
+        <div><span class="section-index">03</span><h2>效率与设计</h2></div>
+        <p>写作、作图、素材与日常生产力。</p>
+        <span class="section-total">8 个入口</span>
+      </header>
+      <div class="service-grid"><a href="https://www.figma.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="figma 界面设计、组件整理与原型协作 设计" style="--delay:0ms">
+      <span class="service-icon"><img src="/icons/figma.png" alt="" width="44" height="44" loading="lazy"></span>
+      <span class="service-copy"><span class="service-line"><strong>Figma</strong><small>设计</small></span><span class="service-desc">界面设计、组件整理与原型协作</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://www.processon.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="processon 流程图、思维导图与在线作图 作图" style="--delay:35ms">
+      <span class="service-icon"><img src="/icons/processon.png" alt="" width="44" height="44" loading="lazy"></span>
+      <span class="service-copy"><span class="service-line"><strong>ProcessOn</strong><small>作图</small></span><span class="service-desc">流程图、思维导图与在线作图</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://tinypng.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="tinypng 发布前压缩 png 与 jpeg 图片 压缩" style="--delay:70ms">
+      <span class="service-icon"><img src="/icons/tinypng.png" alt="" width="44" height="44" loading="lazy"></span>
+      <span class="service-copy"><span class="service-line"><strong>TinyPNG</strong><small>压缩</small></span><span class="service-desc">发布前压缩 PNG 与 JPEG 图片</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://www.iconfont.cn/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="iconfont 查找和管理前端图标素材 图标" style="--delay:105ms">
+      <span class="service-icon"><img src="/icons/iconfont.png" alt="" width="44" height="44" loading="lazy"></span>
+      <span class="service-copy"><span class="service-line"><strong>Iconfont</strong><small>图标</small></span><span class="service-desc">查找和管理前端图标素材</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://unsplash.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="unsplash 博客配图与桌面摄影素材 壁纸" style="--delay:0ms">
+      <span class="service-icon"><img src="/icons/unsplash.png" alt="" width="44" height="44" loading="lazy"></span>
+      <span class="service-copy"><span class="service-line"><strong>Unsplash</strong><small>壁纸</small></span><span class="service-desc">博客配图与桌面摄影素材</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://www.yuque.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="语雀 文档、知识库与协作笔记 文档" style="--delay:35ms">
+      <span class="service-icon"><img src="/icons/yuque.png" alt="" width="44" height="44" loading="lazy"></span>
+      <span class="service-copy"><span class="service-line"><strong>语雀</strong><small>文档</small></span><span class="service-desc">文档、知识库与协作笔记</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://fanyi.youdao.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="有道翻译 中英互译与网页快速查词 翻译" style="--delay:70ms">
+      <span class="service-icon"><img src="/icons/youdao.png" alt="" width="44" height="44" loading="lazy"></span>
+      <span class="service-copy"><span class="service-line"><strong>有道翻译</strong><small>翻译</small></span><span class="service-desc">中英互译与网页快速查词</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://excalidraw.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="excalidraw 手绘草图、架构图与白板 白板" style="--delay:105ms">
+      <span class="service-icon"><img src="/icons/excalidraw.png" alt="" width="44" height="44" loading="lazy"></span>
+      <span class="service-copy"><span class="service-line"><strong>Excalidraw</strong><small>白板</small></span><span class="service-desc">手绘草图、架构图与白板</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a></div>
+    </section><section class="collection" id="cloud" data-section="cloud">
+      <header class="collection-head">
+        <div><span class="section-index">04</span><h2>开发与云</h2></div>
+        <p>代码、容器、网络与基础设施。</p>
+        <span class="section-total">7 个入口</span>
+      </header>
+      <div class="service-grid"><a href="https://dash.cloudflare.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="cloudflare dns、pages、workers 与边缘服务 cdn" style="--delay:0ms">
+      <span class="service-icon"><img src="/icons/cloudflare.png" alt="" width="44" height="44" loading="lazy"></span>
+      <span class="service-copy"><span class="service-line"><strong>Cloudflare</strong><small>CDN</small></span><span class="service-desc">DNS、Pages、Workers 与边缘服务</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="github 项目源码、issue 与发布管理 dev" style="--delay:35ms">
+      <span class="service-icon"><img src="/icons/github.png" alt="" width="44" height="44" loading="lazy"></span>
+      <span class="service-copy"><span class="service-line"><strong>GitHub</strong><small>Dev</small></span><span class="service-desc">项目源码、Issue 与发布管理</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://hub.docker.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="docker hub 查找容器镜像与版本标签 容器" style="--delay:70ms">
+      <span class="service-icon"><img src="/icons/docker.png" alt="" width="44" height="44" loading="lazy"></span>
+      <span class="service-copy"><span class="service-line"><strong>Docker Hub</strong><small>容器</small></span><span class="service-desc">查找容器镜像与版本标签</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://lightsail.aws.amazon.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="aws lightsail 轻量云服务器与节点管理 vps" style="--delay:105ms">
+      <span class="service-icon"><img src="/icons/aws.png" alt="" width="44" height="44" loading="lazy"></span>
+      <span class="service-copy"><span class="service-line"><strong>AWS Lightsail</strong><small>VPS</small></span><span class="service-desc">轻量云服务器与节点管理</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://www.itdog.cn/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="itdog 测速 多地 ping、tcp 与路由测试 网络" style="--delay:0ms">
+      <span class="service-icon"><img src="/icons/itdog.png" alt="" width="44" height="44" loading="lazy"></span>
+      <span class="service-copy"><span class="service-line"><strong>ITDOG 测速</strong><small>网络</small></span><span class="service-desc">多地 Ping、TCP 与路由测试</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://www.oschina.net/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="开源中国 中文开源资讯与软件动态 开源" style="--delay:35ms">
+      <span class="service-icon"><img src="/icons/oschina.png" alt="" width="44" height="44" loading="lazy"></span>
+      <span class="service-copy"><span class="service-line"><strong>开源中国</strong><small>开源</small></span><span class="service-desc">中文开源资讯与软件动态</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://www.ruanyifeng.com/blog/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="阮一峰的网络日志 科技周刊、前端文章与长期阅读 博客" style="--delay:70ms">
+      <span class="service-icon"><img src="/icons/ruanyifeng.png" alt="" width="44" height="44" loading="lazy"></span>
+      <span class="service-copy"><span class="service-line"><strong>阮一峰的网络日志</strong><small>博客</small></span><span class="service-desc">科技周刊、前端文章与长期阅读</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a></div>
+    </section><section class="collection" id="community" data-section="community">
+      <header class="collection-head">
+        <div><span class="section-index">05</span><h2>技术社区</h2></div>
+        <p>主机玩家、开发者与长期阅读源。</p>
+        <span class="section-total">6 个入口</span>
+      </header>
+      <div class="service-grid"><a href="https://linux.do/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="linux do ai、开发与网络技术交流 社区" style="--delay:0ms">
+      <span class="service-icon"><img src="/icons/linuxdo.png" alt="" width="44" height="44" loading="lazy"></span>
+      <span class="service-copy"><span class="service-line"><strong>LINUX DO</strong><small>社区</small></span><span class="service-desc">AI、开发与网络技术交流</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://www.v2ex.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="v2ex 产品、编程与数字生活讨论 交流" style="--delay:35ms">
+      <span class="service-icon"><img src="/icons/v2ex.png" alt="" width="44" height="44" loading="lazy"></span>
+      <span class="service-copy"><span class="service-line"><strong>V2EX</strong><small>交流</small></span><span class="service-desc">产品、编程与数字生活讨论</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://www.nodeseek.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="nodeseek 主机行情、线路测评与玩家交流 主机" style="--delay:70ms">
+      <span class="service-icon"><img src="/icons/nodeseek.png" alt="" width="44" height="44" loading="lazy"></span>
+      <span class="service-copy"><span class="service-line"><strong>NodeSeek</strong><small>主机</small></span><span class="service-desc">主机行情、线路测评与玩家交流</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://hostloc.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="hostloc 服务器、域名与网络经验讨论 论坛" style="--delay:105ms">
+      <span class="service-icon"><img src="/icons/hostloc.png" alt="" width="44" height="44" loading="lazy"></span>
+      <span class="service-copy"><span class="service-line"><strong>Hostloc</strong><small>论坛</small></span><span class="service-desc">服务器、域名与网络经验讨论</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://sspai.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="少数派 (sspai) 效率工具、应用体验与数字生活 效率" style="--delay:0ms">
+      <span class="service-icon"><img src="/icons/sspai.png" alt="" width="44" height="44" loading="lazy"></span>
+      <span class="service-copy"><span class="service-line"><strong>少数派 (SSPAI)</strong><small>效率</small></span><span class="service-desc">效率工具、应用体验与数字生活</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://news.ycombinator.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="hacker news 技术、创业与英文行业动态 资讯" style="--delay:35ms">
+      <span class="service-icon"><img src="/icons/hackernews.png" alt="" width="44" height="44" loading="lazy"></span>
+      <span class="service-copy"><span class="service-line"><strong>Hacker News</strong><small>资讯</small></span><span class="service-desc">技术、创业与英文行业动态</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a></div>
+    </section><section class="collection" id="life" data-section="life">
+      <header class="collection-head">
+        <div><span class="section-index">06</span><h2>影音日常</h2></div>
+        <p>视频、音乐、阅读和消息。</p>
+        <span class="section-total">6 个入口</span>
+      </header>
+      <div class="service-grid"><a href="https://www.bilibili.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="哔哩哔哩 中文教程、测评与日常视频 视频" style="--delay:0ms">
+      <span class="service-icon"><img src="/icons/bilibili.png" alt="" width="44" height="44" loading="lazy"></span>
+      <span class="service-copy"><span class="service-line"><strong>哔哩哔哩</strong><small>视频</small></span><span class="service-desc">中文教程、测评与日常视频</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="youtube 技术教程、测评与海外视频 视频" style="--delay:35ms">
+      <span class="service-icon"><img src="/icons/youtube.png" alt="" width="44" height="44" loading="lazy"></span>
+      <span class="service-copy"><span class="service-line"><strong>YouTube</strong><small>视频</small></span><span class="service-desc">技术教程、测评与海外视频</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://music.163.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="网易云音乐 歌单、音乐发现与评论 音乐" style="--delay:70ms">
+      <span class="service-icon"><img src="/icons/netease.png" alt="" width="44" height="44" loading="lazy"></span>
+      <span class="service-copy"><span class="service-line"><strong>网易云音乐</strong><small>音乐</small></span><span class="service-desc">歌单、音乐发现与评论</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://weread.qq.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="微信读书 电子书、划线与阅读记录 阅读" style="--delay:105ms">
+      <span class="service-icon"><img src="/icons/weread.png" alt="" width="44" height="44" loading="lazy"></span>
+      <span class="service-copy"><span class="service-line"><strong>微信读书</strong><small>阅读</small></span><span class="service-desc">电子书、划线与阅读记录</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://web.telegram.org/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="telegram web 频道消息与桌面端通讯 通讯" style="--delay:0ms">
+      <span class="service-icon"><img src="/icons/telegram.png" alt="" width="44" height="44" loading="lazy"></span>
+      <span class="service-copy"><span class="service-line"><strong>Telegram Web</strong><small>通讯</small></span><span class="service-desc">频道消息与桌面端通讯</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://x.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="twitter / x 实时资讯、开发者与产品动态 社交" style="--delay:35ms">
+      <span class="service-icon"><img src="/icons/x.png" alt="" width="44" height="44" loading="lazy"></span>
+      <span class="service-copy"><span class="service-line"><strong>Twitter / X</strong><small>社交</small></span><span class="service-desc">实时资讯、开发者与产品动态</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a></div>
+    </section></div>
+      <div class="empty"><strong>没有找到这个入口</strong><span>换个名称或用途试试。</span></div>
+      <footer class="footer"><span>© 2026 林间随笔 · Cloudflare Pages</span><button class="back-top" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 14 6-6 6 6"></path></svg> 返回顶部</button></footer>
+    </main>
+  </div>
+  <script>
+    const root=document.documentElement;
+    const search=document.querySelector('#search');
+    const clear=document.querySelector('.clear-search');
+    const quotes=[
+      ['把复杂留给系统，把清晰留给自己。','林间随笔'],
+      ['慢一点整理，往后每一步都会更快。','林间随笔'],
+      ['真正好用的工具，最后都会安静下来。','林间随笔'],
+      ['把今天能验证的事，留到今天完成。','林间随笔'],
+      ['少一点堆叠，多一点抵达。','林间随笔'],
+      ['先看见事实，再决定方向。','林间随笔'],
+      ['空间不必装满，入口只留常用。','林间随笔'],
+      ['稳定不是没有变化，而是变化仍然可控。','林间随笔'],
+      ['认真生活，也认真维护自己的数字世界。','林间随笔'],
+      ['好的秩序，让注意力回到真正重要的地方。','林间随笔'],
+      ['把路径缩短，把时间留给创造。','林间随笔'],
+      ['一页抵达，也是一种数字生活的克制。','林间随笔']
+    ];
+    const dayKey=new Date().toLocaleDateString('en-CA');
+    const quoteIndex=[...dayKey].reduce((sum,char)=>sum+char.charCodeAt(0),0)%quotes.length;
+    document.querySelector('#dailyQuote').textContent=quotes[quoteIndex][0];
+    document.querySelector('#quoteSource').textContent=`${quotes[quoteIndex][1]} · 今日一句`;
+    function updateClock(){const now=new Date();document.querySelector('#clockValue').textContent=new Intl.DateTimeFormat('zh-CN',{hour:'2-digit',minute:'2-digit',hour12:false}).format(now);document.querySelector('#clockMeta').textContent=new Intl.DateTimeFormat('zh-CN',{month:'long',day:'numeric',weekday:'long'}).format(now)}
+    updateClock();setInterval(updateClock,30000);
+    const weatherNames={0:'晴朗',1:'大致晴朗',2:'局部多云',3:'阴天',45:'有雾',48:'雾凇',51:'小毛毛雨',53:'毛毛雨',55:'较强毛毛雨',56:'冻毛毛雨',57:'强冻毛毛雨',61:'小雨',63:'中雨',65:'大雨',66:'冻雨',67:'强冻雨',71:'小雪',73:'中雪',75:'大雪',77:'米雪',80:'阵雨',81:'中阵雨',82:'强阵雨',85:'阵雪',86:'强阵雪',95:'雷雨',96:'雷雨伴冰雹',99:'强雷雨伴冰雹'};
+    async function loadWeather(){const card=document.querySelector('.weather-card');try{const response=await fetch('/api/weather',{headers:{accept:'application/json'}});if(!response.ok)throw new Error('weather');const data=await response.json();const current=data.current||{};document.querySelector('#weatherTemp').textContent=`${Math.round(current.temperature_2m)}°`;document.querySelector('#weatherText').textContent=weatherNames[current.weather_code]||'天气更新';const range=Number.isFinite(data.daily?.min)&&Number.isFinite(data.daily?.max)?` · ${Math.round(data.daily.min)}°–${Math.round(data.daily.max)}°`:'';document.querySelector('#weatherMeta').textContent=`${data.location}${range}`;}catch(error){document.querySelector('#weatherTemp').textContent='--°';document.querySelector('#weatherText').textContent='暂未取得';document.querySelector('#weatherMeta').textContent='天气服务稍后再试';}finally{card.classList.remove('is-loading')}}
+    loadWeather();
+
+    async function loadHaloPosts() {
+      const haloEl = document.getElementById('haloPosts');
+      if (!haloEl) return;
+      try {
+        const resp = await fetch('/api/posts', { headers: { accept: 'application/json' } });
+        if (!resp.ok) return;
+        const posts = await resp.json();
+        if (!Array.isArray(posts) || posts.length === 0) return;
+        haloEl.innerHTML = posts.slice(0, 4).map(p => `
+          <a href="${p.url}" target="_blank" rel="noopener noreferrer" class="post-item">
+            <strong class="post-title">${p.title || ''}</strong>
+            <span class="post-date">${p.date || ''}</span>
+          </a>
+        `).join('');
+      } catch (e) {}
+    }
+    loadHaloPosts();
+
+    const cards=[...document.querySelectorAll('.service-card')];
+    const collections=[...document.querySelectorAll('.collection')];
+    const empty=document.querySelector('.empty');
+    const sun=`<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"></path></svg>`,moon=`<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.4 15.2A8.7 8.7 0 0 1 8.8 3.6 8.7 8.7 0 1 0 20.4 15.2Z"></path></svg>`;
+    function syncTheme(){const dark=root.dataset.theme==='dark';document.querySelectorAll('.theme-icon').forEach(x=>x.innerHTML=dark?sun:moon);document.querySelector('meta[name="theme-color"]').content=dark?'#151a17':'#f3f0e8'}
+    function toggleTheme(){root.dataset.theme=root.dataset.theme==='dark'?'light':'dark';localStorage.setItem('theme',root.dataset.theme);syncTheme()}
+    document.querySelectorAll('.theme-toggle').forEach(b=>b.addEventListener('click',toggleTheme));syncTheme();
+    function filter(){const q=search.value.trim().toLowerCase();let total=0;cards.forEach(card=>{const show=!q||card.dataset.search.includes(q);card.classList.toggle('hide',!show);if(show)total++});collections.forEach(section=>section.classList.toggle('hide',![...section.querySelectorAll('.service-card')].some(c=>!c.classList.contains('hide'))));empty.style.display=total?'none':'block';clear.style.display=q?'block':'none'}
+    search.addEventListener('input',filter);clear.addEventListener('click',()=>{search.value='';filter();search.focus()});
+    addEventListener('keydown',e=>{if(e.key==='/'&&document.activeElement!==search){e.preventDefault();search.focus()}if(e.key==='Escape'&&document.activeElement===search){search.value='';filter();search.blur()}});
+    search.addEventListener('keydown',e=>{if(e.key==='Enter'){const card=cards.find(c=>!c.classList.contains('hide')&&!c.classList.contains('is-disabled'));if(card)card.click()}});
+    document.querySelector('.back-top').addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
+    const nav=[...document.querySelectorAll('[data-nav]')];
+    const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){nav.forEach(a=>a.classList.toggle('active',a.dataset.nav===entry.target.dataset.section))}}),{rootMargin:'-15% 0px -70% 0px'});collections.forEach(s=>observer.observe(s));
+  </script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v3d52b47920f24c319d37e2661827c42b1787588026925" integrity="sha512-d9sL6GJLXn6fInD1+TVXhTcQOsmxeHfmHAvwGDIxp5TO+uo1fiWW7mHomMj4MLRlCsJDTqXzWLHJFFlPCEIj/A==" data-cf-beacon='{"version":"2024.11.0","token":"009aa99ab2b0447e84c0eb3bbb6ba269","r":1}' crossorigin="anonymous"></script>
+</body>
 </html>
