@@ -11,7 +11,10 @@
   <link rel="icon" href="/icons/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700&family=Noto+Serif+SC:wght@500;600;700&family=LXGW+WenKai&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700&family=Noto+Serif+SC:wght@500;600;700&family=LXGW+WenKai&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700&family=Noto+Serif+SC:wght@500;600;700&family=LXGW+WenKai&display=swap">
+  </noscript>
   <script>try{const t=localStorage.getItem('theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))document.documentElement.dataset.theme='dark';else document.documentElement.dataset.theme='light';}catch(e){}</script>
   <style>
     :root {
@@ -187,15 +190,15 @@
       border-radius: 12px;
       background: var(--sidebar-mark-bg);
       color: var(--sidebar-mark-text);
-      font-family: "Noto Serif SC", serif;
+      font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", serif;
       font-weight: 700;
       font-size: 20px;
       box-shadow: 0 3px 0 rgba(0,0,0,0.15);
     }
-    .brand strong { font-family: "Noto Serif SC", serif; font-size: 19px; letter-spacing: 0.06em; }
+    .brand strong { font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", serif; font-size: 19px; letter-spacing: 0.06em; }
     .brand small { display: block; color: var(--sidebar-text); opacity: 0.75; font-size: 10px; letter-spacing: 0.12em; margin-top: 2px; }
     
-    .side-note { margin: 40px 0 24px; font-family: "Noto Serif SC", serif; font-size: 22px; line-height: 1.55; font-weight: 600; }
+    .side-note { margin: 40px 0 24px; font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", serif; font-size: 22px; line-height: 1.55; font-weight: 600; }
     .side-note em { display: block; color: var(--sidebar-mark-bg); font-style: normal; }
     
     .section-nav { display: grid; gap: 6px; margin-top: auto; }
@@ -276,7 +279,7 @@
     }
     .intro > div { position: relative; z-index: 1; }
     .eyebrow { font-size: 11px; text-transform: uppercase; letter-spacing: 0.18em; opacity: 0.8; font-weight: 600; }
-    .intro h1 { font-family: "Noto Serif SC", serif; font-size: clamp(36px, 4.5vw, 60px); line-height: 1.15; letter-spacing: 0.04em; margin: 14px 0 16px; max-width: 640px; font-weight: 700; }
+    .intro h1 { font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", serif; font-size: clamp(36px, 4.5vw, 60px); line-height: 1.15; letter-spacing: 0.04em; margin: 14px 0 16px; max-width: 640px; font-weight: 700; }
     .intro p { max-width: 540px; margin: 0; opacity: 0.85; line-height: 1.75; font-size: 14px; }
     
     .search-panel {
@@ -328,12 +331,12 @@
     
     .daily-label { display: flex; align-items: center; justify-content: space-between; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.85; }
     .daily-label svg { width: 16px; height: 16px; }
-    .clock-value { font-family: "Noto Serif SC", serif; font-size: 31px; font-weight: 700; letter-spacing: 0.04em; font-variant-numeric: tabular-nums; line-height: 1; }
+    .clock-value { font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", serif; font-size: 31px; font-weight: 700; letter-spacing: 0.04em; font-variant-numeric: tabular-nums; line-height: 1; }
     .clock-meta, .weather-meta { font-size: 11px; margin-top: 8px; opacity: 0.85; }
     .weather-value { display: flex; align-items: baseline; gap: 10px; }
-    .weather-value strong { font-family: "Noto Serif SC", serif; font-size: 29px; line-height: 1; font-weight: 700; }
+    .weather-value strong { font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", serif; font-size: 29px; line-height: 1; font-weight: 700; }
     .weather-value span { font-size: 12px; font-weight: 600; opacity: 0.85; }
-    .quote-text { font-family: "Noto Serif SC", serif; font-size: 16px; line-height: 1.65; margin: 0; font-weight: 600; }
+    .quote-text { font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", serif; font-size: 16px; line-height: 1.65; margin: 0; font-weight: 600; }
     .quote-source { margin-top: 8px; font-size: 10px; letter-spacing: 0.08em; opacity: 0.8; }
     .daily-card.is-loading .weather-value, .daily-card.is-loading .weather-meta { opacity: 0.45; }
     
@@ -349,7 +352,7 @@
       transition: background 0.25s ease, border-color 0.25s ease;
     }
     .live-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; margin-bottom: 14px; }
-    .live-head h2 { font-family: "Noto Serif SC", serif; font-size: 20px; margin: 0 0 4px; font-weight: 700; color: inherit; }
+    .live-head h2 { font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", serif; font-size: 20px; margin: 0 0 4px; font-weight: 700; color: inherit; }
     .live-head p { margin: 0; color: var(--posts-meta-color); font-size: 11px; letter-spacing: 0.06em; }
     .live-link { font-size: 11px; color: var(--posts-meta-color); text-decoration: none; white-space: nowrap; padding-top: 4px; font-weight: 600; }
     .live-link:hover { text-decoration: underline; }
@@ -367,7 +370,7 @@
     .post-item:first-child { border-top: 0; padding-top: 2px; }
     .post-item:hover { opacity: 0.85; }
     .post-title {
-      font-family: "Noto Serif SC", serif;
+      font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", serif;
       font-size: 14px;
       font-weight: 600;
       line-height: 1.55;
@@ -415,7 +418,7 @@
     html[data-theme="dark"] .collection-head { border-bottom-color: rgba(255,255,255,0.08); }
     .collection-head > div { display: flex; align-items: baseline; gap: 12px; }
     .section-index { font-size: 12px; font-weight: 700; font-variant-numeric: tabular-nums; }
-    .collection h2 { font-family: "Noto Serif SC", serif; font-size: 24px; letter-spacing: 0.04em; margin: 0; font-weight: 700; }
+    .collection h2 { font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", serif; font-size: 24px; letter-spacing: 0.04em; margin: 0; font-weight: 700; }
     .collection-head p { margin: 0; font-size: 12px; line-height: 1.6; opacity: 0.85; color: inherit; }
     .section-total { font-size: 11px; font-weight: 600; opacity: 0.75; white-space: nowrap; color: inherit; }
     
@@ -465,7 +468,7 @@
     .service-card.is-disabled .service-arrow { display: none; }
     
     .empty { display: none; padding: 80px 24px; text-align: center; color: var(--text-muted); }
-    .empty strong { display: block; color: var(--text-main); font-family: "Noto Serif SC", serif; font-size: 22px; margin-bottom: 8px; }
+    .empty strong { display: block; color: var(--text-main); font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", serif; font-size: 22px; margin-bottom: 8px; }
     .footer { display: flex; justify-content: space-between; gap: 20px; padding: 24px 12px 40px; color: var(--footer-text); font-size: 11px; font-weight: 500; }
     .back-top { border: 0; background: transparent; color: inherit; cursor: pointer; display: flex; align-items: center; gap: 6px; font-weight: 600; }
     .back-top:hover { opacity: 0.8; }
@@ -577,7 +580,7 @@
       </section>
       <section class="live-board" aria-label="最近文章">
         <article class="live-panel posts-panel">
-          <header class="live-head"><div><h2>最近文章</h2><p>从 Halo 博客自动汇集</p></div><a class="live-link" href="https://blog.0000996.xyz/archives" target="_blank" rel="noopener noreferrer">查看归档 ↗</a></header>
+          <header class="live-head"><div><h2>最近文章</h2><p>从林间随笔与技术博客自动汇集</p></div><a class="live-link" href="https://note.0000996.xyz" target="_blank" rel="noopener noreferrer">进入随笔 ↗</a></header>
           <div class="post-list" id="recentPosts"><a class="post-item" href="https://blog.0000996.xyz/archives/hermes-patches-guide" target="_blank" rel="noopener noreferrer"><span><span class="post-title">Hermes Agent 补丁/插件分享</span><span class="post-meta"><span>Halo 博客</span><span>08/29</span></span></span><span class="post-arrow">↗</span></a><a class="post-item" href="https://blog.0000996.xyz/archives/1panel-cert-auto-renewal" target="_blank" rel="noopener noreferrer"><span><span class="post-title">1Panel 域名证书配置与自动续期</span><span class="post-meta"><span>Halo 博客</span><span>08/24</span></span></span><span class="post-arrow">↗</span></a><a class="post-item" href="https://blog.0000996.xyz/archives/ip-geofence-breakout" target="_blank" rel="noopener noreferrer"><span><span class="post-title">IP 送中 / Gemini 400 怎么破？三个方案从原理到踩坑全讲透</span><span class="post-meta"><span>Halo 博客</span><span>08/23</span></span></span><span class="post-arrow">↗</span></a><a class="post-item" href="https://blog.0000996.xyz/archives/vps-benchmarking" target="_blank" rel="noopener noreferrer"><span><span class="post-title">VPS 性能测评指南：fio / NodeQuality / 融合怪从跑到读</span><span class="post-meta"><span>Halo 博客</span><span>08/20</span></span></span><span class="post-arrow">↗</span></a></div>
         </article>
         
@@ -1108,7 +1111,7 @@
     loadWeather();
     const escapeText=value=>String(value??'');
     const formatPostDate=value=>{const date=new Date(value);return Number.isNaN(date.getTime())?'近期':new Intl.DateTimeFormat('zh-CN',{month:'2-digit',day:'2-digit'}).format(date)};
-    async function loadDashboard(){const posts=document.querySelector('#recentPosts');try{const response=await fetch('/api/posts',{headers:{accept:'application/json'}});if(!response.ok)throw new Error('posts');const data=await response.json();if(!Array.isArray(data)||!data.length)return;posts.replaceChildren(...data.slice(0,4).map(post=>{const a=document.createElement('a');a.className='post-item';a.href=post.url;a.target='_blank';a.rel='noopener noreferrer';const copy=document.createElement('span');const title=document.createElement('span');title.className='post-title';title.textContent=escapeText(post.title);const meta=document.createElement('span');meta.className='post-meta';const source=document.createElement('span');source.textContent='Halo 博客';const date=document.createElement('span');date.textContent=escapeText(post.date);meta.append(source,date);copy.append(title,meta);const arrow=document.createElement('span');arrow.className='post-arrow';arrow.textContent='↗';a.append(copy,arrow);return a;}));}catch(error){}}loadDashboard();
+    async function loadDashboard(){const posts=document.querySelector('#recentPosts');try{const response=await fetch('/api/posts',{headers:{accept:'application/json'}});if(!response.ok)throw new Error('posts');const data=await response.json();if(!Array.isArray(data)||!data.length)return;posts.replaceChildren(...data.slice(0,4).map(post=>{const a=document.createElement('a');a.className='post-item';a.href=post.url;a.target='_blank';a.rel='noopener noreferrer';const copy=document.createElement('span');const title=document.createElement('span');title.className='post-title';title.textContent=escapeText(post.title);const meta=document.createElement('span');meta.className='post-meta';const source=document.createElement('span');source.textContent=escapeText(post.source||'博客');const date=document.createElement('span');date.textContent=escapeText(post.date);meta.append(source,date);copy.append(title,meta);const arrow=document.createElement('span');arrow.className='post-arrow';arrow.textContent='↗';a.append(copy,arrow);return a;}));}catch(error){}}loadDashboard();
     const cards=[...document.querySelectorAll('.service-card')];
     const collections=[...document.querySelectorAll('.collection')];
     const empty=document.querySelector('.empty');

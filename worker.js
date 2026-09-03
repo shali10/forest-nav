@@ -1,4 +1,7 @@
-const HALO_FEED = "https://blog.0000996.xyz/rss.xml";
+const FEEDS = [
+  { url: "https://note.0000996.xyz/rss.xml", source: "林间随笔" },
+  { url: "https://blog.0000996.xyz/rss.xml", source: "Halo 博客" }
+];
 
 function json(data, init = {}) {
   const headers = new Headers(init.headers);
@@ -7,33 +10,56 @@ function json(data, init = {}) {
   return new Response(JSON.stringify(data), { ...init, headers });
 }
 
+function parseRss(xml, source) {
+  const items = [];
+  const itemRegex = /<item>([\s\S]*?)<\/item>/g;
+  let match;
+  while ((match = itemRegex.exec(xml)) !== null) {
+    const item = match[1];
+    const titleMatch = item.match(/<title><!\[CDATA\[(.*?)\]\]><\/title>|<title>(.*?)<\/title>/);
+    const linkMatch = item.match(/<link>(.*?)<\/link>/);
+    const dateMatch = item.match(/<pubDate>(.*?)<\/pubDate>/);
+    const title = (titleMatch?.[1] || titleMatch?.[2] || "").trim();
+    const url = (linkMatch?.[1] || "").trim();
+    const rawDate = (dateMatch?.[1] || "").trim();
+    const parsed = new Date(rawDate);
+    const ts = Number.isNaN(parsed.getTime()) ? 0 : parsed.getTime();
+    const date = Number.isNaN(parsed.getTime())
+      ? ""
+      : `${String(parsed.getMonth() + 1).padStart(2, "0")}/${String(parsed.getDate()).padStart(2, "0")}`;
+    if (title && url) items.push({ title, url, source, date, ts });
+  }
+  return items;
+}
+
 async function posts() {
   try {
-    const response = await fetch(HALO_FEED, {
-      headers: { "User-Agent": "forest-nav/1.1" },
-      cf: { cacheTtl: 300, cacheEverything: true }
-    });
-    if (!response.ok) throw new Error(`feed_${response.status}`);
-    const xml = await response.text();
-    const items = [];
-    const itemRegex = /<item>([\s\S]*?)<\/item>/g;
-    let match;
+    const results = await Promise.allSettled(
+      FEEDS.map(async (f) => {
+        const response = await fetch(f.url, {
+          headers: { "User-Agent": "forest-nav/1.2" },
+          cf: { cacheTtl: 300, cacheEverything: true }
+        });
+        if (!response.ok) throw new Error(`feed_${response.status}`);
+        const xml = await response.text();
+        return parseRss(xml, f.source);
+      })
+    );
 
-    while ((match = itemRegex.exec(xml)) !== null && items.length < 4) {
-      const item = match[1];
-      const titleMatch = item.match(/<title><!\[CDATA\[(.*?)\]\]><\/title>|<title>(.*?)<\/title>/);
-      const linkMatch = item.match(/<link>(.*?)<\/link>/);
-      const dateMatch = item.match(/<pubDate>(.*?)<\/pubDate>/);
-      const title = (titleMatch?.[1] || titleMatch?.[2] || "").trim();
-      const url = (linkMatch?.[1] || "").trim();
-      const parsed = new Date((dateMatch?.[1] || "").trim());
-      const date = Number.isNaN(parsed.getTime())
-        ? ""
-        : `${String(parsed.getMonth() + 1).padStart(2, "0")}/${String(parsed.getDate()).padStart(2, "0")}`;
-      if (title && url) items.push({ title, url, source: "Halo 博客", date });
+    const all = results.flatMap((r) => (r.status === "fulfilled" ? r.value : []));
+    all.sort((a, b) => b.ts - a.ts);
+
+    const seenTitles = new Set();
+    const deduped = [];
+    for (const item of all) {
+      const norm = item.title.replace(/\s+/g, "");
+      if (!seenTitles.has(norm)) {
+        seenTitles.add(norm);
+        deduped.push({ title: item.title, url: item.url, source: item.source, date: item.date });
+      }
     }
 
-    return json(items, { headers: { "Cache-Control": "public, max-age=300" } });
+    return json(deduped.slice(0, 4), { headers: { "Cache-Control": "public, max-age=300" } });
   } catch {
     return json([], { headers: { "Cache-Control": "no-store" } });
   }

@@ -2,6 +2,14 @@
 
 本项目遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [1.2.0] - 2026-09-03
+
+### 体验升级与双博客流聚合
+
+- **字体防阻塞优化**：将 Google Fonts 样式引入由同步阻塞切换为 `preload + noscript` 异步非阻塞加载，并引入系统明朝/宋体字体栈垫底（`Source Han Serif SC`, `Songti SC`, `SimSun`），彻底消除弱网环境下的首屏 FOIT 白屏阻塞；
+- **ForestBlog 新博客接入**：后端 Workers 与 Pages Functions 同步重构 `posts` API，接入全新上线的边缘博客 **ForestBlog（林间随笔）** 与原有 **Halo 博客** 双 RSS 流，按发布时间自动聚合与标题智能去重；
+- **前端动态标识适配**：前端组件解除写死 `Halo 博客` 的限制，动态显示各文章实际来源标签（林间随笔 / Halo 博客），归档入口同步支持直达。
+
 ## [1.1.2] - 2026-08-30
 
 ### 视觉微调与色彩升华
