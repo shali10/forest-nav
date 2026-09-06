@@ -3,885 +3,481 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#ffde59">
-  <meta name="description" content="林间随笔的极客新野兽派个人导航：自建服务、AI 工作台、开发工具与日常入口。">
-  <meta property="og:title" content="0000996.XYZ · 个人极客导航">
-  <meta property="og:description" content="日常所用，一页抵达。自建服务、AI 与开发工具入口。">
-  <title>0000996.XYZ · 个人导航</title>
+  <meta name="theme-color" content="#f6e5be">
+  <meta name="description" content="林间随笔的个人导航：自建服务、AI、开发工具与日常入口。">
+  <meta property="og:title" content="林间随笔 · 个人导航">
+  <meta property="og:description" content="常用服务、工具与阅读入口，安静地放在一起。">
+  <title>林间随笔 · 个人导航</title>
   <link rel="icon" href="/icons/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700&family=Noto+Serif+SC:wght@500;600;700&family=LXGW+WenKai&display=swap" onload="this.onload=null;this.rel='stylesheet'">
   <noscript>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700;900&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700&family=Noto+Serif+SC:wght@500;600;700&family=LXGW+WenKai&display=swap">
   </noscript>
   <script>try{const t=localStorage.getItem('theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))document.documentElement.dataset.theme='dark';else document.documentElement.dataset.theme='light';}catch(e){}</script>
   <style>
     :root {
       color-scheme: light;
-      --font-sans: "Noto Sans SC", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
-      --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      --canvas-bg: linear-gradient(180deg, #f7e6c4 0%, #edd49e 42%, #e0c682 100%);
+      --text-main: #133e34;
+      --text-muted: #38594d;
+      --text-faint: #5a766c;
+      --line-dark: #156d5b;
+      --card-shadow: 0 5px 0 rgba(72, 46, 14, 0.16);
+      --card-shadow-hover: 0 8px 0 rgba(72, 46, 14, 0.28);
       
-      --canvas-bg: #fbf9f4;
-      --dot-color: rgba(17, 17, 17, 0.08);
-      --border-black: #111111;
+      --sidebar-bg: #0b6b58;
+      --sidebar-text: #fff7dd;
+      --sidebar-border: #075243;
+      --sidebar-mark-bg: #f5b728;
+      --sidebar-mark-text: #133e34;
+      --sidebar-link-bg: rgba(255, 255, 255, 0.09);
+      --sidebar-link-hover-bg: #f4be38;
+      --sidebar-link-hover-text: #133f35;
       
-      --card-shadow: 4px 4px 0px #111111;
-      --card-shadow-hover: 6px 6px 0px #111111;
-      --badge-shadow: 2px 2px 0px #111111;
+      --intro-bg: linear-gradient(120deg, #f7c748 0 40%, #f18e4a 40% 61%, #4fbcd2 61% 100%);
+      --intro-border: #156d5b;
+      --intro-text: #123e35;
+      --intro-mountain: linear-gradient(150deg, #136b5e 0 28%, #49a775 28% 51%, #e5c357 51% 68%, #f4e3b2 68%);
+      --search-panel-bg: rgba(255, 243, 214, 0.94);
+      --search-input-bg: #fffbf0;
+      --search-input-border: #167460;
+      --search-input-text: #143e35;
       
-      --text-main: #111111;
-      --text-muted: #444444;
-      --text-faint: #666666;
+      --clock-card-bg: #f5bd32;
+      --clock-card-text: #164237;
+      --clock-card-border: #bb881c;
+      --weather-card-bg: #52bdd2;
+      --weather-card-text: #12413c;
+      --weather-card-border: #227c92;
+      --quote-card-bg: #ee8057;
+      --quote-card-text: #204139;
+      --quote-card-border: #b84d23;
       
-      --yellow-alert: #ffde59;
-      --cyan-bright: #00e5ff;
-      --mint-green: #00e599;
-      --magenta-neon: #ff4b6e;
-      --purple-light: #b886ff;
-      --orange-pop: #ff8c32;
+      --posts-panel-bg: #167664;
+      --posts-panel-border: #0c5749;
+      --posts-title-color: #fff8e2;
+      --posts-meta-color: #ffe18c;
+      --posts-item-border: rgba(255, 248, 226, 0.38);
       
-      --sidebar-bg: #ffffff;
-      --sidebar-text: #111111;
-      --sidebar-border: #111111;
-      --sidebar-mark-bg: #ffde59;
-      --sidebar-mark-text: #111111;
-      --sidebar-link-bg: #faf9f5;
-      --sidebar-link-hover-bg: #ffde59;
-      --sidebar-link-hover-text: #111111;
+      --sec1-bg: #f5c94c; --sec1-border: #b9861a; --sec1-title: #164136;
+      --sec2-bg: #63c59a; --sec2-border: #227e57; --sec2-title: #123e33;
+      --sec3-bg: #f08c5f; --sec3-border: #ba5122; --sec3-title: #1f3d35;
+      --sec4-bg: #59bed4; --sec4-border: #207b91; --sec4-title: #133e3b;
+      --sec5-bg: #dcb759; --sec5-border: #9c781d; --sec5-title: #163f35;
+      --sec6-bg: #8b80c3; --sec6-border: #564a93; --sec6-title: #19273d;
       
-      --intro-bg: #ffde59;
-      --intro-border: #111111;
-      --intro-text: #111111;
-      --search-panel-bg: #ffffff;
-      --search-input-bg: #fcfbf7;
-      --search-input-border: #111111;
-      --search-input-text: #111111;
-      
-      --clock-card-bg: #ffffff;
-      --clock-card-text: #111111;
-      --clock-card-border: #111111;
-      --weather-card-bg: #ffffff;
-      --weather-card-text: #111111;
-      --weather-card-border: #111111;
-      --quote-card-bg: #ffffff;
-      --quote-card-text: #111111;
-      --quote-card-border: #111111;
-      
-      --posts-panel-bg: #ffffff;
-      --posts-panel-border: #111111;
-      --posts-title-color: #111111;
-      --posts-meta-color: #555555;
-      --posts-item-border: #111111;
-      
-      --sec1-accent: #ffde59;
-      --sec2-accent: #00e5ff;
-      --sec3-accent: #ff4b6e;
-      --sec4-accent: #00e599;
-      --sec5-accent: #b886ff;
-      --sec6-accent: #ff8c32;
-      --sec7-accent: #48cae4;
-      
-      --card-bg: #ffffff;
-      --card-hover-bg: #fffdec;
-      --card-border: #111111;
-      --card-title: #111111;
-      --card-desc: #555555;
-      --card-badge-bg: #ffde59;
-      --card-badge-text: #111111;
-      --card-icon-bg: #f5f4ef;
-      --card-icon-border: #111111;
-      --footer-text: #555555;
+      --card-bg: #fff5d6;
+      --card-hover-bg: #fffcf2;
+      --card-border: #b87e38;
+      --card-title: #143e34;
+      --card-desc: #4a6358;
+      --card-badge-bg: #e1edd5;
+      --card-badge-text: #0e6753;
+      --card-icon-bg: #fedda2;
+      --card-icon-border: #dca34b;
+      --footer-text: #5f7a6f;
     }
     
     html[data-theme="dark"] {
       color-scheme: dark;
-      --canvas-bg: #12161f;
-      --dot-color: rgba(255, 255, 255, 0.08);
-      --border-black: #000000;
+      --canvas-bg: linear-gradient(180deg, #0d1b17 0%, #132722 45%, #0b1613 100%);
+      --text-main: #edf7f1;
+      --text-muted: #a3c4b5;
+      --text-faint: #729788;
+      --line-dark: #265f51;
+      --card-shadow: 0 5px 0 rgba(0, 0, 0, 0.45);
+      --card-shadow-hover: 0 8px 0 rgba(0, 0, 0, 0.65);
       
-      --card-shadow: 4px 4px 0px #000000;
-      --card-shadow-hover: 6px 6px 0px #000000;
-      --badge-shadow: 2px 2px 0px #000000;
+      --sidebar-bg: #10352b;
+      --sidebar-text: #e7f6ed;
+      --sidebar-border: #1e5647;
+      --sidebar-mark-bg: #f5b728;
+      --sidebar-mark-text: #133e34;
+      --sidebar-link-bg: rgba(255, 255, 255, 0.06);
+      --sidebar-link-hover-bg: #266352;
+      --sidebar-link-hover-text: #7ef0be;
       
-      --text-main: #f0f6fc;
-      --text-muted: #c9d1d9;
-      --text-faint: #8b949e;
+      --intro-bg: linear-gradient(125deg, #1b4b3e 0%, #225a4d 45%, #184b57 100%);
+      --intro-border: #296d5d;
+      --intro-text: #edf7f2;
+      --intro-mountain: linear-gradient(150deg, #0d322a 0 28%, #1d583e 28% 51%, #5c4e22 51% 68%, #35443d 68%);
+      --search-panel-bg: rgba(18, 43, 35, 0.94);
+      --search-input-bg: #132c23;
+      --search-input-border: #2f7160;
+      --search-input-text: #edf7f2;
       
-      --sidebar-bg: #1a202c;
-      --sidebar-text: #f0f6fc;
-      --sidebar-border: #000000;
-      --sidebar-mark-bg: #ffde59;
-      --sidebar-mark-text: #111111;
-      --sidebar-link-bg: #141923;
-      --sidebar-link-hover-bg: #ffde59;
-      --sidebar-link-hover-text: #111111;
+      --clock-card-bg: #3c2c10;
+      --clock-card-text: #ffd866;
+      --clock-card-border: #c4952c;
+      --weather-card-bg: #143d4a;
+      --weather-card-text: #7ee3f7;
+      --weather-card-border: #2ba8c4;
+      --quote-card-bg: #421f14;
+      --quote-card-text: #ffad94;
+      --quote-card-border: #d8613e;
       
-      --intro-bg: #ffde59;
-      --intro-border: #000000;
-      --intro-text: #111111;
-      --search-panel-bg: #1a202c;
-      --search-input-bg: #12161f;
-      --search-input-border: #000000;
-      --search-input-text: #f0f6fc;
+      --posts-panel-bg: #134034;
+      --posts-panel-border: #246b58;
+      --posts-title-color: #eaf8f1;
+      --posts-meta-color: #ffd870;
+      --posts-item-border: rgba(255, 255, 255, 0.15);
       
-      --clock-card-bg: #1a202c;
-      --clock-card-text: #f0f6fc;
-      --clock-card-border: #000000;
-      --weather-card-bg: #1a202c;
-      --weather-card-text: #f0f6fc;
-      --weather-card-border: #000000;
-      --quote-card-bg: #1a202c;
-      --quote-card-text: #f0f6fc;
-      --quote-card-border: #000000;
+      --sec1-bg: #33250b; --sec1-border: #c4952c; --sec1-title: #ffd566;
+      --sec2-bg: #113324; --sec2-border: #38aa78; --sec2-title: #7ef0be;
+      --sec3-bg: #391c12; --sec3-border: #c75b34; --sec3-title: #ffaa8e;
+      --sec4-bg: #11303c; --sec4-border: #339eb8; --sec4-title: #7ee4fb;
+      --sec5-bg: #34290e; --sec5-border: #bfa038; --sec5-title: #fae07a;
+      --sec6-bg: #241b38; --sec6-border: #7f6db8; --sec6-title: #d4cbff;
       
-      --posts-panel-bg: #1a202c;
-      --posts-panel-border: #000000;
-      --posts-title-color: #f0f6fc;
-      --posts-meta-color: #8b949e;
-      --posts-item-border: #000000;
-      
-      --card-bg: #1a202c;
-      --card-hover-bg: #232b3b;
-      --card-border: #000000;
-      --card-title: #f0f6fc;
-      --card-desc: #8b949e;
-      --card-badge-bg: #ffde59;
-      --card-badge-text: #111111;
-      --card-icon-bg: #12161f;
-      --card-icon-border: #000000;
-      --footer-text: #8b949e;
+      --card-bg: #18332a;
+      --card-hover-bg: #204237;
+      --card-border: #2b5a4b;
+      --card-title: #f0faf4;
+      --card-desc: #a5c5b7;
+      --card-badge-bg: #254d3f;
+      --card-badge-text: #7ef0be;
+      --card-icon-bg: #1d3d32;
+      --card-icon-border: #346a59;
+      --footer-text: #769a8b;
     }
     
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * { box-sizing: border-box; }
     html { scroll-behavior: smooth; scroll-padding-top: 24px; }
     body {
-      background-color: var(--canvas-bg);
-      background-image: radial-gradient(var(--dot-color) 1.2px, transparent 1.2px);
-      background-size: 20px 20px;
+      margin: 0;
+      background: var(--canvas-bg);
       color: var(--text-main);
-      font-family: var(--font-sans);
+      font-family: Manrope, "PingFang SC", "Microsoft YaHei", sans-serif;
+      transition: background 0.25s ease, color 0.25s ease;
       min-height: 100vh;
       line-height: 1.5;
-      -webkit-font-smoothing: antialiased;
-      transition: background-color 0.2s ease, color 0.2s ease;
     }
     a { color: inherit; text-decoration: none; }
     button, input { font: inherit; }
-    svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
     
-    /* Layout */
     .page-shell {
       width: min(1440px, 100%);
       margin: auto;
       padding: 24px;
       display: grid;
-      grid-template-columns: 272px minmax(0, 1fr);
+      grid-template-columns: 268px minmax(0, 1fr);
       gap: 24px;
     }
     
-    /* Sidebar */
     .sidebar {
       position: sticky;
       top: 24px;
       height: calc(100vh - 48px);
       display: flex;
       flex-direction: column;
-      padding: 22px 18px;
+      padding: 26px;
       background: var(--sidebar-bg);
       color: var(--sidebar-text);
-      border: 2.5px solid var(--border-black);
-      border-radius: 10px;
+      border: 2px solid var(--sidebar-border);
+      border-radius: 24px;
       box-shadow: var(--card-shadow);
-      transition: all 0.2s ease;
+      transition: background 0.25s ease, border-color 0.25s ease;
     }
     .brand { display: flex; align-items: center; gap: 12px; color: inherit; }
     .brand-mark {
-      width: 44px;
-      height: 44px;
+      width: 42px;
+      height: 42px;
       display: grid;
       place-items: center;
-      border-radius: 8px;
+      border-radius: 12px;
       background: var(--sidebar-mark-bg);
       color: var(--sidebar-mark-text);
-      border: 2px solid var(--border-black);
-      box-shadow: 2px 2px 0px var(--border-black);
-      font-family: var(--font-sans);
-      font-weight: 900;
-      font-size: 22px;
-    }
-    .brand strong {
-      font-family: var(--font-sans);
-      font-size: 19px;
-      font-weight: 900;
-      letter-spacing: -0.01em;
-      color: inherit;
-    }
-    .brand small {
-      display: inline-block;
-      font-family: var(--font-mono);
-      font-size: 9px;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      padding: 1px 6px;
-      border: 1.5px solid var(--border-black);
-      border-radius: 9999px;
-      background: #ffffff;
-      color: #111111;
-      box-shadow: 1px 1px 0px var(--border-black);
-      margin-top: 3px;
-    }
-    
-    .side-note {
-      margin: 18px 0 16px;
-      font-family: var(--font-sans);
-      font-size: 13.5px;
-      line-height: 1.5;
+      font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", serif;
       font-weight: 700;
-      padding: 10px 12px;
-      background: #fafafa;
-      border: 2px solid var(--border-black);
-      border-radius: 8px;
-      box-shadow: 2px 2px 0px var(--border-black);
-      color: var(--text-main);
+      font-size: 20px;
+      box-shadow: 0 3px 0 rgba(0,0,0,0.15);
     }
-    html[data-theme="dark"] .side-note { background: #141923; color: #f0f6fc; }
-    .side-note em {
-      display: block;
-      color: #111111;
-      font-style: normal;
-      font-weight: 900;
-      margin-top: 4px;
-      background: var(--yellow-alert);
-      padding: 1px 6px;
-      border-radius: 4px;
-      border: 1.5px solid var(--border-black);
-      box-shadow: 1.5px 1.5px 0px var(--border-black);
-      width: fit-content;
-      font-size: 12px;
-    }
+    .brand strong { font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", serif; font-size: 19px; letter-spacing: 0.06em; }
+    .brand small { display: block; color: var(--sidebar-text); opacity: 0.75; font-size: 10px; letter-spacing: 0.12em; margin-top: 2px; }
     
-    .section-nav { display: grid; gap: 7px; margin-top: 4px; }
+    .side-note { margin: 40px 0 24px; font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", serif; font-size: 22px; line-height: 1.55; font-weight: 600; }
+    .side-note em { display: block; color: var(--sidebar-mark-bg); font-style: normal; }
+    
+    .section-nav { display: grid; gap: 6px; margin-top: auto; }
     .section-nav a {
       display: flex;
       align-items: center;
       gap: 10px;
-      padding: 9px 12px;
-      border-radius: 8px;
+      padding: 10px 14px;
+      border-radius: 12px;
       color: inherit;
       font-size: 13px;
-      font-weight: 800;
-      border: 2px solid var(--border-black);
-      box-shadow: 2px 2px 0px var(--border-black);
+      font-weight: 500;
+      transition: 0.18s;
       background: var(--sidebar-link-bg);
-      transition: all 0.15s ease;
     }
-    .section-nav a span {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      font-weight: 800;
-      padding: 1px 5px;
-      border: 1.5px solid var(--border-black);
-      border-radius: 4px;
-      background: #ffffff;
-      color: #111111;
-      box-shadow: 1px 1px 0px var(--border-black);
-    }
+    .section-nav a span { font-size: 10px; opacity: 0.7; font-variant-numeric: tabular-nums; }
     .section-nav a:hover, .section-nav a.active {
-      background: var(--yellow-alert);
-      color: #111111;
-      transform: translate(-2px, -2px);
-      box-shadow: 3.5px 3.5px 0px var(--border-black);
+      background: var(--sidebar-link-hover-bg);
+      color: var(--sidebar-link-hover-text);
+      box-shadow: 0 3px 0 rgba(0,0,0,0.12);
     }
-    .section-nav a:hover span, .section-nav a.active span {
-      background: #111111;
-      color: #ffffff;
-    }
-    
-    .side-spec-box {
-      margin-top: auto;
-      border: 2px solid var(--border-black);
-      border-radius: 8px;
-      padding: 10px 12px;
-      background: #fafafa;
-      box-shadow: 2px 2px 0px var(--border-black);
-      display: grid;
-      gap: 6px;
-      font-family: var(--font-mono);
-      font-size: 10.5px;
-    }
-    html[data-theme="dark"] .side-spec-box { background: #141923; }
-    .spec-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-weight: 700;
-    }
-    .spec-row span { color: var(--text-muted); font-size: 10px; }
-    .spec-row strong { font-weight: 800; color: var(--text-main); }
-    .pill-mini {
-      font-size: 9px;
-      font-weight: 800;
-      padding: 1px 5px;
-      border: 1px solid var(--border-black);
-      border-radius: 4px;
-      box-shadow: 1px 1px 0px var(--border-black);
-    }
-    .pill-mini.green { background: var(--mint-green); color: #000; }
     
     .side-foot {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-top: 14px;
-      padding-top: 14px;
-      border-top: 2px solid var(--border-black);
-      font-family: var(--font-mono);
+      margin-top: 24px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,0.15);
       font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.08em;
     }
     .theme-toggle {
-      width: 38px;
-      height: 38px;
-      border: 2px solid var(--border-black);
-      border-radius: 8px;
+      width: 42px;
+      height: 42px;
+      border: 2px solid var(--line-dark);
+      border-radius: 12px;
       display: grid;
       place-items: center;
-      background: var(--yellow-alert);
-      color: #111111;
+      background: var(--sidebar-mark-bg);
+      color: var(--sidebar-mark-text);
       cursor: pointer;
-      box-shadow: 2px 2px 0px var(--border-black);
-      transition: all 0.15s ease;
+      box-shadow: 0 3px 0 rgba(0,0,0,0.15);
+      transition: transform 0.15s, box-shadow 0.15s;
     }
-    .theme-toggle:hover {
-      transform: translate(-1px, -1px);
-      box-shadow: 3.5px 3.5px 0px var(--border-black);
-    }
-    .theme-toggle svg { width: 18px; height: 18px; stroke: #111111; }
+    .theme-toggle:hover { transform: translateY(-2px); box-shadow: 0 5px 0 rgba(0,0,0,0.22); }
+    .theme-toggle svg { width: 20px; height: 20px; }
     
     .main { min-width: 0; }
-    
-    /* Intro Hero Banner (Neo-Brutalism Caution Yellow) */
     .intro {
       position: relative;
       overflow: hidden;
-      min-height: 250px;
-      padding: 30px 32px;
+      min-height: 330px;
+      padding: 44px 48px;
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 340px;
-      gap: 28px;
-      align-items: center;
+      grid-template-columns: minmax(0, 1fr) 300px;
+      gap: 40px;
+      align-items: end;
       background: var(--intro-bg);
-      border: 2.5px solid var(--intro-border);
+      border: 2px solid var(--intro-border);
       color: var(--intro-text);
-      border-radius: 10px;
+      border-radius: 24px;
       box-shadow: var(--card-shadow);
-      transition: all 0.2s ease;
+      transition: background 0.25s ease, border-color 0.25s ease;
+    }
+    .intro:after {
+      content: "";
+      position: absolute;
+      right: -40px;
+      bottom: -70px;
+      width: 360px;
+      height: 220px;
+      border-radius: 52% 48% 0 0;
+      background: var(--intro-mountain);
+      clip-path: polygon(0 100%, 18% 50%, 34% 70%, 52% 23%, 68% 61%, 82% 41%, 100% 100%);
+      opacity: 0.95;
+      pointer-events: none;
     }
     .intro > div { position: relative; z-index: 1; }
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-family: var(--font-mono);
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      font-weight: 800;
-      padding: 2px 8px;
-      border: 1.5px solid var(--border-black);
-      border-radius: 9999px;
-      background: #ffffff;
-      color: #111111;
-      box-shadow: 1.5px 1.5px 0px var(--border-black);
-    }
-    .intro h1 {
-      font-family: var(--font-sans);
-      font-size: clamp(30px, 3.8vw, 46px);
-      line-height: 1.15;
-      letter-spacing: -0.02em;
-      margin: 12px 0 10px;
-      font-weight: 900;
-      color: #111111;
-    }
-    .intro p {
-      max-width: 520px;
-      margin: 0;
-      line-height: 1.6;
-      font-size: 13.5px;
-      font-weight: 600;
-      color: #222222;
-    }
+    .eyebrow { font-size: 11px; text-transform: uppercase; letter-spacing: 0.18em; opacity: 0.8; font-weight: 600; }
+    .intro h1 { font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", serif; font-size: clamp(36px, 4.5vw, 60px); line-height: 1.15; letter-spacing: 0.04em; margin: 14px 0 16px; max-width: 640px; font-weight: 700; }
+    .intro p { max-width: 540px; margin: 0; opacity: 0.85; line-height: 1.75; font-size: 14px; }
     
-    /* Search Panel */
     .search-panel {
       position: relative;
       z-index: 2;
       background: var(--search-panel-bg);
-      border: 2px solid var(--border-black);
-      border-radius: 8px;
-      padding: 16px 18px;
-      box-shadow: var(--card-shadow);
+      border: 2px solid var(--intro-border);
+      border-radius: 18px;
+      padding: 16px;
+      box-shadow: 0 5px 0 rgba(0,0,0,0.12);
+      transition: background 0.25s ease, border-color 0.25s ease;
     }
-    .search-label {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-family: var(--font-mono);
-      font-size: 11px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      margin-bottom: 8px;
-      color: var(--search-input-text);
-    }
-    .search-label span:last-child {
-      padding: 1px 6px;
-      border: 1px solid var(--border-black);
-      border-radius: 4px;
-      background: var(--yellow-alert);
-      color: #111111;
-      font-size: 10px;
-      box-shadow: 1px 1px 0px var(--border-black);
-    }
+    .search-label { display: flex; justify-content: space-between; font-size: 11px; font-weight: 600; opacity: 0.8; margin-bottom: 8px; color: var(--search-input-text); }
     .search-wrap { position: relative; display: flex; align-items: center; }
-    .search-wrap svg { position: absolute; left: 12px; pointer-events: none; color: #111111; opacity: 0.7; width: 18px; height: 18px; }
-    html[data-theme="dark"] .search-wrap svg { color: #f0f6fc; }
+    .search-wrap svg { position: absolute; left: 14px; pointer-events: none; color: var(--search-input-text); opacity: 0.65; }
     .search-wrap input {
       width: 100%;
-      height: 44px;
-      padding: 0 38px 0 40px;
-      border: 2px solid var(--border-black);
-      border-radius: 6px;
+      height: 48px;
+      padding: 0 38px 0 44px;
+      border: 2px solid var(--search-input-border);
+      border-radius: 12px;
       background: var(--search-input-bg);
       color: var(--search-input-text);
       outline: none;
-      font-family: var(--font-sans);
-      font-size: 13.5px;
-      font-weight: 600;
-      transition: all 0.15s ease;
+      font-size: 14px;
+      transition: border-color 0.18s, box-shadow 0.18s, background 0.25s ease;
     }
-    .search-wrap input:focus {
-      border-color: var(--border-black);
-      box-shadow: 0 0 0 3px var(--cyan-bright);
-    }
-    .search-wrap input::placeholder { color: var(--search-input-text); opacity: 0.55; }
-    .clear-search {
-      position: absolute;
-      right: 8px;
-      width: 28px;
-      height: 28px;
-      border: 1.5px solid var(--border-black);
-      border-radius: 4px;
-      background: #ffffff;
-      color: #111111;
-      cursor: pointer;
-      display: none;
-      font-family: var(--font-mono);
-      font-size: 15px;
-      font-weight: 800;
-      line-height: 1;
-      box-shadow: 1px 1px 0px var(--border-black);
-    }
+    .search-wrap input:focus { border-color: var(--sidebar-mark-bg); box-shadow: 0 0 0 3px rgba(245, 189, 50, 0.3); }
+    .search-wrap input::placeholder { color: var(--search-input-text); opacity: 0.5; }
+    .clear-search { position: absolute; right: 8px; width: 32px; height: 32px; border: 0; background: transparent; color: var(--search-input-text); cursor: pointer; display: none; font-size: 18px; line-height: 1; }
     
     .mobile-bar { display: none; }
     
-    /* Daily Strip (Clock, Weather, Note) */
-    .daily-strip {
-      display: grid;
-      grid-template-columns: 1.05fr 1fr 1.65fr;
-      gap: 14px;
-      margin-top: 16px;
-    }
+    .daily-strip { display: grid; grid-template-columns: 1.05fr 1fr 1.65fr; gap: 14px; margin-top: 14px; }
     .daily-card {
-      min-height: 110px;
-      padding: 16px 18px;
+      min-height: 112px;
+      padding: 20px 22px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      border: 2px solid var(--border-black);
-      border-radius: 8px;
+      border: 2px solid var(--line-dark);
+      border-radius: 20px;
       box-shadow: var(--card-shadow);
-      background: var(--card-bg);
-      color: var(--text-main);
-      transition: all 0.15s ease;
+      transition: transform 0.18s, box-shadow 0.18s, background 0.25s ease, border-color 0.25s ease;
     }
-    .daily-card:hover {
-      transform: translate(-2px, -2px);
-      box-shadow: var(--card-shadow-hover);
-    }
-    .daily-label {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 6px;
-    }
-    .daily-label span {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 2px 7px;
-      border: 1.5px solid var(--border-black);
-      border-radius: 9999px;
-      box-shadow: 1.5px 1.5px 0px var(--border-black);
-    }
-    .daily-card.clock-card .daily-label span { background: var(--cyan-bright); color: #000; }
-    .daily-card.weather-card .daily-label span { background: var(--mint-green); color: #000; }
-    .daily-card.quote-card .daily-label span { background: var(--yellow-alert); color: #000; }
-    .daily-label svg { width: 16px; height: 16px; opacity: 0.8; stroke-width: 2.2; }
+    .daily-card.clock-card { background: var(--clock-card-bg); color: var(--clock-card-text); border-color: var(--clock-card-border); }
+    .daily-card.weather-card { background: var(--weather-card-bg); color: var(--weather-card-text); border-color: var(--weather-card-border); }
+    .daily-card.quote-card { background: var(--quote-card-bg); color: var(--quote-card-text); border-color: var(--quote-card-border); }
     
-    .clock-value {
-      font-family: var(--font-mono);
-      font-size: 32px;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      font-variant-numeric: tabular-nums;
-      line-height: 1.1;
-      color: var(--text-main);
-    }
-    .clock-meta, .weather-meta {
-      font-size: 11.5px;
-      font-weight: 600;
-      margin-top: 5px;
-      color: var(--text-muted);
-    }
-    .weather-value { display: flex; align-items: baseline; gap: 8px; }
-    .weather-value strong {
-      font-family: var(--font-mono);
-      font-size: 29px;
-      line-height: 1.1;
-      font-weight: 800;
-      color: var(--text-main);
-    }
-    .weather-value span { font-size: 13px; font-weight: 700; color: var(--text-muted); }
-    .quote-text {
-      font-size: 14px;
-      line-height: 1.55;
-      margin: 0;
-      font-weight: 700;
-      color: var(--text-main);
-    }
-    .quote-source {
-      margin-top: 5px;
-      font-family: var(--font-mono);
-      font-size: 10.5px;
-      font-weight: 700;
-      color: var(--text-muted);
-    }
+    .daily-label { display: flex; align-items: center; justify-content: space-between; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.85; }
+    .daily-label svg { width: 16px; height: 16px; }
+    .clock-value { font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", serif; font-size: 31px; font-weight: 700; letter-spacing: 0.04em; font-variant-numeric: tabular-nums; line-height: 1; }
+    .clock-meta, .weather-meta { font-size: 11px; margin-top: 8px; opacity: 0.85; }
+    .weather-value { display: flex; align-items: baseline; gap: 10px; }
+    .weather-value strong { font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", serif; font-size: 29px; line-height: 1; font-weight: 700; }
+    .weather-value span { font-size: 12px; font-weight: 600; opacity: 0.85; }
+    .quote-text { font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", serif; font-size: 16px; line-height: 1.65; margin: 0; font-weight: 600; }
+    .quote-source { margin-top: 8px; font-size: 10px; letter-spacing: 0.08em; opacity: 0.8; }
     .daily-card.is-loading .weather-value, .daily-card.is-loading .weather-meta { opacity: 0.45; }
     
-    /* Live Board (Recent Posts) */
-    .live-board { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 16px; }
+    .live-board { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 14px; }
     .live-panel {
       background: var(--posts-panel-bg);
       border: 2px solid var(--posts-panel-border);
-      border-radius: 10px;
-      padding: 18px 20px;
+      border-radius: 22px;
+      padding: 24px;
       min-width: 0;
       box-shadow: var(--card-shadow);
       color: var(--posts-title-color);
-      transition: all 0.15s ease;
+      transition: background 0.25s ease, border-color 0.25s ease;
     }
-    .live-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding-bottom: 12px;
-      border-bottom: 2px solid var(--border-black);
-      margin-bottom: 12px;
-    }
-    .live-head h2 {
-      font-size: 17px;
-      font-weight: 900;
-      letter-spacing: -0.01em;
-      margin: 0 0 2px;
-      color: var(--text-main);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .live-head p { margin: 0; color: var(--text-muted); font-size: 11.5px; font-weight: 600; }
-    .live-link {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      font-weight: 800;
-      text-transform: uppercase;
-      padding: 3px 10px;
-      border: 1.5px solid var(--border-black);
-      border-radius: 9999px;
-      background: var(--yellow-alert);
-      color: #111111;
-      box-shadow: 1.5px 1.5px 0px var(--border-black);
-      white-space: nowrap;
-      transition: all 0.15s ease;
-    }
-    .live-link:hover {
-      transform: translate(-1px, -1px);
-      box-shadow: 2.5px 2.5px 0px var(--border-black);
-      background: var(--cyan-bright);
-    }
-    .post-list { display: grid; gap: 8px; }
+    .live-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; margin-bottom: 14px; }
+    .live-head h2 { font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", serif; font-size: 20px; margin: 0 0 4px; font-weight: 700; color: inherit; }
+    .live-head p { margin: 0; color: var(--posts-meta-color); font-size: 11px; letter-spacing: 0.06em; }
+    .live-link { font-size: 11px; color: var(--posts-meta-color); text-decoration: none; white-space: nowrap; padding-top: 4px; font-weight: 600; }
+    .live-link:hover { text-decoration: underline; }
+    .post-list { display: grid; }
     .post-item {
       display: grid;
       grid-template-columns: minmax(0, 1fr) auto;
-      align-items: center;
-      gap: 14px;
-      padding: 10px 14px;
-      border: 1.5px solid var(--border-black);
-      border-radius: 6px;
-      background: #faf9f5;
-      box-shadow: 2px 2px 0px var(--border-black);
+      gap: 16px;
+      padding: 12px 0;
+      border-top: 1px solid var(--posts-item-border);
       text-decoration: none;
       color: inherit;
-      transition: all 0.15s ease;
+      transition: opacity 0.15s;
     }
-    html[data-theme="dark"] .post-item { background: #141923; }
-    .post-item:hover {
-      background: var(--yellow-alert);
-      color: #111111;
-      transform: translate(-2px, -2px);
-      box-shadow: 3.5px 3.5px 0px var(--border-black);
-    }
+    .post-item:first-child { border-top: 0; padding-top: 2px; }
+    .post-item:hover { opacity: 0.85; }
     .post-title {
-      font-size: 13.5px;
-      font-weight: 800;
-      line-height: 1.45;
+      font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", serif;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.55;
       display: -webkit-box;
       overflow: hidden;
       -webkit-box-orient: vertical;
-      -webkit-line-clamp: 1;
-      line-clamp: 1;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      overflow-wrap: anywhere;
     }
-    .post-meta { display: flex; align-items: center; gap: 8px; margin-top: 3px; font-size: 11px; }
-    .post-meta span:first-child {
-      font-family: var(--font-mono);
-      font-size: 9px;
-      font-weight: 800;
-      padding: 1px 5px;
-      border: 1px solid var(--border-black);
-      border-radius: 4px;
-      background: #ffffff;
-      color: #111111;
-      box-shadow: 1px 1px 0px var(--border-black);
-    }
-    .post-meta span:last-child { font-family: var(--font-mono); font-weight: 700; color: var(--text-muted); font-size: 10.5px; }
-    .post-arrow {
-      font-family: var(--font-mono);
-      font-weight: 800;
-      font-size: 14px;
-      width: 24px;
-      height: 24px;
-      border: 1.5px solid var(--border-black);
-      border-radius: 4px;
-      background: #ffffff;
-      color: #111111;
-      display: grid;
-      place-items: center;
-      box-shadow: 1px 1px 0px var(--border-black);
-    }
+    .post-meta { display: flex; gap: 8px; margin-top: 5px; color: var(--posts-meta-color); font-size: 10px; }
+    .post-arrow { color: var(--posts-meta-color); font-size: 15px; align-self: center; }
     
-    /* Collections Sections (01 ~ 07) */
-    .collections { padding: 8px 0 32px; }
+    .collections { padding: 18px 0 60px; }
     .collection {
-      margin: 20px 0;
-      padding: 22px 20px 26px;
-      border: 2px solid var(--border-black);
-      border-radius: 10px;
+      margin: 18px 0;
+      padding: 28px 24px 34px;
+      border: 2px solid var(--line-dark);
+      border-radius: 26px;
       box-shadow: var(--card-shadow);
-      background: var(--card-bg);
-      transition: all 0.2s ease;
+      transition: background 0.25s ease, border-color 0.25s ease;
     }
+    .collection:nth-child(6n+1) { background: var(--sec1-bg); border-color: var(--sec1-border); }
+    .collection:nth-child(6n+1) h2, .collection:nth-child(6n+1) .section-index { color: var(--sec1-title); }
+    .collection:nth-child(6n+2) { background: var(--sec2-bg); border-color: var(--sec2-border); }
+    .collection:nth-child(6n+2) h2, .collection:nth-child(6n+2) .section-index { color: var(--sec2-title); }
+    .collection:nth-child(6n+3) { background: var(--sec3-bg); border-color: var(--sec3-border); }
+    .collection:nth-child(6n+3) h2, .collection:nth-child(6n+3) .section-index { color: var(--sec3-title); }
+    .collection:nth-child(6n+4) { background: var(--sec4-bg); border-color: var(--sec4-border); }
+    .collection:nth-child(6n+4) h2, .collection:nth-child(6n+4) .section-index { color: var(--sec4-title); }
+    .collection:nth-child(6n+5) { background: var(--sec5-bg); border-color: var(--sec5-border); }
+    .collection:nth-child(6n+5) h2, .collection:nth-child(6n+5) .section-index { color: var(--sec5-title); }
+    .collection:nth-child(6n) { background: var(--sec6-bg); border-color: var(--sec6-border); }
+    .collection:nth-child(6n) h2, .collection:nth-child(6n) .section-index { color: var(--sec6-title); }
+    
     .collection-head {
       display: grid;
-      grid-template-columns: minmax(220px, 0.75fr) 1fr auto;
-      gap: 18px;
-      align-items: center;
-      border-bottom: 2px solid var(--border-black);
-      padding-bottom: 12px;
-      margin-bottom: 18px;
+      grid-template-columns: minmax(240px, 0.75fr) 1fr auto;
+      gap: 24px;
+      align-items: end;
+      margin: 0 4px 22px;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      padding-bottom: 14px;
     }
-    .collection-head > div { display: flex; align-items: center; gap: 10px; }
-    .section-index {
-      font-family: var(--font-mono);
-      font-size: 11.5px;
-      font-weight: 900;
-      padding: 2px 7px;
-      border: 1.5px solid var(--border-black);
-      border-radius: 9999px;
-      box-shadow: 1.5px 1.5px 0px var(--border-black);
-      color: #111111;
-    }
-    .collection:nth-child(7n+1) .section-index { background: var(--sec1-accent); }
-    .collection:nth-child(7n+2) .section-index { background: var(--sec2-accent); }
-    .collection:nth-child(7n+3) .section-index { background: var(--sec3-accent); color: #ffffff; }
-    .collection:nth-child(7n+4) .section-index { background: var(--sec4-accent); }
-    .collection:nth-child(7n+5) .section-index { background: var(--sec5-accent); }
-    .collection:nth-child(7n+6) .section-index { background: var(--sec6-accent); color: #ffffff; }
-    .collection:nth-child(7n) .section-index { background: var(--sec7-accent); }
+    html[data-theme="dark"] .collection-head { border-bottom-color: rgba(255,255,255,0.08); }
+    .collection-head > div { display: flex; align-items: baseline; gap: 12px; }
+    .section-index { font-size: 12px; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .collection h2 { font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", serif; font-size: 24px; letter-spacing: 0.04em; margin: 0; font-weight: 700; }
+    .collection-head p { margin: 0; font-size: 12px; line-height: 1.6; opacity: 0.85; color: inherit; }
+    .section-total { font-size: 11px; font-weight: 600; opacity: 0.75; white-space: nowrap; color: inherit; }
     
-    .collection h2 {
-      font-size: 20px;
-      letter-spacing: -0.02em;
-      margin: 0;
-      font-weight: 900;
-      color: var(--text-main);
-    }
-    .collection-head p { margin: 0; font-size: 12.5px; font-weight: 600; color: var(--text-muted); }
-    .section-total {
-      font-family: var(--font-mono);
-      font-size: 10.5px;
-      font-weight: 800;
-      padding: 2px 8px;
-      border: 1.5px solid var(--border-black);
-      border-radius: 9999px;
-      background: #fafafa;
-      color: var(--text-main);
-      box-shadow: 1.5px 1.5px 0px var(--border-black);
-      white-space: nowrap;
-    }
-    html[data-theme="dark"] .section-total { background: #141923; }
-    
-    /* Service Cards (Grid of 87) */
     .service-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
     .service-card {
       min-width: 0;
-      min-height: 90px;
+      min-height: 98px;
       display: grid;
-      grid-template-columns: 44px minmax(0, 1fr) 22px;
+      grid-template-columns: 46px minmax(0, 1fr) 20px;
       align-items: center;
       gap: 12px;
-      padding: 12px 14px;
+      padding: 16px;
       background: var(--card-bg);
-      border: 2px solid var(--border-black);
-      border-radius: 8px;
-      box-shadow: 3px 3px 0px var(--border-black);
-      transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 2px solid var(--card-border);
+      border-radius: 18px;
+      box-shadow: var(--card-shadow);
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, border-color 0.18s ease;
       cursor: pointer;
     }
     .service-card:hover {
-      transform: translate(-2px, -2px);
-      box-shadow: 5px 5px 0px var(--border-black);
+      transform: translateY(-3px);
+      box-shadow: var(--card-shadow-hover);
       background: var(--card-hover-bg);
-      border-color: var(--border-black);
+      border-color: var(--line-dark);
     }
     .service-icon {
-      width: 42px;
-      height: 42px;
+      width: 44px;
+      height: 44px;
       display: grid;
       place-items: center;
-      border-radius: 6px;
+      border-radius: 12px;
       background: var(--card-icon-bg);
-      border: 1.5px solid var(--border-black);
-      box-shadow: 1.5px 1.5px 0px var(--border-black);
+      border: 1.5px solid var(--card-icon-border);
       overflow: hidden;
+      transition: background 0.25s ease, border-color 0.25s ease;
     }
-    .service-icon img { width: 26px; height: 26px; object-fit: contain; display: block; }
+    .service-icon img { width: 28px; height: 28px; object-fit: contain; }
     .service-copy { min-width: 0; }
     .service-line { display: flex; align-items: center; gap: 6px; min-width: 0; }
-    .service-line strong {
-      font-size: 13.5px;
-      font-weight: 900;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      color: var(--card-title);
-      letter-spacing: -0.01em;
-    }
-    .service-line small {
-      font-family: var(--font-mono);
-      font-size: 9px;
-      font-weight: 800;
-      text-transform: uppercase;
-      padding: 1px 5px;
-      border: 1px solid var(--border-black);
-      border-radius: 9999px;
-      background: var(--yellow-alert);
-      color: #111111;
-      box-shadow: 1px 1px 0px var(--border-black);
-      white-space: nowrap;
-    }
-    .service-desc {
-      display: block;
-      margin-top: 4px;
-      color: var(--card-desc);
-      font-size: 11px;
-      font-weight: 600;
-      line-height: 1.45;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .service-arrow {
-      width: 22px;
-      height: 22px;
-      border: 1.5px solid var(--border-black);
-      border-radius: 4px;
-      background: #ffffff;
-      color: #111111;
-      box-shadow: 1px 1px 0px var(--border-black);
-      display: grid;
-      place-items: center;
-      opacity: 0;
-      transform: translate(-2px, 2px);
-      transition: all 0.15s ease;
-    }
-    .service-arrow svg { width: 14px; height: 14px; stroke: #111111; stroke-width: 2.5; }
-    .service-card:hover .service-arrow {
-      opacity: 1;
-      transform: none;
-      background: var(--yellow-alert);
-    }
-    .service-card.is-disabled { cursor: not-allowed; opacity: 0.6; }
+    .service-line strong { font-size: 14px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--card-title); }
+    .service-line small { padding: 2px 6px; border-radius: 6px; background: var(--card-badge-bg); color: var(--card-badge-text); font-size: 9px; font-weight: 700; white-space: nowrap; }
+    .service-desc { display: block; margin-top: 6px; color: var(--card-desc); font-size: 11px; line-height: 1.5; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .service-arrow { color: var(--card-desc); opacity: 0; transform: translate(-3px, 3px); transition: 0.18s; }
+    .service-card:hover .service-arrow { opacity: 1; transform: none; }
+    .service-arrow svg { width: 16px; height: 16px; }
+    .service-card.is-disabled { cursor: not-allowed; opacity: 0.65; }
     .service-card.is-disabled .service-arrow { display: none; }
     
-    .empty { display: none; padding: 60px 24px; text-align: center; color: var(--text-muted); font-weight: 800; }
-    .empty strong { display: block; color: var(--text-main); font-size: 20px; margin-bottom: 6px; }
-    
-    .footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 20px;
-      padding: 22px 12px 36px;
-      color: var(--footer-text);
-      font-family: var(--font-mono);
-      font-size: 11.5px;
-      font-weight: 700;
-      border-top: 2px solid var(--border-black);
-      margin-top: 10px;
-    }
-    .back-top {
-      border: 2px solid var(--border-black);
-      border-radius: 6px;
-      background: var(--card-bg);
-      color: var(--text-main);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-family: var(--font-mono);
-      font-size: 11px;
-      font-weight: 800;
-      padding: 5px 12px;
-      box-shadow: 2px 2px 0px var(--border-black);
-      transition: all 0.15s ease;
-    }
-    .back-top:hover {
-      background: var(--yellow-alert);
-      transform: translate(-1px, -1px);
-      box-shadow: 3px 3px 0px var(--border-black);
-    }
+    .empty { display: none; padding: 80px 24px; text-align: center; color: var(--text-muted); }
+    .empty strong { display: block; color: var(--text-main); font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", serif; font-size: 22px; margin-bottom: 8px; }
+    .footer { display: flex; justify-content: space-between; gap: 20px; padding: 24px 12px 40px; color: var(--footer-text); font-size: 11px; font-weight: 500; }
+    .back-top { border: 0; background: transparent; color: inherit; cursor: pointer; display: flex; align-items: center; gap: 6px; font-weight: 600; }
+    .back-top:hover { opacity: 0.8; }
     .hide { display: none !important; }
     
-    /* Responsive Media Queries */
     @media (max-width: 1100px) {
       .page-shell { grid-template-columns: 220px minmax(0, 1fr); padding: 18px; }
-      .sidebar { padding: 16px 14px; }
-      .intro { grid-template-columns: 1fr; padding: 26px; }
+      .sidebar { padding: 20px; }
+      .intro { grid-template-columns: 1fr; padding: 34px; }
       .search-panel { max-width: 480px; }
       .daily-strip { grid-template-columns: 1fr 1fr; }
       .daily-card.quote-card { grid-column: 1 / -1; }
@@ -901,54 +497,55 @@
         z-index: 30;
         align-items: center;
         justify-content: space-between;
-        margin-bottom: 14px;
+        margin-bottom: 12px;
         padding: 10px 14px;
-        background: var(--yellow-alert);
-        color: #111111;
-        border: 2px solid var(--border-black);
-        border-radius: 8px;
-        box-shadow: 3px 3px 0px var(--border-black);
+        background: var(--sidebar-bg);
+        color: var(--sidebar-text);
+        border: 2px solid var(--sidebar-border);
+        border-radius: 18px;
+        box-shadow: var(--card-shadow);
       }
-      .mobile-bar .brand-mark { width: 34px; height: 34px; font-size: 17px; border-radius: 6px; }
-      .mobile-bar .brand strong { font-size: 15px; }
+      .mobile-bar .brand-mark { width: 34px; height: 34px; font-size: 16px; border-radius: 10px; }
+      .mobile-bar .brand strong { font-size: 16px; }
       .mobile-bar .brand small { display: none; }
       .mobile-actions { display: flex; gap: 6px; }
       .mobile-actions button {
         width: 36px;
         height: 36px;
-        border: 2px solid var(--border-black);
-        border-radius: 6px;
-        background: #ffffff;
-        color: #111111;
+        border: 2px solid var(--line-dark);
+        border-radius: 10px;
+        background: var(--sidebar-mark-bg);
+        color: var(--sidebar-mark-text);
         cursor: pointer;
         display: grid;
         place-items: center;
-        box-shadow: 2px 2px 0px var(--border-black);
       }
-      .search-label span:last-child { display: none; }
-      .intro { min-height: auto; padding: 20px 16px; border-radius: 8px; border-width: 2px; }
-      .intro h1 { font-size: 28px; }
-      .daily-strip { grid-template-columns: 1fr; gap: 10px; margin-top: 12px; }
-      .daily-card { padding: 14px; border-radius: 8px; min-height: auto; }
-      .clock-value { font-size: 28px; }
-      .weather-value strong { font-size: 26px; }
-      .quote-text { font-size: 13.5px; }
-      .live-panel { padding: 16px 14px; border-radius: 8px; }
-      .collection { padding: 18px 14px 22px; border-radius: 8px; margin: 14px 0; }
-      .collection-head { grid-template-columns: 1fr auto; gap: 10px; margin-bottom: 12px; }
-      .collection h2 { font-size: 18px; }
+      .intro { min-height: 360px; padding: 30px 20px; border-radius: 20px; }
+      .intro h1 { font-size: 34px; }
+      .intro:after { width: 240px; height: 140px; opacity: 0.7; }
+      .daily-strip { grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+      .daily-card { padding: 16px; border-radius: 16px; }
+      .daily-card.quote-card { grid-column: 1 / -1; }
+      .clock-value { font-size: 26px; }
+      .weather-value strong { font-size: 24px; }
+      .quote-text { font-size: 15px; }
+      .live-panel { padding: 18px; border-radius: 18px; }
+      .collection { padding: 22px 14px 26px; border-radius: 20px; margin: 14px 0; }
+      .collection-head { grid-template-columns: 1fr auto; gap: 10px; margin: 0 2px 16px; }
+      .collection h2 { font-size: 20px; }
       .service-grid { grid-template-columns: 1fr; gap: 10px; }
-      .service-card { padding: 12px 14px; border-radius: 8px; }
+      .service-card { padding: 14px; border-radius: 16px; }
       .service-desc { font-size: 11px; }
-      .service-arrow { opacity: 0.6; transform: none; }
-      .footer { padding-bottom: 24px; flex-direction: column; align-items: flex-start; }
+      .service-arrow { opacity: 0.45; transform: none; }
+      .footer { padding-bottom: 24px; }
     }
+
   </style>
 </head>
 <body>
   <div class="page-shell">
     <aside class="sidebar">
-      <a class="brand" href="#top"><span class="brand-mark">林</span><span><strong>0000996.XYZ</strong><small>PERSONAL INDEX</small></span></a>
+      <a class="brand" href="#top"><span class="brand-mark">林</span><span><strong>林间随笔</strong><small>PERSONAL INDEX</small></span></a>
       <p class="side-note">把常用的东西，<em>安静地放在一起。</em></p>
       <nav class="section-nav" aria-label="页面分类">
         <a href="#home" data-nav="home"><span>01</span>自建服务</a>
@@ -959,19 +556,13 @@
         <a href="#community" data-nav="community"><span>06</span>极客社区</a>
         <a href="#life" data-nav="life"><span>07</span>影音日常</a>
       </nav>
-      <div class="side-spec-box">
-        <div class="spec-row"><span>STATUS</span><strong class="pill-mini green">NORMAL</strong></div>
-        <div class="spec-row"><span>GATEWAY</span><strong>CF PAGES</strong></div>
-        <div class="spec-row"><span>ENTRIES</span><strong>87 SITES</strong></div>
-        <div class="spec-row"><span>SHORTCUT</span><code>/ SEARCH</code></div>
-      </div>
-      <div class="side-foot"><span>⚡ 2026 EDITION</span><button class="theme-toggle" type="button" aria-label="切换主题" title="切换主题"><span class="theme-icon"></span></button></div>
+      <div class="side-foot"><span>0000996.XYZ</span><button class="theme-toggle" type="button" aria-label="切换主题" title="切换主题"><span class="theme-icon"></span></button></div>
     </aside>
     <main class="main" id="top">
-      <div class="mobile-bar"><a class="brand" href="#top"><span class="brand-mark">林</span><span><strong>0000996.XYZ</strong></span></a><div class="mobile-actions"><button class="theme-toggle" type="button" aria-label="切换主题"><span class="theme-icon"></span></button></div></div>
+      <div class="mobile-bar"><a class="brand" href="#top"><span class="brand-mark">林</span><span><strong>林间随笔</strong></span></a><div class="mobile-actions"><button class="theme-toggle" type="button" aria-label="切换主题"><span class="theme-icon"></span></button></div></div>
       <section class="intro">
-        <div><span class="eyebrow">⚡ 0000996.XYZ · PERSONAL PORTAL</span><h1>日常所用，<br>一页抵达。</h1><p>这里不是互联网大全，只收下真正会用到的服务、工具与阅读入口。</p></div>
-        <div class="search-panel"><label class="search-label" for="search"><span>⚡ 快速查找</span><span>/ 聚焦</span></label><div class="search-wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg><input id="search" type="search" placeholder="搜索服务、工具或标签" autocomplete="off" aria-label="搜索导航入口"><button class="clear-search" type="button" aria-label="清空搜索">×</button></div></div>
+        <div><span class="eyebrow">Personal space · 0000996.xyz</span><h1>日常所用，<br>一页抵达。</h1><p>这里不是互联网大全，只收下真正会用到的服务、工具与阅读入口。</p></div>
+        <div class="search-panel"><label class="search-label" for="search"><span>快速查找</span><span>/ 聚焦</span></label><div class="search-wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg><input id="search" type="search" placeholder="搜索名称、用途或标签" autocomplete="off" aria-label="搜索导航入口"><button class="clear-search" type="button" aria-label="清空搜索">×</button></div></div>
       </section>
       <section class="daily-strip" aria-label="今日信息">
         <article class="daily-card clock-card">
@@ -989,9 +580,10 @@
       </section>
       <section class="live-board" aria-label="最近文章">
         <article class="live-panel posts-panel">
-          <header class="live-head"><div><h2>⚡ 最近文章</h2><p>从林间随笔与技术博客自动汇集</p></div><a class="live-link" href="https://note.0000996.xyz" target="_blank" rel="noopener noreferrer">进入随笔 ↗</a></header>
+          <header class="live-head"><div><h2>最近文章</h2><p>从林间随笔与技术博客自动汇集</p></div><a class="live-link" href="https://note.0000996.xyz" target="_blank" rel="noopener noreferrer">进入随笔 ↗</a></header>
           <div class="post-list" id="recentPosts"><a class="post-item" href="https://blog.0000996.xyz/archives/hermes-patches-guide" target="_blank" rel="noopener noreferrer"><span><span class="post-title">Hermes Agent 补丁/插件分享</span><span class="post-meta"><span>Halo 博客</span><span>08/29</span></span></span><span class="post-arrow">↗</span></a><a class="post-item" href="https://blog.0000996.xyz/archives/1panel-cert-auto-renewal" target="_blank" rel="noopener noreferrer"><span><span class="post-title">1Panel 域名证书配置与自动续期</span><span class="post-meta"><span>Halo 博客</span><span>08/24</span></span></span><span class="post-arrow">↗</span></a><a class="post-item" href="https://blog.0000996.xyz/archives/ip-geofence-breakout" target="_blank" rel="noopener noreferrer"><span><span class="post-title">IP 送中 / Gemini 400 怎么破？三个方案从原理到踩坑全讲透</span><span class="post-meta"><span>Halo 博客</span><span>08/23</span></span></span><span class="post-arrow">↗</span></a><a class="post-item" href="https://blog.0000996.xyz/archives/vps-benchmarking" target="_blank" rel="noopener noreferrer"><span><span class="post-title">VPS 性能测评指南：fio / NodeQuality / 融合怪从跑到读</span><span class="post-meta"><span>Halo 博客</span><span>08/20</span></span></span><span class="post-arrow">↗</span></a></div>
         </article>
+        
       </section>
       <div class="collections">
       <section class="collection" id="home" data-section="home">
@@ -1010,44 +602,44 @@
       <span class="service-copy"><span class="service-line"><strong>Note 随笔</strong><small>CF</small></span><span class="service-desc">部署在边缘的轻量随笔与便签</span></span>
       <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
     </a>
-<a href="https://panel.0000996.xyz:40366/l3x712a3" target="_blank" rel="noopener noreferrer" class="service-card" data-search="1panel 面板 服务器 运维 容器 证书" style="--delay:50ms">
-      <span class="service-icon"><img src="/icons/1panel.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>1Panel 面板</strong><small>运维</small></span><span class="service-desc">容器编排、反代与证书管理</span></span>
-      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
-    </a>
-<a href="https://cpa.0000996.xyz/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="cli-proxy-api cpa 聚合 api 网关 llm" style="--delay:75ms">
-      <span class="service-icon"><img src="/icons/cpa.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>cli-proxy-api</strong><small>网关</small></span><span class="service-desc">高可用 LLM 聚合代理中转网关</span></span>
-      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
-    </a>
-<a href="https://cpamp.0000996.xyz/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="cpa-manager-plus cpamp 控制台 状态" style="--delay:100ms">
-      <span class="service-icon"><img src="/icons/cpamp.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>CPA 管理后台</strong><small>管理</small></span><span class="service-desc">CPA 可视化仪表盘与路由监控</span></span>
-      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
-    </a>
-<a href="https://danmu.0000996.xyz/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="danmu 弹幕 服务 接口 互动" style="--delay:125ms">
+<a href="https://danmu.0000996.xyz/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="妙妙屋 节点状态 媒体服务 日常看板 自建" style="--delay:50ms">
       <span class="service-icon"><img src="/icons/danmu.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>Danmu API</strong><small>自建</small></span><span class="service-desc">弹幕库与交互消息接口服务</span></span>
+      <span class="service-copy"><span class="service-line"><strong>妙妙屋</strong><small>自建</small></span><span class="service-desc">节点状态、媒体服务与日常看板</span></span>
       <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
     </a>
-<a href="https://openlist.0000996.xyz/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="openlist 网盘 存储 下载 文件" style="--delay:150ms">
+<a href="https://openlist.0000996.xyz/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="openlist 云盘 聚合网盘 文件查找 分享 自建" style="--delay:75ms">
       <span class="service-icon"><img src="/icons/openlist.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>OpenList 网盘</strong><small>存储</small></span><span class="service-desc">多云存储挂载与高速目录列表</span></span>
+      <span class="service-copy"><span class="service-line"><strong>OpenList 云盘</strong><small>自建</small></span><span class="service-desc">聚合网盘、文件查找与资源分享</span></span>
       <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
     </a>
-<a href="https://server.0000996.xyz/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="komari 探针 监控 机器 状态 vps" style="--delay:175ms">
-      <span class="service-icon"><img src="/icons/komari.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>Komari 探针</strong><small>探针</small></span><span class="service-desc">多节点服务器资源与在线状态监控</span></span>
+<a href="https://img.0000996.xyz/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="r2 相片馆 图床 对象存储 cloudflare" style="--delay:100ms">
+      <span class="service-icon"><img src="/icons/r2.png" alt="" width="44" height="44" loading="eager"></span>
+      <span class="service-copy"><span class="service-line"><strong>R2 相片馆</strong><small>R2</small></span><span class="service-desc">Cloudflare R2 对象存储与专属图床</span></span>
       <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
     </a>
-<a href="https://mmw.0000996.xyz/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="miaomiaowu 妙妙屋 节点 代理 订阅" style="--delay:200ms">
-      <span class="service-icon"><img src="/icons/mmw.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>妙妙屋</strong><small>管理</small></span><span class="service-desc">代理节点分发与订阅托管面板</span></span>
+<a href="https://panel.0000996.xyz/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="1panel 运维 生产机 容器 网站管理 中心" style="--delay:125ms">
+      <span class="service-icon"><img src="/icons/1panel.png" alt="" width="44" height="44" loading="eager"></span>
+      <span class="service-copy"><span class="service-line"><strong>1Panel 运维</strong><small>运维</small></span><span class="service-desc">生产机 Linux 容器与网站管理中心</span></span>
       <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
     </a>
-<a href="https://chill.0000996.xyz/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="chilltime 伴侣 桌面 互动 陪伴" style="--delay:225ms">
+<a href="https://jsq.0000996.xyz/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="vps 价值计算器 剩余价值 到期 汇率 工具" style="--delay:150ms">
+      <span class="service-icon"><img src="/icons/calculator.png" alt="" width="44" height="44" loading="eager"></span>
+      <span class="service-copy"><span class="service-line"><strong>VPS 价值计算器</strong><small>工具</small></span><span class="service-desc">VPS 剩余价值、汇率与到期成本计算</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://cpa.0000996.xyz/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="cpa 智能网关 多模型 统一汇聚 调度 中转 api" style="--delay:175ms">
+      <span class="service-icon"><img src="/icons/cpa.png" alt="" width="44" height="44" loading="eager"></span>
+      <span class="service-copy"><span class="service-line"><strong>CPA 智能网关</strong><small>API</small></span><span class="service-desc">多模型统一汇聚调度与中转 API 网关</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://chill-companion.pages.dev/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="chill 闲暇伴侣 白噪音 影视 备忘 cf" style="--delay:200ms">
       <span class="service-icon"><img src="/icons/chill.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>ChillTime 伴侣</strong><small>Web</small></span><span class="service-desc">沉浸式桌面白噪音与专属伴侣空间</span></span>
+      <span class="service-copy"><span class="service-line"><strong>Chill 闲暇伴侣</strong><small>CF</small></span><span class="service-desc">原生 Web 白噪音、影视库与备忘小玩具</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://server.0000996.xyz/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="服务器 探针 看板 监控 节点 性能" style="--delay:225ms">
+      <span class="service-icon"><img src="/icons/server.png" alt="" width="44" height="44" loading="eager"></span>
+      <span class="service-copy"><span class="service-line"><strong>服务器探针看板</strong><small>监控</small></span><span class="service-desc">多节点实时性能、网络与健康探针</span></span>
       <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
     </a>
 </div>
@@ -1055,72 +647,77 @@
       <section class="collection" id="ai" data-section="ai">
       <header class="collection-head">
         <div><span class="section-index">02</span><h2>AI 工作台</h2></div>
-        <p>日常高频使用的模型对话、搜索与工作台。</p>
-        <span class="section-total">13 个入口</span>
+        <p>智能模型、代码推理与多模态创作前沿。</p>
+        <span class="section-total">14 个入口</span>
       </header>
-      <div class="service-grid"><a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="chatgpt openai gpt 聊天 对话 写作 问答" style="--delay:0ms">
+      <div class="service-grid"><a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="chatgpt openai 对话 推理 多模态" style="--delay:0ms">
       <span class="service-icon"><img src="/icons/chatgpt.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>ChatGPT</strong><small>官方</small></span><span class="service-desc">OpenAI 核心对话与通用工作助手</span></span>
+      <span class="service-copy"><span class="service-line"><strong>ChatGPT</strong><small>OpenAI</small></span><span class="service-desc">官方旗舰对话、代码推理与多模态</span></span>
       <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
     </a>
-<a href="https://claude.ai/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="claude anthropic 写作 长文 代码 分析" style="--delay:25ms">
+<a href="https://claude.ai/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="claude anthropic 长文本 推理 编码" style="--delay:25ms">
       <span class="service-icon"><img src="/icons/claude.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>Claude</strong><small>官方</small></span><span class="service-desc">高质量逻辑推理、长文写作与代码</span></span>
+      <span class="service-copy"><span class="service-line"><strong>Claude</strong><small>Anthropic</small></span><span class="service-desc">顶级长文本深度推理、编码与复杂写作</span></span>
       <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
     </a>
-<a href="https://gemini.google.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="gemini google 多模态 生态 搜索 大模型" style="--delay:50ms">
+<a href="https://gemini.google.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="gemini google 谷歌 百万 上下文 多模态" style="--delay:50ms">
       <span class="service-icon"><img src="/icons/gemini.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>Google Gemini</strong><small>官方</small></span><span class="service-desc">超长上下文与 Google 原生生态融合</span></span>
+      <span class="service-copy"><span class="service-line"><strong>Google Gemini</strong><small>Google</small></span><span class="service-desc">谷歌百万超长上下文与原生多模态</span></span>
       <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
     </a>
-<a href="https://aistudio.google.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="ai studio google api 调试 prompt 原型" style="--delay:75ms">
-      <span class="service-icon"><img src="/icons/aistudio.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>Google AI Studio</strong><small>开发</small></span><span class="service-desc">极速原型测试与 Gemini 原生 API 调用</span></span>
-      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
-    </a>
-<a href="https://chat.deepseek.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="deepseek 深度求索 国产 代码 推理 r1" style="--delay:100ms">
+<a href="https://chat.deepseek.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="deepseek 深度求索 深度思考 开源 r1" style="--delay:75ms">
       <span class="service-icon"><img src="/icons/deepseek.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>DeepSeek</strong><small>国产</small></span><span class="service-desc">超强代码生成与深度数学逻辑推理</span></span>
+      <span class="service-copy"><span class="service-line"><strong>DeepSeek</strong><small>开源</small></span><span class="service-desc">深度求索开创性深度思考与开源模型</span></span>
       <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
     </a>
-<a href="https://www.perplexity.ai/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="perplexity 搜索 调研 引用 检索 答案" style="--delay:125ms">
-      <span class="service-icon"><img src="/icons/perplexity.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>Perplexity AI</strong><small>搜索</small></span><span class="service-desc">具备精准溯源的对话式 AI 搜索引擎</span></span>
-      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
-    </a>
-<a href="https://grok.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="grok xai 实时 资讯 推特 x 幽默" style="--delay:150ms">
-      <span class="service-icon"><img src="/icons/grok.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>Grok</strong><small>实时</small></span><span class="service-desc">结合 X 实时热点与无拘束风格的模型</span></span>
-      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
-    </a>
-<a href="https://kimi.moonshot.cn/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="kimi moonshot 月之暗面 长文 论文 研报" style="--delay:175ms">
-      <span class="service-icon"><img src="/icons/kimi.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>Kimi 智能助手</strong><small>长文</small></span><span class="service-desc">超长文档深度精读与学术研报解析</span></span>
-      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
-    </a>
-<a href="https://poe.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="poe quora 聚合 bot 多模型 机器人" style="--delay:200ms">
-      <span class="service-icon"><img src="/icons/poe.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>Poe</strong><small>聚合</small></span><span class="service-desc">一站式多模型体验与自定义 Bot 平台</span></span>
-      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
-    </a>
-<a href="https://copilot.microsoft.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="copilot microsoft 微软 office 办公 搜索" style="--delay:225ms">
-      <span class="service-icon"><img src="/icons/copilot.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>Microsoft Copilot</strong><small>办公</small></span><span class="service-desc">深度集成 Edge 与 Windows 生态</span></span>
-      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
-    </a>
-<a href="https://suno.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="suno 音乐 生成 作曲 编曲 ai音乐" style="--delay:250ms">
-      <span class="service-icon"><img src="/icons/suno.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>Suno</strong><small>音乐</small></span><span class="service-desc">全流程高品质 AI 音乐生成与创作</span></span>
-      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
-    </a>
-<a href="https://openrouter.ai/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="openrouter 模型 路由 聚合 api 开发者" style="--delay:275ms">
+<a href="https://openrouter.ai/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="openrouter 聚合 api 模型 竞技场" style="--delay:100ms">
       <span class="service-icon"><img src="/icons/openrouter.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>OpenRouter</strong><small>路由</small></span><span class="service-desc">统一接口调度全球主流与开源大模型</span></span>
+      <span class="service-copy"><span class="service-line"><strong>OpenRouter</strong><small>聚合</small></span><span class="service-desc">全球主流大模型统一汇聚 API 与竞技场</span></span>
       <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
     </a>
-<a href="https://groq.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="groq lpu 极速 推理 毫秒级 api" style="--delay:300ms">
-      <span class="service-icon"><img src="/icons/groq.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>Groq</strong><small>极速</small></span><span class="service-desc">基于 LPU 硬件架构的超高速模型推理</span></span>
+<a href="https://www.perplexity.ai/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="perplexity 搜索 ai 智能 问答 引擎" style="--delay:125ms">
+      <span class="service-icon"><img src="/icons/perplexity.png" alt="" width="44" height="44" loading="eager"></span>
+      <span class="service-copy"><span class="service-line"><strong>Perplexity</strong><small>搜索</small></span><span class="service-desc">新一代 AI 对话式智能精准搜索引擎</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://huggingface.co/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="huggingface 社区 模型 space 开源 ai" style="--delay:150ms">
+      <span class="service-icon"><img src="/icons/huggingface.png" alt="" width="44" height="44" loading="eager"></span>
+      <span class="service-copy"><span class="service-line"><strong>Hugging Face</strong><small>社区</small></span><span class="service-desc">全球最大开源 AI 模型与 Space 托管社区</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://poe.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="poe quora 聚合 bot 助手 对话" style="--delay:175ms">
+      <span class="service-icon"><img src="/icons/poe.png" alt="" width="44" height="44" loading="eager"></span>
+      <span class="service-copy"><span class="service-line"><strong>Poe</strong><small>助手</small></span><span class="service-desc">Quora 旗下多模型聚合对话与自定义 Bot</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://v0.dev/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="v0 vercel 前端 react tailwind ui" style="--delay:200ms">
+      <span class="service-icon"><img src="/icons/v0.png" alt="" width="44" height="44" loading="eager"></span>
+      <span class="service-copy"><span class="service-line"><strong>v0 by Vercel</strong><small>前端</small></span><span class="service-desc">自然语言一键生成现代 React / Tailwind UI</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://metaso.cn/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="秘塔 metaso 严肃 学术 调研 搜索" style="--delay:225ms">
+      <span class="service-icon"><img src="/icons/metaso.png" alt="" width="44" height="44" loading="eager"></span>
+      <span class="service-copy"><span class="service-line"><strong>秘塔 AI 搜索</strong><small>严肃</small></span><span class="service-desc">无广告的深度中文学术与行业调研检索</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://kimi.moonshot.cn/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="kimi 月之暗面 长文本 阅读 检索" style="--delay:250ms">
+      <span class="service-icon"><img src="/icons/kimi.png" alt="" width="44" height="44" loading="eager"></span>
+      <span class="service-copy"><span class="service-line"><strong>Kimi 智能助手</strong><small>长文本</small></span><span class="service-desc">月之暗面超长文本阅读与中文资料检索</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://grok.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="grok xai 实时 热点 多模态" style="--delay:275ms">
+      <span class="service-icon"><img src="/icons/grok.png" alt="" width="44" height="44" loading="eager"></span>
+      <span class="service-copy"><span class="service-line"><strong>Grok</strong><small>xAI</small></span><span class="service-desc">实时全网知识、热点追踪与多模态对话</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://suno.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="suno 音乐 编曲 生成 ai 歌曲" style="--delay:300ms">
+      <span class="service-icon"><img src="/icons/suno.png" alt="" width="44" height="44" loading="eager"></span>
+      <span class="service-copy"><span class="service-line"><strong>Suno</strong><small>音乐</small></span><span class="service-desc">现象级自然语言 AI 音乐生成编曲平台</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://siliconflow.cn/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="siliconflow 硅基流动 推理 api 便宜" style="--delay:325ms">
+      <span class="service-icon"><img src="/icons/siliconflow.png" alt="" width="44" height="44" loading="eager"></span>
+      <span class="service-copy"><span class="service-line"><strong>SiliconFlow</strong><small>推理</small></span><span class="service-desc">硅基流动高性价比开源大模型云端推理</span></span>
       <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
     </a>
 </div>
@@ -1128,77 +725,87 @@
       <section class="collection" id="design" data-section="design">
       <header class="collection-head">
         <div><span class="section-index">03</span><h2>设计与素材</h2></div>
-        <p>界面构思、颜色搭配、图标库与字体资源。</p>
-        <span class="section-total">14 个入口</span>
+        <p>在线配色、精美矢量图标、字体与设计资产。</p>
+        <span class="section-total">16 个入口</span>
       </header>
-      <div class="service-grid"><a href="https://www.figma.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="figma 设计 原型 ui 协作 界面" style="--delay:0ms">
+      <div class="service-grid"><a href="https://www.figma.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="figma 设计 界面 ui 原型 协作" style="--delay:0ms">
       <span class="service-icon"><img src="/icons/figma.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>Figma</strong><small>设计</small></span><span class="service-desc">专业级在线界面设计与交互原型系统</span></span>
+      <span class="service-copy"><span class="service-line"><strong>Figma</strong><small>设计</small></span><span class="service-desc">现代协作式界面设计、组件整理与原型</span></span>
       <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
     </a>
-<a href="https://dribbble.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="dribbble 灵感 动效 插画 视觉 作品" style="--delay:25ms">
-      <span class="service-icon"><img src="/icons/dribbble.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>Dribbble</strong><small>灵感</small></span><span class="service-desc">全球顶级设计师创意作品与动态展示</span></span>
-      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
-    </a>
-<a href="https://www.behance.net/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="behance adobe 案例 品牌 视觉 工业" style="--delay:50ms">
-      <span class="service-icon"><img src="/icons/behance.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>Behance</strong><small>展示</small></span><span class="service-desc">Adobe 旗下综合创意作品与设计案例</span></span>
-      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
-    </a>
-<a href="https://mobbin.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="mobbin 移动端 ui 真实 截图 flow 参考" style="--delay:75ms">
-      <span class="service-icon"><img src="/icons/mobbin.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>Mobbin</strong><small>UI</small></span><span class="service-desc">精选真实应用界面交互流程与截图库</span></span>
-      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
-    </a>
-<a href="https://coolors.co/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="coolors 配色 调色板 颜色 搭配 生成" style="--delay:100ms">
-      <span class="service-icon"><img src="/icons/coolors.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>Coolors</strong><small>配色</small></span><span class="service-desc">极速直观的调色板生成与色彩对比度</span></span>
-      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
-    </a>
-<a href="https://colorhunt.co/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="colorhunt 色卡 趋势 搭配 灵感" style="--delay:125ms">
+<a href="https://colorhunt.co/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="color hunt 配色 调色板 灵感 颜色" style="--delay:25ms">
       <span class="service-icon"><img src="/icons/colorhunt.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>Color Hunt</strong><small>色卡</small></span><span class="service-desc">设计师精选的高品质四色调色方案</span></span>
+      <span class="service-copy"><span class="service-line"><strong>Color Hunt</strong><small>配色</small></span><span class="service-desc">全球设计师最爱的流行调色板灵感库</span></span>
       <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
     </a>
-<a href="https://lucide.dev/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="lucide 图标 矢量 icon 开源 feather" style="--delay:150ms">
+<a href="https://coolors.co/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="coolors 配色 颜色方案 生成 调色" style="--delay:50ms">
+      <span class="service-icon"><img src="/icons/coolors.png" alt="" width="44" height="44" loading="eager"></span>
+      <span class="service-copy"><span class="service-line"><strong>Coolors</strong><small>配色</small></span><span class="service-desc">超快超好看的智能配色方案生成器</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://webgradients.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="webgradients 渐变 背景 gradient 线性" style="--delay:75ms">
+      <span class="service-icon"><img src="/icons/webgradients.png" alt="" width="44" height="44" loading="eager"></span>
+      <span class="service-copy"><span class="service-line"><strong>WebGradients</strong><small>渐变</small></span><span class="service-desc">180+ 款精美现代线性渐变背景库</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://www.flaticon.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="flaticon 图标 矢量 icon svg png" style="--delay:100ms">
+      <span class="service-icon"><img src="/icons/flaticon.png" alt="" width="44" height="44" loading="eager"></span>
+      <span class="service-copy"><span class="service-line"><strong>Flaticon</strong><small>图标</small></span><span class="service-desc">全球最大矢量图标库（海量免费 SVG/PNG）</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://www.iconfont.cn/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="iconfont 阿里巴巴 矢量 图标 库 素材" style="--delay:125ms">
+      <span class="service-icon"><img src="/icons/iconfont.png" alt="" width="44" height="44" loading="eager"></span>
+      <span class="service-copy"><span class="service-line"><strong>Iconfont</strong><small>图标</small></span><span class="service-desc">阿里巴巴矢量图标库与前端素材资产</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://lucide.dev/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="lucide icons 开源 矢量 现代 图标" style="--delay:150ms">
       <span class="service-icon"><img src="/icons/lucide.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>Lucide Icons</strong><small>图标</small></span><span class="service-desc">优美统一、开箱即用的现代开源图标</span></span>
+      <span class="service-copy"><span class="service-line"><strong>Lucide Icons</strong><small>图标</small></span><span class="service-desc">现代、简洁、全开源的精美矢量图标</span></span>
       <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
     </a>
-<a href="https://feathericons.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="feather 图标 极简 矢量 icon" style="--delay:175ms">
-      <span class="service-icon"><img src="/icons/feather.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>Feather Icons</strong><small>极简</small></span><span class="service-desc">简洁经典、定制自由度高的线条图标</span></span>
+<a href="https://fontawesome.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="font awesome 图标 web 字体 icon" style="--delay:175ms">
+      <span class="service-icon"><img src="/icons/fontawesome.png" alt="" width="44" height="44" loading="eager"></span>
+      <span class="service-copy"><span class="service-line"><strong>Font Awesome</strong><small>图标</small></span><span class="service-desc">开发者必备的全球经典 Web 字体图标</span></span>
       <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
     </a>
-<a href="https://tabler.io/icons" target="_blank" rel="noopener noreferrer" class="service-card" data-search="tabler 图标 5000+ 丰富 矢量" style="--delay:200ms">
-      <span class="service-icon"><img src="/icons/tabler.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>Tabler Icons</strong><small>丰富</small></span><span class="service-desc">超 5000 款免费开源高像素精度图标</span></span>
-      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
-    </a>
-<a href="https://iconify.design/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="iconify 图标 框架 聚合 20万" style="--delay:225ms">
-      <span class="service-icon"><img src="/icons/iconify.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>Iconify</strong><small>通用</small></span><span class="service-desc">集成超 100 个主流图标集的统一框架</span></span>
-      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
-    </a>
-<a href="https://fonts.google.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="google fonts 字体 免费 开源 cdn" style="--delay:250ms">
+<a href="https://fonts.google.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="google fonts 谷歌 字体 排版 webfont" style="--delay:200ms">
       <span class="service-icon"><img src="/icons/googlefonts.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>Google Fonts</strong><small>字体</small></span><span class="service-desc">全球领先的免费开源网络字体分发库</span></span>
+      <span class="service-copy"><span class="service-line"><strong>Google Fonts</strong><small>字体</small></span><span class="service-desc">谷歌官方免费开源网页字体与排版库</span></span>
       <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
     </a>
-<a href="https://chinesefonts.netlify.app/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="中文字体 免费 商用 开源 字体列表" style="--delay:275ms">
-      <span class="service-icon"><img src="/icons/chinesefonts.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>中文免费商用字体</strong><small>字体</small></span><span class="service-desc">全网开源免费可商用中文字体聚合索引</span></span>
+<a href="https://www.freepik.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="freepik 素材 插画 矢量 psd 海报" style="--delay:225ms">
+      <span class="service-icon"><img src="/icons/freepik.png" alt="" width="44" height="44" loading="eager"></span>
+      <span class="service-copy"><span class="service-line"><strong>Freepik</strong><small>素材</small></span><span class="service-desc">优质矢量插画、平面海报与 PSD 设计资产</span></span>
       <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
     </a>
-<a href="https://unsplash.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="unsplash 高清 图库 摄影 免版权 图片" style="--delay:300ms">
+<a href="https://tinypng.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="tinypng 压缩 图片 png jpeg 无损" style="--delay:250ms">
+      <span class="service-icon"><img src="/icons/tinypng.png" alt="" width="44" height="44" loading="eager"></span>
+      <span class="service-copy"><span class="service-line"><strong>TinyPNG</strong><small>压缩</small></span><span class="service-desc">极客级智能 PNG/JPEG 图片无损压缩</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://ezgif.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="ezgif 动图 gif 制作 裁剪 视频转gif" style="--delay:275ms">
+      <span class="service-icon"><img src="/icons/ezgif.png" alt="" width="44" height="44" loading="eager"></span>
+      <span class="service-copy"><span class="service-line"><strong>EZGIF</strong><small>动图</small></span><span class="service-desc">在线 GIF 制作、视频转动图与裁剪编辑</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://jakearchibald.github.io/svgomg/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="svgomg svg 压缩 优化 清理 矢量" style="--delay:300ms">
+      <span class="service-icon"><img src="/icons/svgomg.png" alt="" width="44" height="44" loading="eager"></span>
+      <span class="service-copy"><span class="service-line"><strong>SVGOMG</strong><small>压缩</small></span><span class="service-desc">SVG 矢量文件在线极客级无损压缩清理</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://unsplash.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="unsplash 壁纸 摄影 高清 无版权 图片" style="--delay:325ms">
       <span class="service-icon"><img src="/icons/unsplash.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>Unsplash</strong><small>图库</small></span><span class="service-desc">高分辨率免费无版权摄影素材分享区</span></span>
+      <span class="service-copy"><span class="service-line"><strong>Unsplash</strong><small>壁纸</small></span><span class="service-desc">全球优质免费高清无版权摄影图库</span></span>
       <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
     </a>
-<a href="https://www.pexels.com/zh-cn/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="pexels 视频 图库 免费 商业" style="--delay:325ms">
-      <span class="service-icon"><img src="/icons/pexels.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>Pexels</strong><small>图库</small></span><span class="service-desc">精选优质免费图片与高清短视频素材</span></span>
+<a href="https://www.processon.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="processon 流程图 思维导图 架构 在线作图" style="--delay:350ms">
+      <span class="service-icon"><img src="/icons/processon.png" alt="" width="44" height="44" loading="eager"></span>
+      <span class="service-copy"><span class="service-line"><strong>ProcessOn</strong><small>作图</small></span><span class="service-desc">专业在线流程图、思维导图与架构图</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://excalidraw.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="excalidraw 手绘 白板 架构 草图" style="--delay:375ms">
+      <span class="service-icon"><img src="/icons/excalidraw.png" alt="" width="44" height="44" loading="eager"></span>
+      <span class="service-copy"><span class="service-line"><strong>Excalidraw</strong><small>白板</small></span><span class="service-desc">手绘风轻量架构图、草图与在线白板</span></span>
       <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
     </a>
 </div>
@@ -1206,62 +813,67 @@
       <section class="collection" id="tool" data-section="tool">
       <header class="collection-head">
         <div><span class="section-index">04</span><h2>极客工具箱</h2></div>
-        <p>转换格式、网络测试、加解密与在线轻量工具。</p>
-        <span class="section-total">11 个入口</span>
+        <p>编码转换、正则调试、可视化与站长利器。</p>
+        <span class="section-total">12 个入口</span>
       </header>
-      <div class="service-grid"><a href="https://transform.tools/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="transform 代码 转换 json to ts svg to jsx" style="--delay:0ms">
-      <span class="service-icon"><img src="/icons/transform.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>Transform Tools</strong><small>转换</small></span><span class="service-desc">全类型代码格式一键极速转换工具</span></span>
+      <div class="service-grid"><a href="https://www.deepl.com/translator" target="_blank" rel="noopener noreferrer" class="service-card" data-search="deepl 翻译 精准 神经 英语 日语" style="--delay:0ms">
+      <span class="service-icon"><img src="/icons/deepl.png" alt="" width="44" height="44" loading="eager"></span>
+      <span class="service-copy"><span class="service-line"><strong>DeepL 翻译</strong><small>翻译</small></span><span class="service-desc">全球公认最精准自然的神经机器翻译</span></span>
       <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
     </a>
-<a href="https://caniuse.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="caniuse 兼容性 前端 浏览器 css html5" style="--delay:25ms">
-      <span class="service-icon"><img src="/icons/caniuse.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>Can I use</strong><small>前端</small></span><span class="service-desc">权威的前端现代特性浏览器兼容表</span></span>
-      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
-    </a>
-<a href="https://regex101.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="regex 正则 表达式 调试 测试 正则工具" style="--delay:50ms">
+<a href="https://regex101.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="regex101 正则表达式 regex 测试 调试" style="--delay:25ms">
       <span class="service-icon"><img src="/icons/regex101.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>Regex101</strong><small>正则</small></span><span class="service-desc">可视化正则表达式调试与步骤级解析</span></span>
+      <span class="service-copy"><span class="service-line"><strong>Regex101</strong><small>正则</small></span><span class="service-desc">实时正则表达式测试、分析与可视化调试</span></span>
       <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
     </a>
-<a href="https://crontab.guru/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="crontab cron 定时任务 语法 表达式 校验" style="--delay:75ms">
-      <span class="service-icon"><img src="/icons/crontab.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>Crontab Guru</strong><small>定时</small></span><span class="service-desc">直观的 Cron 定时表达式编写与校验</span></span>
-      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
-    </a>
-<a href="https://www.itdog.cn/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="itdog 测速 ping 路由 追踪 节点 诊断" style="--delay:100ms">
-      <span class="service-icon"><img src="/icons/itdog.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>ITDOG 测速诊断</strong><small>网络</small></span><span class="service-desc">全国多节点 Ping、TcpPing 与路由诊断</span></span>
-      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
-    </a>
-<a href="https://tools.ipip.net/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="ipip ip 查询 归属地 asn bgp 路由" style="--delay:125ms">
-      <span class="service-icon"><img src="/icons/ipip.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>IPIP.NET</strong><small>网络</small></span><span class="service-desc">业界最精准的 IP 地理位置与网络画像</span></span>
-      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
-    </a>
-<a href="https://www.speedtest.net/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="speedtest 测速 网速 带宽 延迟 ookla" style="--delay:150ms">
-      <span class="service-icon"><img src="/icons/speedtest.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>Speedtest</strong><small>测速</small></span><span class="service-desc">全球权威的宽带上行与下行测速基准</span></span>
-      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
-    </a>
-<a href="https://jsoncrack.com/editor" target="_blank" rel="noopener noreferrer" class="service-card" data-search="jsoncrack 可视化 结构 图表 脑图 格式化" style="--delay:175ms">
+<a href="https://jsoncrack.com/editor" target="_blank" rel="noopener noreferrer" class="service-card" data-search="json crack 可视化 json 树状图 格式化" style="--delay:50ms">
       <span class="service-icon"><img src="/icons/jsoncrack.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>JSON Crack</strong><small>JSON</small></span><span class="service-desc">将复杂 JSON 数据无缝转为可视化树图</span></span>
+      <span class="service-copy"><span class="service-line"><strong>JSON Crack</strong><small>工具</small></span><span class="service-desc">将复杂 JSON 格式即时可视化为流程树状图</span></span>
       <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
     </a>
-<a href="https://devdocs.io/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="devdocs 文档 离线 api 速查 综合" style="--delay:200ms">
-      <span class="service-icon"><img src="/icons/devdocs.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>DevDocs</strong><small>文档</small></span><span class="service-desc">轻量、极速且支持离线的多语言 API 库</span></span>
+<a href="https://gchq.github.io/CyberChef/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="cyberchef 瑞士军刀 编码 解密 base64 hex" style="--delay:75ms">
+      <span class="service-icon"><img src="/icons/cyberchef.png" alt="" width="44" height="44" loading="eager"></span>
+      <span class="service-copy"><span class="service-line"><strong>CyberChef</strong><small>安全</small></span><span class="service-desc">瑞士军刀级编码转换、解密与数据分析平台</span></span>
       <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
     </a>
-<a href="https://ray.so/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="ray.so 代码 截图 分享 美化 卡片" style="--delay:225ms">
-      <span class="service-icon"><img src="/icons/rayso.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>Ray.so</strong><small>代码图</small></span><span class="service-desc">一键将代码片段生成高颜值渐变卡片图</span></span>
+<a href="https://carbon.now.sh/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="carbon 代码 截图 高颜值 美化" style="--delay:100ms">
+      <span class="service-icon"><img src="/icons/carbon.png" alt="" width="44" height="44" loading="eager"></span>
+      <span class="service-copy"><span class="service-line"><strong>Carbon</strong><small>代码</small></span><span class="service-desc">把代码片段转为高颜值分享截图</span></span>
       <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
     </a>
-<a href="https://excalidraw.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="excalidraw 白板 手绘 架构 流程图 画布" style="--delay:250ms">
-      <span class="service-icon"><img src="/icons/excalidraw.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>Excalidraw</strong><small>白板</small></span><span class="service-desc">极简手绘质感的无边界架构与逻辑草图</span></span>
+<a href="https://www.wappalyzer.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="wappalyzer 技术栈 探测 识别 网站" style="--delay:125ms">
+      <span class="service-icon"><img src="/icons/wappalyzer.png" alt="" width="44" height="44" loading="eager"></span>
+      <span class="service-copy"><span class="service-line"><strong>Wappalyzer</strong><small>探测</small></span><span class="service-desc">一键深度探测任何目标网站的前后端技术栈</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://crontab.guru/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="crontab guru cron 定时任务 表达式" style="--delay:150ms">
+      <span class="service-icon"><img src="/icons/crontab.png" alt="" width="44" height="44" loading="eager"></span>
+      <span class="service-copy"><span class="service-line"><strong>Crontab.guru</strong><small>工具</small></span><span class="service-desc">可视化 Linux Cron 定时任务表达式编写</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://shields.io/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="shields 徽章 badge github 状态" style="--delay:175ms">
+      <span class="service-icon"><img src="/icons/shields.png" alt="" width="44" height="44" loading="eager"></span>
+      <span class="service-copy"><span class="service-line"><strong>Shields.io</strong><small>徽章</small></span><span class="service-desc">GitHub 开源项目状态 Badge 徽章生成器</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://www.notion.so/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="notion 笔记 知识库 项目管理 协作" style="--delay:200ms">
+      <span class="service-icon"><img src="/icons/notion.png" alt="" width="44" height="44" loading="eager"></span>
+      <span class="service-copy"><span class="service-line"><strong>Notion</strong><small>笔记</small></span><span class="service-desc">个人全功能知识库、项目管理与协作笔记</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://www.yuque.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="语雀 文档 知识库 阿里 协作" style="--delay:225ms">
+      <span class="service-icon"><img src="/icons/yuque.png" alt="" width="44" height="44" loading="eager"></span>
+      <span class="service-copy"><span class="service-line"><strong>语雀</strong><small>文档</small></span><span class="service-desc">阿里巴巴专业云端知识库与协作文档</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://cli.im/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="草料 二维码 生成 qr 解析" style="--delay:250ms">
+      <span class="service-icon"><img src="/icons/cli.png" alt="" width="44" height="44" loading="eager"></span>
+      <span class="service-copy"><span class="service-line"><strong>草料二维码</strong><small>工具</small></span><span class="service-desc">极速在线生成、美化与解析二维码</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://fanyi.youdao.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="有道 翻译 词典 查词 多语种" style="--delay:275ms">
+      <span class="service-icon"><img src="/icons/youdao.png" alt="" width="44" height="44" loading="eager"></span>
+      <span class="service-copy"><span class="service-line"><strong>有道翻译</strong><small>词典</small></span><span class="service-desc">网易有道多语种实时在线翻译与查词</span></span>
       <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
     </a>
 </div>
@@ -1269,62 +881,67 @@
       <section class="collection" id="cloud" data-section="cloud">
       <header class="collection-head">
         <div><span class="section-index">05</span><h2>开发与云</h2></div>
-        <p>代码仓库、边缘计算、静态托管与域名基础设施。</p>
-        <span class="section-total">11 个入口</span>
+        <p>CDN 边缘、云服务器、BGP 路由与网络测速。</p>
+        <span class="section-total">12 个入口</span>
       </header>
-      <div class="service-grid"><a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="github git 代码 仓库 开源 协作" style="--delay:0ms">
-      <span class="service-icon"><img src="/icons/github.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>GitHub</strong><small>托管</small></span><span class="service-desc">全球最大开发者社区与开源软件大本营</span></span>
-      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
-    </a>
-<a href="https://dash.cloudflare.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="cloudflare cf dns 边缘 cdn waf workers" style="--delay:25ms">
+      <div class="service-grid"><a href="https://dash.cloudflare.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="cloudflare cdn dns 边缘 计算 pages workers" style="--delay:0ms">
       <span class="service-icon"><img src="/icons/cloudflare.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>Cloudflare Dashboard</strong><small>云控</small></span><span class="service-desc">DNS、WAF、CDN 与无服务器边缘计算</span></span>
+      <span class="service-copy"><span class="service-line"><strong>Cloudflare</strong><small>CDN</small></span><span class="service-desc">全球 Anycast 网络、DNS 与边缘计算平台</span></span>
       <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
     </a>
-<a href="https://vercel.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="vercel 前端 部署 nextjs 自动化 ci/cd" style="--delay:50ms">
+<a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="github dev 开源 代码 仓库 git" style="--delay:25ms">
+      <span class="service-icon"><img src="/icons/github.png" alt="" width="44" height="44" loading="eager"></span>
+      <span class="service-copy"><span class="service-line"><strong>GitHub</strong><small>Dev</small></span><span class="service-desc">全球最大开源代码托管与开发者协作平台</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://vercel.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="vercel 前端 托管 部署 serverless" style="--delay:50ms">
       <span class="service-icon"><img src="/icons/vercel.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>Vercel</strong><small>部署</small></span><span class="service-desc">极速前端全栈托管与自动化持续集成</span></span>
+      <span class="service-copy"><span class="service-line"><strong>Vercel</strong><small>托管</small></span><span class="service-desc">顶级前端构建部署与 Serverless 边缘网络</span></span>
       <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
     </a>
-<a href="https://railway.app/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="railway paas 容器 部署 数据库 后端" style="--delay:75ms">
-      <span class="service-icon"><img src="/icons/railway.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>Railway</strong><small>容器</small></span><span class="service-desc">简单清爽的后端应用与全托管数据库部署</span></span>
-      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
-    </a>
-<a href="https://render.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="render paas 静态 容器 云服务 web" style="--delay:100ms">
-      <span class="service-icon"><img src="/icons/render.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>Render</strong><small>云服务</small></span><span class="service-desc">一站式运行 Web 应用、静态站点与定时任务</span></span>
-      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
-    </a>
-<a href="https://supabase.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="supabase postgres 开源 后端 认证 baas" style="--delay:125ms">
+<a href="https://supabase.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="supabase 数据库 postgresql 后端 firebase" style="--delay:75ms">
       <span class="service-icon"><img src="/icons/supabase.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>Supabase</strong><small>BaaS</small></span><span class="service-desc">基于 PostgreSQL 的全功能开源无服务器后端</span></span>
+      <span class="service-copy"><span class="service-line"><strong>Supabase</strong><small>数据库</small></span><span class="service-desc">开源 Firebase 替代品，全托管 PostgreSQL</span></span>
       <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
     </a>
-<a href="https://neon.tech/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="neon postgres 无服务器 serverless 分支 数据库" style="--delay:150ms">
-      <span class="service-icon"><img src="/icons/neon.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>Neon Postgres</strong><small>Serverless</small></span><span class="service-desc">具备秒级分支特性的无服务器云原生 Postgres</span></span>
-      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
-    </a>
-<a href="https://console.aws.amazon.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="aws 亚马逊 云计算 ec2 s3 控制台" style="--delay:175ms">
-      <span class="service-icon"><img src="/icons/aws.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>AWS Console</strong><small>综合</small></span><span class="service-desc">全球最丰富成熟的基础设施云服务阵列</span></span>
-      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
-    </a>
-<a href="https://www.spaceship.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="spaceship 域名 廉价 注册 托管 dns" style="--delay:200ms">
-      <span class="service-icon"><img src="/icons/spaceship.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>Spaceship 域名</strong><small>域名</small></span><span class="service-desc">界面现代流畅、价格极度亲民的域名注册商</span></span>
-      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
-    </a>
-<a href="https://www.namesilo.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="namesilo 域名 续费 隐私 保护 注册" style="--delay:225ms">
-      <span class="service-icon"><img src="/icons/namesilo.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>NameSilo</strong><small>域名</small></span><span class="service-desc">老牌稳健且永久赠送隐私保护的域名平台</span></span>
-      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
-    </a>
-<a href="https://docker.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="docker 容器 镜像 仓库 hub 虚拟化" style="--delay:250ms">
+<a href="https://hub.docker.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="docker hub 容器 镜像 仓库 registry" style="--delay:100ms">
       <span class="service-icon"><img src="/icons/docker.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>Docker Hub</strong><small>容器</small></span><span class="service-desc">全球官方与社区容器镜像索引共享中心</span></span>
+      <span class="service-copy"><span class="service-line"><strong>Docker Hub</strong><small>容器</small></span><span class="service-desc">官方容器镜像检索与公共分发中心</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://lightsail.aws.amazon.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="aws lightsail 亚马逊 vps 云服务器" style="--delay:125ms">
+      <span class="service-icon"><img src="/icons/aws.png" alt="" width="44" height="44" loading="eager"></span>
+      <span class="service-copy"><span class="service-line"><strong>AWS Lightsail</strong><small>VPS</small></span><span class="service-desc">亚马逊轻量级云服务器与节点控制台</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://www.itdog.cn/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="itdog 测速 ping tcp 路由 线路" style="--delay:150ms">
+      <span class="service-icon"><img src="/icons/itdog.png" alt="" width="44" height="44" loading="eager"></span>
+      <span class="service-copy"><span class="service-line"><strong>ITDOG 测速</strong><small>网络</small></span><span class="service-desc">国内外多线路在线 Ping、TCP 与路由追踪</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://bgp.tools/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="bgp tools 路由 as 拓扑 网络 查询" style="--delay:175ms">
+      <span class="service-icon"><img src="/icons/bgptools.png" alt="" width="44" height="44" loading="eager"></span>
+      <span class="service-copy"><span class="service-line"><strong>BGP.tools</strong><small>网络</small></span><span class="service-desc">全球 BGP 路由表、AS 归属与拓扑查询</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://ip.sb/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="ip sb 纯净 查询 asn 地理位置" style="--delay:200ms">
+      <span class="service-icon"><img src="/icons/ipsb.png" alt="" width="44" height="44" loading="eager"></span>
+      <span class="service-copy"><span class="service-line"><strong>IP.sb</strong><small>网络</small></span><span class="service-desc">极速纯净的公网 IP、地理位置与 ASN 查询</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://dnschecker.org/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="dns checker 域名 解析 生效 检查" style="--delay:225ms">
+      <span class="service-icon"><img src="/icons/dnschecker.png" alt="" width="44" height="44" loading="eager"></span>
+      <span class="service-copy"><span class="service-line"><strong>DNS Checker</strong><small>DNS</small></span><span class="service-desc">全球 50+ 节点并发检测 DNS 解析状态</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://tailscale.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="tailscale 组网 mesh vpn 内网穿透" style="--delay:250ms">
+      <span class="service-icon"><img src="/icons/tailscale.png" alt="" width="44" height="44" loading="eager"></span>
+      <span class="service-copy"><span class="service-line"><strong>Tailscale</strong><small>组网</small></span><span class="service-desc">零配置异地局域网 Mesh VPN 互联</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://www.speedtest.net/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="speedtest 测速 带宽 延迟 网速" style="--delay:275ms">
+      <span class="service-icon"><img src="/icons/speedtest.png" alt="" width="44" height="44" loading="eager"></span>
+      <span class="service-copy"><span class="service-line"><strong>Speedtest</strong><small>测速</small></span><span class="service-desc">Ookla 全球带宽与节点延迟基准测速</span></span>
       <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
     </a>
 </div>
@@ -1332,57 +949,72 @@
       <section class="collection" id="community" data-section="community">
       <header class="collection-head">
         <div><span class="section-index">06</span><h2>极客社区</h2></div>
-        <p>技术交流、前沿观察、节点分享与讨论。</p>
-        <span class="section-total">10 个入口</span>
+        <p>主机玩家、开源动态与技术思考沉淀。</p>
+        <span class="section-total">13 个入口</span>
       </header>
-      <div class="service-grid"><a href="https://www.nodeseek.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="nodeseek 节点 主机 vps 极客 交易 论坛" style="--delay:0ms">
-      <span class="service-icon"><img src="/icons/nodeseek.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>NodeSeek</strong><small>热点</small></span><span class="service-desc">高活跃度 VPS、网络路由与极客极客圈</span></span>
-      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
-    </a>
-<a href="https://linux.do/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="linux.do 始皇 热心 社区 论坛 逆向 ai" style="--delay:25ms">
+      <div class="service-grid"><a href="https://linux.do/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="linux do 社区 论坛 极客 交流" style="--delay:0ms">
       <span class="service-icon"><img src="/icons/linuxdo.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>LINUX DO</strong><small>社区</small></span><span class="service-desc">真诚友善的前沿 AI、逆向与技术分享地</span></span>
+      <span class="service-copy"><span class="service-line"><strong>LINUX DO</strong><small>社区</small></span><span class="service-desc">真诚、友善、团结的极客与技术交流社区</span></span>
       <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
     </a>
-<a href="https://www.v2ex.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="v2ex 程序员 极客 创意 分享 职场 问答" style="--delay:50ms">
+<a href="https://www.nodeseek.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="nodeseek 主机 测评 vps 线路 论坛" style="--delay:25ms">
+      <span class="service-icon"><img src="/icons/nodeseek.png" alt="" width="44" height="44" loading="eager"></span>
+      <span class="service-copy"><span class="service-line"><strong>NodeSeek</strong><small>主机</small></span><span class="service-desc">极客玩家、主机测评与 VPS 行情交流</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://www.v2ex.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="v2ex 程序员 创意 社区 讨论" style="--delay:50ms">
       <span class="service-icon"><img src="/icons/v2ex.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>V2EX</strong><small>讨论</small></span><span class="service-desc">面向程序员与创意工作者的知名综合社区</span></span>
+      <span class="service-copy"><span class="service-line"><strong>V2EX</strong><small>交流</small></span><span class="service-desc">创意工作者与程序员讨论区</span></span>
       <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
     </a>
-<a href="https://news.ycombinator.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="hacker news yc 创业 前沿 技术 英文 资讯" style="--delay:75ms">
-      <span class="service-icon"><img src="/icons/hackernews.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>Hacker News</strong><small>前沿</small></span><span class="service-desc">Y Combinator 旗下极具品味的科技创投风向</span></span>
+<a href="https://lowendtalk.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="lowendtalk let 主机 服务器 特惠 论坛" style="--delay:75ms">
+      <span class="service-icon"><img src="/icons/let.png" alt="" width="44" height="44" loading="eager"></span>
+      <span class="service-copy"><span class="service-line"><strong>LowEndTalk</strong><small>主机</small></span><span class="service-desc">全球最大廉价 VPS 与服务器特惠论坛</span></span>
       <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
     </a>
-<a href="https://www.reddit.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="reddit 论坛 综合 社区 兴趣 讨论 海外" style="--delay:100ms">
+<a href="https://www.reddit.com/r/selfhosted/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="selfhosted reddit 自建 开源 家庭实验室" style="--delay:100ms">
       <span class="service-icon"><img src="/icons/reddit.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>Reddit</strong><small>综合</small></span><span class="service-desc">全球最大兴趣细分板块与开源社区驻地</span></span>
+      <span class="service-copy"><span class="service-line"><strong>r/selfhosted</strong><small>Reddit</small></span><span class="service-desc">全球开源自建服务与家庭实验室讨论区</span></span>
       <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
     </a>
-<a href="https://hostloc.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="hostloc 虚拟主机 论坛 优惠 测评 云服务器" style="--delay:125ms">
-      <span class="service-icon"><img src="/icons/hostloc.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>全球主机交流 (Hostloc)</strong><small>主机</small></span><span class="service-desc">老牌中文服务器优惠促销与机房讨论地</span></span>
+<a href="https://github.com/trending" target="_blank" rel="noopener noreferrer" class="service-card" data-search="github trending 热门 开源 榜单 趋势" style="--delay:125ms">
+      <span class="service-icon"><img src="/icons/github.png" alt="" width="44" height="44" loading="eager"></span>
+      <span class="service-copy"><span class="service-line"><strong>GitHub Trending</strong><small>榜单</small></span><span class="service-desc">全球每日、每周最热门开源项目趋势</span></span>
       <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
     </a>
-<a href="https://dev.to/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="devto 开发者 博客 教程 编程 文章" style="--delay:150ms">
-      <span class="service-icon"><img src="/icons/devto.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>DEV Community</strong><small>文章</small></span><span class="service-desc">友善开放的国际多语言开发者实战博客社区</span></span>
+<a href="https://www.producthunt.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="product hunt 创新 产品 软件 发现" style="--delay:150ms">
+      <span class="service-icon"><img src="/icons/producthunt.png" alt="" width="44" height="44" loading="eager"></span>
+      <span class="service-copy"><span class="service-line"><strong>Product Hunt</strong><small>发现</small></span><span class="service-desc">每日全球最新极客软件与创新产品发现</span></span>
       <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
     </a>
-<a href="https://hashnode.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="hashnode 博客 专栏 写作 独立技术博客" style="--delay:175ms">
-      <span class="service-icon"><img src="/icons/hashnode.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>Hashnode</strong><small>博客</small></span><span class="service-desc">专为开发者量身打造的自建博客与专栏网络</span></span>
+<a href="https://www.bookstack.cn/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="书栈网 bookstack it 书籍 技术 教程" style="--delay:175ms">
+      <span class="service-icon"><img src="/icons/bookstack.png" alt="" width="44" height="44" loading="eager"></span>
+      <span class="service-copy"><span class="service-line"><strong>书栈网 (BookStack)</strong><small>书籍</small></span><span class="service-desc">海量 IT 开源技术书籍免费在线阅读</span></span>
       <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
     </a>
-<a href="https://juejin.cn/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="掘金 前端 后端 架构 进阶 中文 开发者" style="--delay:200ms">
-      <span class="service-icon"><img src="/icons/juejin.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>稀土掘金</strong><small>国内</small></span><span class="service-desc">高品质中文互联网技术掘金与工程实践分享</span></span>
+<a href="https://www.ruanyifeng.com/blog/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="阮一峰 博客 科技爱好者周刊 教程 随笔" style="--delay:200ms">
+      <span class="service-icon"><img src="/icons/ruanyifeng.png" alt="" width="44" height="44" loading="eager"></span>
+      <span class="service-copy"><span class="service-line"><strong>阮一峰的网络日志</strong><small>博客</small></span><span class="service-desc">每周科技爱好者周刊与技术全景手记</span></span>
       <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
     </a>
-<a href="https://sspai.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="少数派 生产力 效率 软件 技巧 生活" style="--delay:225ms">
+<a href="https://coolshell.cn/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="酷壳 coolshell 陈皓 技术 架构 博客" style="--delay:225ms">
+      <span class="service-icon"><img src="/icons/coolshell.png" alt="" width="44" height="44" loading="eager"></span>
+      <span class="service-copy"><span class="service-line"><strong>酷壳 (CoolShell)</strong><small>博客</small></span><span class="service-desc">经典技术洞见与计算机技术思想殿堂</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://sspai.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="少数派 sspai 效率 工具 生活方式" style="--delay:250ms">
       <span class="service-icon"><img src="/icons/sspai.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>少数派</strong><small>效率</small></span><span class="service-desc">高效工作方法论、数字工具测评与生活方式</span></span>
+      <span class="service-copy"><span class="service-line"><strong>少数派 (SSPAI)</strong><small>效率</small></span><span class="service-desc">高效工作、数字工具与数字生活方式</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://news.ycombinator.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="hacker news yc 极客 资讯 创业" style="--delay:275ms">
+      <span class="service-icon"><img src="/icons/hackernews.png" alt="" width="44" height="44" loading="eager"></span>
+      <span class="service-copy"><span class="service-line"><strong>Hacker News</strong><small>资讯</small></span><span class="service-desc">Y Combinator 极客前沿与创业新闻</span></span>
+      <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+    </a>
+<a href="https://www.oschina.net/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="开源中国 oschina 中文 资讯 软件" style="--delay:300ms">
+      <span class="service-icon"><img src="/icons/oschina.png" alt="" width="44" height="44" loading="eager"></span>
+      <span class="service-copy"><span class="service-line"><strong>开源中国</strong><small>开源</small></span><span class="service-desc">中文开源技术交流与软件前沿资讯</span></span>
       <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
     </a>
 </div>
@@ -1390,21 +1022,21 @@
       <section class="collection" id="life" data-section="life">
       <header class="collection-head">
         <div><span class="section-index">07</span><h2>影音日常</h2></div>
-        <p>音乐、长视频、书籍与高品质社交网络。</p>
-        <span class="section-total">8 个入口</span>
+        <p>音乐流媒体、视频番组、书影音与游戏。</p>
+        <span class="section-total">10 个入口</span>
       </header>
-      <div class="service-grid"><a href="https://www.bilibili.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="bilibili b站 哔哩哔哩 视频 弹幕 二次元 知识" style="--delay:0ms">
+      <div class="service-grid"><a href="https://www.bilibili.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="哔哩哔哩 bilibili 视频 动画 教程 b站" style="--delay:0ms">
       <span class="service-icon"><img src="/icons/bilibili.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>哔哩哔哩 (Bilibili)</strong><small>视频</small></span><span class="service-desc">国内顶尖年轻文化社群与泛知识视频库</span></span>
+      <span class="service-copy"><span class="service-line"><strong>哔哩哔哩</strong><small>视频</small></span><span class="service-desc">国内优质科技测评、教程与日常视频</span></span>
       <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
     </a>
-<a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="youtube 油管 视频 4k 订阅 创作者" style="--delay:25ms">
+<a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="youtube 视频 流媒体 油管 教程" style="--delay:25ms">
       <span class="service-icon"><img src="/icons/youtube.png" alt="" width="44" height="44" loading="eager"></span>
-      <span class="service-copy"><span class="service-line"><strong>YouTube</strong><small>视频</small></span><span class="service-desc">全球顶级高清视频平台与创作者社区</span></span>
+      <span class="service-copy"><span class="service-line"><strong>YouTube</strong><small>视频</small></span><span class="service-desc">全球最大视频流媒体与前沿技术频道</span></span>
       <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
     </a>
-<a href="https://music.163.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="网易云 音乐 歌曲 歌单 乐评 播放器" style="--delay:50ms">
-      <span class="service-icon"><img src="/icons/neteasemusic.png" alt="" width="44" height="44" loading="eager"></span>
+<a href="https://music.163.com/" target="_blank" rel="noopener noreferrer" class="service-card" data-search="网易云音乐 音乐 歌单 听歌 乐评" style="--delay:50ms">
+      <span class="service-icon"><img src="/icons/netease.png" alt="" width="44" height="44" loading="eager"></span>
       <span class="service-copy"><span class="service-line"><strong>网易云音乐</strong><small>音乐</small></span><span class="service-desc">发现好音乐与温暖乐评社区</span></span>
       <span class="service-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
     </a>
@@ -1447,7 +1079,7 @@
     </section>
       <div class="empty" style="display:none; text-align:center; padding:40px 0; color:var(--text-muted); font-size:16px;">没有找到匹配的入口</div>
     </div>
-      <footer class="footer"><span>© 2026 0000996.XYZ · NEO-BRUTALISM EDITION</span><button class="back-top" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 14 6-6 6 6"></path></svg> 返回顶部</button></footer>
+      <footer class="footer"><span>© 2026 林间随笔 · Cloudflare Pages</span><button class="back-top" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 14 6-6 6 6"></path></svg> 返回顶部</button></footer>
     </main>
   </div>
   <script>
@@ -1484,7 +1116,7 @@
     const collections=[...document.querySelectorAll('.collection')];
     const empty=document.querySelector('.empty');
     const sun=`<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"></path></svg>`,moon=`<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.4 15.2A8.7 8.7 0 0 1 8.8 3.6 8.7 8.7 0 1 0 20.4 15.2Z"></path></svg>`;
-    function syncTheme(){const dark=root.dataset.theme==='dark';document.querySelectorAll('.theme-icon').forEach(x=>x.innerHTML=dark?sun:moon);const m=document.querySelector('meta[name="theme-color"]');if(m)m.content=dark?'#12161f':'#ffde59';}
+    function syncTheme(){const dark=root.dataset.theme==='dark';document.querySelectorAll('.theme-icon').forEach(x=>x.innerHTML=dark?sun:moon);const m=document.querySelector('meta[name="theme-color"]');if(m)m.content=dark?'#0c1815':'#f6e5be';}
     function toggleTheme(){root.dataset.theme=root.dataset.theme==='dark'?'light':'dark';localStorage.setItem('theme',root.dataset.theme);syncTheme()}
     document.querySelectorAll('.theme-toggle').forEach(b=>b.addEventListener('click',toggleTheme));syncTheme();
     function filter(){const q=search.value.trim().toLowerCase();let total=0;cards.forEach(card=>{const show=!q||card.dataset.search.includes(q);card.classList.toggle('hide',!show);if(show)total++});collections.forEach(section=>section.classList.toggle('hide',![...section.querySelectorAll('.service-card')].some(c=>!c.classList.contains('hide'))));empty.style.display=total?'none':'block';clear.style.display=q?'block':'none'}
@@ -1494,7 +1126,7 @@
     document.querySelector('.back-top').addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
     const nav=[...document.querySelectorAll('[data-nav]')];
     const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){nav.forEach(a=>a.classList.toggle('active',a.dataset.nav===entry.target.dataset.section))}}),{rootMargin:'-15% 0px -70% 0px'});collections.forEach(s=>observer.observe(s));
-    document.querySelectorAll('.service-icon img').forEach(img=>{img.addEventListener('error',function(){const parent=this.parentElement;const name=this.closest('.service-card')?.querySelector('strong')?.textContent?.trim()||'★';this.style.display='none';parent.textContent=name.slice(0,1);parent.style.fontFamily='var(--font-mono)';parent.style.fontWeight='900';parent.style.fontSize='16px';parent.style.color='var(--text-main)'});});
   </script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v3d52b47920f24c319d37e2661827c42b1787588026925" integrity="sha512-d9sL6GJLXn6fInD1+TVXhTcQOsmxeHfmHAvwGDIxp5TO+uo1fiWW7mHomMj4MLRlCsJDTqXzWLHJFFlPCEIj/A==" data-cf-beacon='{"version":"2024.11.0","token":"009aa99ab2b0447e84c0eb3bbb6ba269","r":1}' crossorigin="anonymous"></script>
 </body>
 </html>
