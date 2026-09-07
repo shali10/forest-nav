@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HERMES // MISSION CONTROL - 全景极客状态大屏</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Noto+Sans+SC:wght@500;700;900&family=Space+Grotesk:wght@600;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #FBF9F4;
+      --card-bg: #FFFFFF;
+      --border-color: #111111;
+      --text: #111111;
+      --text-muted: #555555;
+      --accent-yellow: #FFDE59;
+      --accent-mint: #00E599;
+      --accent-cyan: #00E5FF;
+      --accent-pink: #FF4B6E;
+      --accent-purple: #B886FF;
+      --accent-orange: #FF9100;
+      --term-bg: #0F131A;
+      --term-text: #E6EDF3;
+      --shadow-offset: 4px 4px 0px #111111;
+      --shadow-offset-sm: 2.5px 2.5px 0px #111111;
+      --border-width: 2.5px;
+      --radius: 8px;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0D1117;
+      --card-bg: #161B22;
+      --border-color: #30363D;
+      --text: #F0F6FC;
+      --text-muted: #8B949E;
+      --accent-yellow: #FFDE59;
+      --shadow-offset: 4px 4px 0px #000000;
+      --shadow-offset-sm: 2px 2px 0px #000000;
+      --term-bg: #090D12;
+      --term-text: #58A6FF;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.4;
+      padding-bottom: 40px;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .hazard-stripe {
+      height: 12px;
+      width: 100%;
+      background: repeating-linear-gradient(
+        -45deg,
+        #111111,
+        #111111 12px,
+        #FFDE59 12px,
+        #FFDE59 24px
+      );
+      border-bottom: 2px solid #111111;
+    }
+
+    .container {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 20px 24px;
+    }
+
+    /* HEADER */
+    header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 20px;
+      background: var(--accent-yellow);
+      color: #111111;
+      border: var(--border-width) solid #111111;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-offset);
+      margin-bottom: 24px;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand-logo {
+      background: #111111;
+      color: #FFDE59;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 800;
+      font-size: 1.4rem;
+      padding: 6px 12px;
+      border-radius: 6px;
+      letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .brand-title h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      text-transform: uppercase;
+      line-height: 1.1;
+    }
+
+    .brand-title p {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #222222;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .clock-pill {
+      background: #FFFFFF;
+      border: 2px solid #111111;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 0.85rem;
+      box-shadow: 2px 2px 0px #111111;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-action {
+      background: #111111;
+      color: #FFFFFF;
+      border: 2px solid #111111;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+      box-shadow: 2px 2px 0px rgba(0,0,0,0.3);
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-action:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 3px 3px 0px #111111;
+    }
+
+    .btn-action:active {
+      transform: translate(1px, 1px);
+      box-shadow: 1px 1px 0px #111111;
+    }
+
+    /* KPI METRICS STRIP */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .kpi-card {
+      background: var(--card-bg);
+      border: var(--border-width) solid var(--border-color);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-offset);
+      padding: 16px 18px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .kpi-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+    }
+
+    .kpi-nodes::after { background: var(--accent-mint); }
+    .kpi-containers::after { background: var(--accent-cyan); }
+    .kpi-guard::after { background: var(--accent-yellow); }
+    .kpi-backup::after { background: var(--accent-purple); }
+
+    .kpi-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .kpi-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+    }
+
+    .kpi-value {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2rem;
+      font-weight: 900;
+      line-height: 1;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .kpi-sub {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* PILLS & BADGES */
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 9999px;
+      border: 1.5px solid var(--border-color);
+      text-transform: uppercase;
+      box-shadow: 1.5px 1.5px 0px var(--border-color);
+      white-space: nowrap;
+    }
+
+    .pill-mint { background: var(--accent-mint); color: #111; }
+    .pill-yellow { background: var(--accent-yellow); color: #111; }
+    .pill-cyan { background: var(--accent-cyan); color: #111; }
+    .pill-pink { background: var(--accent-pink); color: #FFF; }
+    .pill-purple { background: var(--accent-purple); color: #FFF; }
+    .pill-dark { background: #111111; color: #FFF; }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .dot-pulse-green {
+      background-color: #00E599;
+      box-shadow: 0 0 0 rgba(0, 229, 153, 0.7);
+      animation: pulse-green 1.8s infinite;
+    }
+
+    @keyframes pulse-green {
+      0% { box-shadow: 0 0 0 0 rgba(0, 229, 153, 0.7); }
+      70% { box-shadow: 0 0 0 6px rgba(0, 229, 153, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(0, 229, 153, 0); }
+    }
+
+    /* SECTION HEADERS & CONTROLS */
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 32px 0 16px 0;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-title h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: -0.3px;
+    }
+
+    .section-tag {
+      background: var(--border-color);
+      color: var(--bg);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    .filter-group {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      background: var(--card-bg);
+      color: var(--text);
+      border: var(--border-width) solid var(--border-color);
+      padding: 4px 12px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      border-radius: 6px;
+      cursor: pointer;
+      box-shadow: 2px 2px 0px var(--border-color);
+      transition: all 0.1s ease;
+    }
+
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--accent-yellow);
+      color: #111111;
+      transform: translate(-1px, -1px);
+      box-shadow: 3px 3px 0px var(--border-color);
+    }
+
+    /* FLEET NODES GRID */
+    .nodes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 18px;
+    }
+
+    .node-card {
+      background: var(--card-bg);
+      border: var(--border-width) solid var(--border-color);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-offset);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      position: relative;
+    }
+
+    .node-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 6px 6px 0px var(--border-color);
+    }
+
+    .node-card.highlight {
+      border-color: #111111;
+      background: #FFFDF5;
+    }
+
+    [data-theme="dark"] .node-card.highlight {
+      background: #1F242C;
+    }
+
+    .node-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .node-name-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .node-flag {
+      font-size: 1.3rem;
+      line-height: 1;
+    }
+
+    .node-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 900;
+      line-height: 1.2;
+    }
+
+    .node-region {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .node-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      background: rgba(0,0,0,0.03);
+      padding: 10px 12px;
+      border-radius: 6px;
+      border: 1px dashed var(--border-color);
+    }
+
+    [data-theme="dark"] .node-meta {
+      background: rgba(255,255,255,0.04);
+    }
+
+    .meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+    }
+
+    .meta-key {
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .meta-val {
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .node-desc {
+      font-size: 0.8rem;
+      color: var(--text);
+      font-weight: 500;
+      line-height: 1.35;
+    }
+
+    .node-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1.5px solid var(--border-color);
+      padding-top: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+    }
+
+    .latency-tag {
+      color: #00875A;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    [data-theme="dark"] .latency-tag {
+      color: #00E599;
+    }
+
+    /* TWO COLUMN SPLIT (Containers & Backups) */
+    .split-layout {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 20px;
+      margin-top: 24px;
+    }
+
+    @media (max-width: 1024px) {
+      .split-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* CONTAINERS TABLE CARD */
+    .tactical-box {
+      background: var(--card-bg);
+      border: var(--border-width) solid var(--border-color);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-offset);
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .box-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: var(--border-width) solid var(--border-color);
+      padding-bottom: 12px;
+    }
+
+    .box-header h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .custom-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+    }
+
+    .custom-table th {
+      background: var(--accent-yellow);
+      color: #111111;
+      border: 1.5px solid #111111;
+      padding: 8px 10px;
+      text-align: left;
+      font-weight: 800;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+    }
+
+    .custom-table td {
+      border: 1.5px solid var(--border-color);
+      padding: 8px 10px;
+      vertical-align: middle;
+    }
+
+    .custom-table tr:hover {
+      background: rgba(255, 222, 89, 0.15);
+    }
+
+    /* TERMINAL STATUS BOX */
+    .terminal-window {
+      background: var(--term-bg);
+      color: var(--term-text);
+      border: var(--border-width) solid var(--border-color);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-offset);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .terminal-bar {
+      background: #1F242C;
+      padding: 8px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #111111;
+    }
+
+    .term-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .term-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,0,0,0.4);
+    }
+
+    .dot-red { background: #FF5F56; }
+    .dot-yellow { background: #FFBD2E; }
+    .dot-green { background: #27C93F; }
+
+    .term-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: #8B949E;
+      font-weight: 700;
+    }
+
+    .terminal-content {
+      padding: 16px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      line-height: 1.6;
+      max-height: 380px;
+      overflow-y: auto;
+    }
+
+    .term-line {
+      display: flex;
+      gap: 8px;
+    }
+
+    .term-prompt {
+      color: #FF4B6E;
+      font-weight: 800;
+      user-select: none;
+    }
+
+    .term-cmd {
+      color: #00E5FF;
+      font-weight: 700;
+    }
+
+    .term-out {
+      color: #8B949E;
+      padding-left: 16px;
+    }
+
+    .term-success {
+      color: #00E599;
+      font-weight: 600;
+    }
+
+    .term-highlight {
+      color: #FFDE59;
+      font-weight: 700;
+    }
+
+    /* FOOTER */
+    footer {
+      margin-top: 40px;
+      text-align: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      border-top: var(--border-width) solid var(--border-color);
+      padding-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="hazard-stripe"></div>
+
+  <div class="container">
+    <!-- TOP HEADER -->
+    <header>
+      <div class="header-left">
+        <div class="brand-logo">⚡ HERMES</div>
+        <div class="brand-title">
+          <h1>MISSION CONTROL // INFRA HUD</h1>
+          <p>新野兽派全网极客状态看板 · 14 核心节点实况</p>
+        </div>
+      </div>
+      <div class="header-right">
+        <a href="/" class="btn-action" style="text-decoration: none;">
+          🌿 <span>MAIN INDEX</span>
+        </a>
+        <div class="clock-pill">
+          <span class="status-dot dot-pulse-green"></span>
+          <span id="beijing-clock">2026-09-07 10:35:00 CST</span>
+        </div>
+        <button class="btn-action" id="theme-toggle" onclick="toggleTheme()">
+          🌓 <span id="theme-text">TACTICAL DARK</span>
+        </button>
+        <button class="btn-action" onclick="window.location.reload()">
+          🔄 <span>REFRESH HUD</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- KPI STRIP -->
+    <div class="kpi-grid">
+      <div class="kpi-card kpi-nodes">
+        <div class="kpi-header">
+          <span class="kpi-label">全网核心节点 (Fleet)</span>
+          <span class="pill pill-mint">100% ONLINE</span>
+        </div>
+        <div class="kpi-value">
+          14 <span style="font-size: 1rem; color: var(--text-muted);">/ 14 节点</span>
+        </div>
+        <div class="kpi-sub">
+          <span class="status-dot dot-pulse-green"></span> 亚太 / 欧 / 美 / 中 全球覆盖
+        </div>
+      </div>
+
+      <div class="kpi-card kpi-containers">
+        <div class="kpi-header">
+          <span class="kpi-label">raksmart 生产业务容器</span>
+          <span class="pill pill-cyan">11/11 HEALTHY</span>
+        </div>
+        <div class="kpi-value">
+          11 <span style="font-size: 1rem; color: var(--text-muted);">CONTAINERS</span>
+        </div>
+        <div class="kpi-sub">
+          ⚡ 1Panel v2.2.5 托管 · 8 子域全回源
+        </div>
+      </div>
+
+      <div class="kpi-card kpi-guard">
+        <div class="kpi-header">
+          <span class="kpi-label">State-Guard 防删地线</span>
+          <span class="pill pill-yellow">v1.5.0 ARMED</span>
+        </div>
+        <div class="kpi-value">
+          10/10 <span style="font-size: 1rem; color: var(--text-muted);">PASS</span>
+        </div>
+        <div class="kpi-sub">
+          🛡️ state.db 动作级物理拦截已锁死
+        </div>
+      </div>
+
+      <div class="kpi-card kpi-backup">
+        <div class="kpi-header">
+          <span class="kpi-label">双保险灾备恢复点</span>
+          <span class="pill pill-purple">VERIFIED</span>
+        </div>
+        <div class="kpi-value">
+          03:02 <span style="font-size: 1rem; color: var(--text-muted);">CST TODAY</span>
+        </div>
+        <div class="kpi-sub">
+          💾 303MB raksmart 全量 + 219MB state.db
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 1: 14 NODES FLEET -->
+    <div class="section-head">
+      <div class="section-title">
+        <h2>⚡ 全网核心节点拓扑实况 (FLEET MATRIX)</h2>
+        <span class="section-tag">14 NODES ACTIVE</span>
+      </div>
+      <div class="filter-group">
+        <button class="filter-btn active" onclick="filterNodes('all', this)">全部 (14)</button>
+        <button class="filter-btn" onclick="filterNodes('prod', this)">生产与网关 (4)</button>
+        <button class="filter-btn" onclick="filterNodes('proxy', this)">落地与中转 (5)</button>
+        <button class="filter-btn" onclick="filterNodes('edge', this)">边缘与备用 (5)</button>
+      </div>
+    </div>
+
+    <div class="nodes-grid" id="nodes-container">
+      <!-- 1. Hytron -->
+      <div class="node-card highlight" data-category="prod">
+        <div class="node-card-top">
+          <div class="node-name-group">
+            <span class="node-flag">🇭🇰</span>
+            <div>
+              <div class="node-title">Hytron (Master Gateway)</div>
+              <div class="node-region">Hong Kong · Cluster HK-01</div>
+            </div>
+          </div>
+          <span class="pill pill-mint"><span class="status-dot dot-pulse-green"></span> ONLINE</span>
+        </div>
+        <div class="node-meta">
+          <div class="meta-row"><span class="meta-key">CPU / RAM</span><span class="meta-val">2C / 3.8GB (Load 0.01)</span></div>
+          <div class="meta-row"><span class="meta-key">DISK POOL</span><span class="meta-val">50G (31% 占，余 33G)</span></div>
+          <div class="meta-row"><span class="meta-key">PORT / UFW</span><span class="meta-val">Security Hardened (BBR+fq)</span></div>
+        </div>
+        <div class="node-desc">
+          <strong>Hermes Agent 主网关宿主</strong> · Bot 交互 · Cron 自动化调度 · 状态大屏中枢。
+        </div>
+        <div class="node-footer">
+          <span class="pill pill-dark">GATEWAY MASTER</span>
+          <span class="latency-tag">⚡ 4ms (LOCAL)</span>
+        </div>
+      </div>
+
+      <!-- 2. raksmart -->
+      <div class="node-card highlight" data-category="prod">
+        <div class="node-card-top">
+          <div class="node-name-group">
+            <span class="node-flag">🇺🇸</span>
+            <div>
+              <div class="node-title">raksmart (Prod Cluster)</div>
+              <div class="node-region">San Jose, US · Cluster US-West</div>
+            </div>
+          </div>
+          <span class="pill pill-mint"><span class="status-dot dot-pulse-green"></span> ONLINE</span>
+        </div>
+        <div class="node-meta">
+          <div class="meta-row"><span class="meta-key">CPU / RAM</span><span class="meta-val">2C Broadwell / 3.8GB / 2G Swap</span></div>
+          <div class="meta-row"><span class="meta-key">DISK POOL</span><span class="meta-val">50G (26% 占，余 37G)</span></div>
+          <div class="meta-row"><span class="meta-key">ORCHESTRATOR</span><span class="meta-val">1Panel v2.2.5 · 11 Containers</span></div>
+        </div>
+        <div class="node-desc">
+          <strong>核心生产容器集群</strong> · 0000996.xyz 全部 8 个业务子域回源 · WireGuard 直连 cloudnium。
+        </div>
+        <div class="node-footer">
+          <span class="pill pill-cyan">11 CONTAINERS</span>
+          <span class="latency-tag">⚡ 138ms</span>
+        </div>
+      </div>
+
+      <!-- 3. cloudnium -->
+      <div class="node-card highlight" data-category="prod">
+        <div class="node-card-top">
+          <div class="node-name-group">
+            <span class="node-flag">🇺🇸</span>
+            <div>
+              <div class="node-title">cloudnium (AI Egress)</div>
+              <div class="node-region">Los Angeles, US · Egress US-01</div>
+            </div>
+          </div>
+          <span class="pill pill-mint"><span class="status-dot dot-pulse-green"></span> ONLINE</span>
+        </div>
+        <div class="node-meta">
+          <div class="meta-row"><span class="meta-key">CPU / RAM</span><span class="meta-val">2C Xeon Plat 8260 / 1.9GB / 1G Swap</span></div>
+          <div class="meta-row"><span class="meta-key">TUNNEL ROUTE</span><span class="meta-val">WireGuard Protected Tunnel (MASQ)</span></div>
+          <div class="meta-row"><span class="meta-key">STATUS</span><span class="meta-val">100% CPA Gemini 解锁</span></div>
+        </div>
+        <div class="node-desc">
+          <strong>CPA Gemini US 出口中转</strong> · 解决 Gemini 区域限制 · 极速隧道回源。
+        </div>
+        <div class="node-footer">
+          <span class="pill pill-yellow">GEMINI EGRESS</span>
+          <span class="latency-tag">⚡ 142ms</span>
+        </div>
+      </div>
+
+      <!-- 4. London -->
+      <div class="node-card highlight" data-category="prod">
+        <div class="node-card-top">
+          <div class="node-name-group">
+            <span class="node-flag">🇬🇧</span>
+            <div>
+              <div class="node-title">London (Warm Standby)</div>
+              <div class="node-region">London, UK · Cluster EU-West</div>
+            </div>
+          </div>
+          <span class="pill pill-mint"><span class="status-dot dot-pulse-green"></span> ONLINE</span>
+        </div>
+        <div class="node-meta">
+          <div class="meta-row"><span class="meta-key">CPU / RAM</span><span class="meta-val">1.9GB / 20G Disk (Debian 12)</span></div>
+          <div class="meta-row"><span class="meta-key">BACKUP TARGET</span><span class="meta-val">/opt/raksmart-backups (双份保全)</span></div>
+          <div class="meta-row"><span class="meta-key">SERVICES</span><span class="meta-val">vps-monitor + 温备 + 安全中继</span></div>
+        </div>
+        <div class="node-desc">
+          <strong>Hermes 异地温备与容灾中心</strong> · VPS 库存三源监控 · 妙妙屋代理节点与探针。
+        </div>
+        <div class="node-footer">
+          <span class="pill pill-purple">DISASTER HUB</span>
+          <span class="latency-tag">⚡ 186ms</span>
+        </div>
+      </div>
+
+      <!-- 5. lightsail-seoul -->
+      <div class="node-card" data-category="proxy">
+        <div class="node-card-top">
+          <div class="node-name-group">
+            <span class="node-flag">🇰🇷</span>
+            <div>
+              <div class="node-title">AWS 韩国 (Lightsail)</div>
+              <div class="node-region">Seoul, KR · AP-East-01</div>
+            </div>
+          </div>
+          <span class="pill pill-mint"><span class="status-dot dot-pulse-green"></span> ONLINE</span>
+        </div>
+        <div class="node-meta">
+          <div class="meta-row"><span class="meta-key">SPEC</span><span class="meta-val">2C Xeon 8259CL / 939M / 2G Swap</span></div>
+          <div class="meta-row"><span class="meta-key">SERVICES</span><span class="meta-val">komari-agent + mmw-agent</span></div>
+        </div>
+        <div class="node-desc">
+          <strong>亚太高低跳板与妙屋落地</strong> · 兼任 Komari 监控节点与国内轻量加速跳板。
+        </div>
+        <div class="node-footer">
+          <span class="pill pill-dark">PROXY / AP</span>
+          <span class="latency-tag">⚡ 38ms</span>
+        </div>
+      </div>
+
+      <!-- 6. andnode-jp -->
+      <div class="node-card" data-category="proxy">
+        <div class="node-card-top">
+          <div class="node-name-group">
+            <span class="node-flag">🇯🇵</span>
+            <div>
+              <div class="node-title">andnode jp (NetLab)</div>
+              <div class="node-region">Tokyo, JP · AP-East-02</div>
+            </div>
+          </div>
+          <span class="pill pill-mint"><span class="status-dot dot-pulse-green"></span> ONLINE</span>
+        </div>
+        <div class="node-meta">
+          <div class="meta-row"><span class="meta-key">SPEC</span><span class="meta-val">2C AMD EPYC 7532 / 1.9G / 2G Swap</span></div>
+          <div class="meta-row"><span class="meta-key">SERVICES</span><span class="meta-val">Xray (Vision) + Hysteria 2 (UDP)</span></div>
+        </div>
+        <div class="node-desc">
+          <strong>日本东京主力加速落地</strong> · 高主频 AMD EPYC 核心 · 双协议加速与探针。
+        </div>
+        <div class="node-footer">
+          <span class="pill pill-dark">REALITY + HY2</span>
+          <span class="latency-tag">⚡ 48ms</span>
+        </div>
+      </div>
+
+      <!-- 7. jpsb3 -->
+      <div class="node-card" data-category="proxy">
+        <div class="node-card-top">
+          <div class="node-name-group">
+            <span class="node-flag">🇯🇵</span>
+            <div>
+              <div class="node-title">jpsb3 (AK蛙)</div>
+              <div class="node-region">Tokyo, JP · Cluster JP-01</div>
+            </div>
+          </div>
+          <span class="pill pill-mint"><span class="status-dot dot-pulse-green"></span> ONLINE</span>
+        </div>
+        <div class="node-meta">
+          <div class="meta-row"><span class="meta-key">SPEC</span><span class="meta-val">1C / 973MB / 4.9G Disk (Debian 12)</span></div>
+          <div class="meta-row"><span class="meta-key">SERVICES</span><span class="meta-val">mmw-agent + keepalive + Xray</span></div>
+        </div>
+        <div class="node-desc">
+          <strong>妙妙屋落地节点 (AK蛙)</strong> · IPv4/IPv6 双栈连通 · 稳定服役节点。
+        </div>
+        <div class="node-footer">
+          <span class="pill pill-dark">MMW LANDING</span>
+          <span class="latency-tag">⚡ 52ms</span>
+        </div>
+      </div>
+
+      <!-- 8. zhououou -->
+      <div class="node-card" data-category="proxy">
+        <div class="node-card-top">
+          <div class="node-name-group">
+            <span class="node-flag">🇭🇰</span>
+            <div>
+              <div class="node-title">zhououou (DigitalLink)</div>
+              <div class="node-region">Hong Kong · Cluster HK-02</div>
+            </div>
+          </div>
+          <span class="pill pill-mint"><span class="status-dot dot-pulse-green"></span> ONLINE</span>
+        </div>
+        <div class="node-meta">
+          <div class="meta-row"><span class="meta-key">SPEC</span><span class="meta-val">4C @ 2.0GHz / 3.8GB / 40G Disk</span></div>
+          <div class="meta-row"><span class="meta-key">SECURITY</span><span class="meta-val">A+B 加固 (BBR+fq · Security Hardened)</span></div>
+        </div>
+        <div class="node-desc">
+          <strong>香港大核节点</strong> · 4 核心 / 40G 储备算力 · 随时接入业务。
+        </div>
+        <div class="node-footer">
+          <span class="pill pill-dark">STANDBY 4C</span>
+          <span class="latency-tag">⚡ 12ms</span>
+        </div>
+      </div>
+
+      <!-- 9. frankfurt -->
+      <div class="node-card" data-category="proxy">
+        <div class="node-card-top">
+          <div class="node-name-group">
+            <span class="node-flag">🇩🇪</span>
+            <div>
+              <div class="node-title">frankfurt (shanDun DE)</div>
+              <div class="node-region">Frankfurt, DE · Cluster EU-Central</div>
+            </div>
+          </div>
+          <span class="pill pill-mint"><span class="status-dot dot-pulse-green"></span> ONLINE</span>
+        </div>
+        <div class="node-meta">
+          <div class="meta-row"><span class="meta-key">SPEC</span><span class="meta-val">2C / 1.9GB (Debian 12)</span></div>
+          <div class="meta-row"><span class="meta-key">ROUTING</span><span class="meta-val">联通 CUII 精品回程 / 电信 163</span></div>
+        </div>
+        <div class="node-desc">
+          <strong>德国法兰克福精品回程</strong> · 妙屋欧向落地 · CUII 精品链路。
+        </div>
+        <div class="node-footer">
+          <span class="pill pill-dark">EU CUII</span>
+          <span class="latency-tag">⚡ 178ms</span>
+        </div>
+      </div>
+
+      <!-- 10. tencent-170 -->
+      <div class="node-card" data-category="edge">
+        <div class="node-card-top">
+          <div class="node-name-group">
+            <span class="node-flag">🇨🇳</span>
+            <div>
+              <div class="node-title">腾讯云-170 (国内轻量)</div>
+              <div class="node-region">Mainland CN · Ingress CN-01</div>
+            </div>
+          </div>
+          <span class="pill pill-mint"><span class="status-dot dot-pulse-green"></span> ONLINE</span>
+        </div>
+        <div class="node-meta">
+          <div class="meta-row"><span class="meta-key">SPEC</span><span class="meta-val">2C Xeon Plat 8255C / 1.9G / 50G</span></div>
+          <div class="meta-row"><span class="meta-key">ROUTING</span><span class="meta-val">经首尔跳板 · VPC Private Mesh</span></div>
+        </div>
+        <div class="node-desc">
+          <strong>国内轻量业务节点</strong> · 标准加固 · 极速国内访问环境。
+        </div>
+        <div class="node-footer">
+          <span class="pill pill-dark">CN INGRESS</span>
+          <span class="latency-tag">⚡ 28ms</span>
+        </div>
+      </div>
+
+      <!-- 11. summer -->
+      <div class="node-card" data-category="edge">
+        <div class="node-card-top">
+          <div class="node-name-group">
+            <span class="node-flag">🇷🇴</span>
+            <div>
+              <div class="node-title">summer (Pidginhost)</div>
+              <div class="node-region">Romania, EU · Native IPv6 Node</div>
+            </div>
+          </div>
+          <span class="pill pill-mint"><span class="status-dot dot-pulse-green"></span> ONLINE</span>
+        </div>
+        <div class="node-meta">
+          <div class="meta-row"><span class="meta-key">SPEC</span><span class="meta-val">1C / 957MB / 10G (19% 占)</span></div>
+          <div class="meta-row"><span class="meta-key">NETWORK</span><span class="meta-val">纯净 Native IPv6 环境</span></div>
+        </div>
+        <div class="node-desc">
+          <strong>数据采集与自动化拉取</strong> · 专属 IPv6 采集爬虫与轻量任务。
+        </div>
+        <div class="node-footer">
+          <span class="pill pill-dark">PURE IPV6</span>
+          <span class="latency-tag">⚡ 210ms</span>
+        </div>
+      </div>
+
+      <!-- 12. brnchost -->
+      <div class="node-card" data-category="edge">
+        <div class="node-card-top">
+          <div class="node-name-group">
+            <span class="node-flag">🇹🇷</span>
+            <div>
+              <div class="node-title">Brnchost (TR Bursa)</div>
+              <div class="node-region">Bursa, TR · Spare Node</div>
+            </div>
+          </div>
+          <span class="pill pill-mint"><span class="status-dot dot-pulse-green"></span> ONLINE</span>
+        </div>
+        <div class="node-meta">
+          <div class="meta-row"><span class="meta-key">SPEC</span><span class="meta-val">2C Xeon E5-2699C / 3.8G / 35G</span></div>
+          <div class="meta-row"><span class="meta-key">SECURITY</span><span class="meta-val">Ubuntu 24.04 (A+B 加固)</span></div>
+        </div>
+        <div class="node-desc">
+          <strong>土耳其备用节点</strong> · 欧洲方向网络储备，非主力测试机。
+        </div>
+        <div class="node-footer">
+          <span class="pill pill-dark">SPARE TR</span>
+          <span class="latency-tag">⚡ 224ms</span>
+        </div>
+      </div>
+
+      <!-- 13. lxc -->
+      <div class="node-card" data-category="edge">
+        <div class="node-card-top">
+          <div class="node-name-group">
+            <span class="node-flag">🇺🇸</span>
+            <div>
+              <div class="node-title">LXC (NAT Container)</div>
+              <div class="node-region">United States · Private NAT Probe</div>
+            </div>
+          </div>
+          <span class="pill pill-mint"><span class="status-dot dot-pulse-green"></span> ONLINE</span>
+        </div>
+        <div class="node-meta">
+          <div class="meta-row"><span class="meta-key">SPEC</span><span class="meta-val">1C / 488MB / 1.2G Disk</span></div>
+          <div class="meta-row"><span class="meta-key">SERVICES</span><span class="meta-val">komari-agent (探针正常)</span></div>
+        </div>
+        <div class="node-desc">
+          <strong>轻量 NAT 探针容器</strong> · 接入 Komari 探针网络监控。
+        </div>
+        <div class="node-footer">
+          <span class="pill pill-dark">NAT PROBE</span>
+          <span class="latency-tag">⚡ 160ms</span>
+        </div>
+      </div>
+
+      <!-- 14. Cloudflare Edge -->
+      <div class="node-card highlight" data-category="edge">
+        <div class="node-card-top">
+          <div class="node-name-group">
+            <span class="node-flag">🌐</span>
+            <div>
+              <div class="node-title">Cloudflare Edge (Anycast)</div>
+              <div class="node-region">Global Edge · 0000996.xyz</div>
+            </div>
+          </div>
+          <span class="pill pill-mint"><span class="status-dot dot-pulse-green"></span> ACTIVE</span>
+        </div>
+        <div class="node-meta">
+          <div class="meta-row"><span class="meta-key">SERVICES</span><span class="meta-val">CDN / WAF / Pages / Workers / D1</span></div>
+          <div class="meta-row"><span class="meta-key">STORAGE</span><span class="meta-val">img.0000996.xyz (R2 图床)</span></div>
+        </div>
+        <div class="node-desc">
+          <strong>全球边缘托管与安全防护</strong> · TLS 1.3 自动续期 · 统一安全入口。
+        </div>
+        <div class="node-footer">
+          <span class="pill pill-yellow">EDGE MESH</span>
+          <span class="latency-tag">⚡ 1ms (ANYCAST)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SPLIT LAYOUT: CONTAINERS & TERMINAL/DR -->
+    <div class="split-layout">
+      <!-- RAKSMART 11 CONTAINERS -->
+      <div class="tactical-box">
+        <div class="box-header">
+          <h3>🐳 RAKSMART 核心业务容器实况 (11 容器阵列)</h3>
+          <span class="pill pill-cyan">1Panel v2.2.5</span>
+        </div>
+        <table class="custom-table">
+          <thead>
+            <tr>
+              <th>容器名称 / 服务</th>
+              <th>端口映射</th>
+              <th>业务角色</th>
+              <th>状态</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1Panel-openresty</strong></td>
+              <td><code>Edge HTTPS</code></td>
+              <td>统一反代网关 & SSL 卸载</td>
+              <td><span class="pill pill-mint">RUNNING</span></td>
+            </tr>
+            <tr>
+              <td><strong>1Panel-halo</strong></td>
+              <td><code>Internal Web</code></td>
+              <td>Halo Pro 2.25.4 博客核心</td>
+              <td><span class="pill pill-mint">RUNNING</span></td>
+            </tr>
+            <tr>
+              <td><strong>cli-proxy-api</strong></td>
+              <td><code>Gateway API</code></td>
+              <td>AI 模型与凭据池中转网关</td>
+              <td><span class="pill pill-mint">RUNNING</span></td>
+            </tr>
+            <tr>
+              <td><strong>cpa-manager-plus</strong></td>
+              <td><code>Admin Panel</code></td>
+              <td>CPA 可视化运维控制台</td>
+              <td><span class="pill pill-mint">RUNNING</span></td>
+            </tr>
+            <tr>
+              <td><strong>komari</strong></td>
+              <td><code>Host Mesh</code></td>
+              <td>全网多节点服务器监控大盘</td>
+              <td><span class="pill pill-mint">RUNNING</span></td>
+            </tr>
+            <tr>
+              <td><strong>miaomiaowux</strong></td>
+              <td><code>Web</code></td>
+              <td>妙妙屋业务主控面板</td>
+              <td><span class="pill pill-mint">RUNNING</span></td>
+            </tr>
+            <tr>
+              <td><strong>danmu-api</strong></td>
+              <td><code>API</code></td>
+              <td>弹幕解析接口服务</td>
+              <td><span class="pill pill-mint">RUNNING</span></td>
+            </tr>
+            <tr>
+              <td><strong>openlist</strong></td>
+              <td><code>Web</code></td>
+              <td>AList 存储与云盘挂载</td>
+              <td><span class="pill pill-mint">RUNNING</span></td>
+            </tr>
+            <tr>
+              <td><strong>smart_group_bot</strong></td>
+              <td><code>Bot Daemon</code></td>
+              <td>Telegram 群管 LLM 机器人</td>
+              <td><span class="pill pill-mint">RUNNING</span></td>
+            </tr>
+            <tr>
+              <td><strong>qbittorrent</strong></td>
+              <td><code>WebUI</code></td>
+              <td>离线下载与资源调度</td>
+              <td><span class="pill pill-mint">RUNNING</span></td>
+            </tr>
+            <tr>
+              <td><strong>watchtower</strong></td>
+              <td><code>Daemon</code></td>
+              <td>容器镜像自动跟踪与巡检</td>
+              <td><span class="pill pill-mint">RUNNING</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- TERMINAL READOUT & DR SAFETY -->
+      <div class="terminal-window">
+        <div class="terminal-bar">
+          <div class="term-dots">
+            <span class="term-dot dot-red"></span>
+            <span class="term-dot dot-yellow"></span>
+            <span class="term-dot dot-green"></span>
+          </div>
+          <span class="term-title">hermes@hytron:~ // TELEMETRY_CONSOLE.sh</span>
+          <span class="pill pill-mint" style="font-size: 0.65rem; padding: 1px 6px;">LIVE FEED</span>
+        </div>
+        <div class="terminal-content">
+          <div class="term-line">
+            <span class="term-prompt">❯</span>
+            <span class="term-cmd">hermes-patches --version</span>
+          </div>
+          <div class="term-out term-highlight">hermes_patches.py 1.5.0 (PyPI Official Released)</div>
+
+          <div class="term-line" style="margin-top: 8px;">
+            <span class="term-prompt">❯</span>
+            <span class="term-cmd">pytest test_behavior.py --assert-suite</span>
+          </div>
+          <div class="term-out term-success">✔ 1/10 Runtime Footer Adapter: PASS</div>
+          <div class="term-out term-success">✔ 2/10 Telegram Table Penetration: PASS</div>
+          <div class="term-out term-success">✔ 3/10 Terminal Safe Fallback: PASS</div>
+          <div class="term-out term-success">✔ 4/10 Multi-Vendor Cache Derivation: PASS</div>
+          <div class="term-out term-success">✔ 10/10 State-Guard Anti-Destruction: PASS (23/23 Cases Blocked)</div>
+
+          <div class="term-line" style="margin-top: 8px;">
+            <span class="term-prompt">❯</span>
+            <span class="term-cmd">cat ~/.hermes/cron/audit_status.json | jq .health</span>
+          </div>
+          <div class="term-out">
+            {<br>
+            &nbsp;&nbsp;<span class="term-highlight">"status"</span>: <span class="term-success">"NOMINAL"</span>,<br>
+            &nbsp;&nbsp;<span class="term-highlight">"hytron_load"</span>: <span class="term-success">0.01</span>,<br>
+            &nbsp;&nbsp;<span class="term-highlight">"disk_usage"</span>: <span class="term-success">"31% (33GB Avail)"</span>,<br>
+            &nbsp;&nbsp;<span class="term-highlight">"last_dr_backup"</span>: <span class="term-highlight">"2026-09-07 03:02 CST (303MB)"</span>,<br>
+            &nbsp;&nbsp;<span class="term-highlight">"standby_sync"</span>: <span class="term-success">"London Offsite OK"</span><br>
+            }
+          </div>
+
+          <div class="term-line" style="margin-top: 8px;">
+            <span class="term-prompt">❯</span>
+            <span class="term-cmd">tail -n 2 /var/log/guard.log</span>
+          </div>
+          <div class="term-out term-success">[SEC-OK] State-Guard Active: rm/unlink/truncate on state.db locked down.</div>
+          <div class="term-out term-success">[SYNC-OK] 14 Nodes Heartbeat verified in 100% nominal state.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-left">
+        <strong>HERMES HUD SYSTEM</strong> · Neo-Brutalism Industrial Design Spec
+      </div>
+      <div>
+        <span>AUTO REFRESH INTERVAL: 30s</span> · <span>STANDBY READY</span>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Real-time Clock
+    function updateClock() {
+      const now = new Date();
+      // CST (UTC+8)
+      const options = {
+        timeZone: 'Asia/Shanghai',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false
+      };
+      const formatter = new Intl.DateTimeFormat('zh-CN', options);
+      const parts = formatter.formatToParts(now);
+      const map = {};
+      parts.forEach(p => map[p.type] = p.value);
+      const str = `${map.year}-${map.month}-${map.day} ${map.hour}:${map.minute}:${map.second} CST`;
+      const clockEl = document.getElementById('beijing-clock');
+      if (clockEl) clockEl.textContent = str;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // Theme Toggle
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      const textEl = document.getElementById('theme-text');
+      if (textEl) {
+        textEl.textContent = next === 'dark' ? 'RETRO LIGHT' : 'TACTICAL DARK';
+      }
+    }
+
+    // Filter Nodes
+    function filterNodes(cat, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const cards = document.querySelectorAll('.node-card');
+      cards.forEach(card => {
+        if (cat === 'all' || card.getAttribute('data-category') === cat) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
