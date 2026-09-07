@@ -737,6 +737,33 @@
           💾 303MB raksmart 全量 + 219MB state.db
         </div>
       </div>
+
+      <div class="kpi-card kpi-tokens">
+        <div class="kpi-header">
+          <span class="kpi-label">今日 Token 消耗</span>
+          <span class="pill pill-pink">4.40 M / TODAY</span>
+        </div>
+        <div class="kpi-value">
+          4.40 <span style="font-size: 1rem; color: var(--text-muted);">M TOKENS</span>
+        </div>
+        <div class="kpi-sub">
+          🧠 723 次调用 · 4.29M In / 113K Out
+        </div>
+      </div>
+
+      <div class="kpi-card kpi-ssl">
+        <div class="kpi-header">
+          <span class="kpi-label">CF 边缘证书倒计时</span>
+          <span class="pill pill-yellow">82 DAYS REMAIN</span>
+        </div>
+        <div class="kpi-value">
+          82 <span style="font-size: 1rem; color: var(--text-muted);">DAYS (GTS)</span>
+        </div>
+        <div class="kpi-sub">
+          🔒 0000996.xyz 主域及全量子域自动轮转
+        </div>
+      </div>
+
     </div>
 
     <!-- SECTION 1: 14 NODES FLEET -->
@@ -1245,6 +1272,20 @@
           </div>
           <div class="term-out term-success">[SEC-OK] State-Guard Active: rm/unlink/truncate on state.db locked down.</div>
           <div class="term-out term-success">[SYNC-OK] 14 Nodes Heartbeat verified in 100% nominal state.</div>
+          <div class="term-line" style="margin-top: 8px;">
+            <span class="term-prompt">❯</span>
+            <span class="term-cmd">hermes token-audit --today</span>
+          </div>
+          <div class="term-out">
+            {<br>
+            &nbsp;&nbsp;<span class="term-highlight">"date"</span>: <span class="term-success">"2026-09-07"</span>,<br>
+            &nbsp;&nbsp;<span class="term-highlight">"api_calls"</span>: <span class="term-success">723</span>,<br>
+            &nbsp;&nbsp;<span class="term-highlight">"input_tokens"</span>: <span class="term-success">"4,285,054 (4.29M)"</span>,<br>
+            &nbsp;&nbsp;<span class="term-highlight">"output_tokens"</span>: <span class="term-success">"113,089 (113K)"</span>,<br>
+            &nbsp;&nbsp;<span class="term-highlight">"total_tokens"</span>: <span class="term-highlight">"4,398,143 (4.40M)"</span>,<br>
+            &nbsp;&nbsp;<span class="term-highlight">"edge_ssl_expire"</span>: <span class="term-success">"82 days (2026-11-28)"</span><br>
+            }
+          </div>
         </div>
       </div>
     </div>
