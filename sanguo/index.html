@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0">
   <title>三国知识库 · 赤壁战役双轨考据图谱</title>
   <meta name="description" content="用 AI 知识工程重构三国历史：《三国志》正史全景 vs《三国演义》戏剧虚构对照，集成圣经式段落标引、实体图谱与时空地铁线。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,30 +19,40 @@
       --brand-green: #51CF66;
       --brand-purple: #CC5DE8;
       --shadow-hard: 3px 3px 0px #1A1A1A;
-      --shadow-hard-lg: 5px 5px 0px #1A1A1A;
+      --shadow-hard-lg: 4px 4px 0px #1A1A1A;
       --font-serif: "Noto Serif SC", "Source Han Serif SC", STSong, serif;
       --font-mono: "JetBrains Mono", monospace, sans-serif;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
 
-    body {
+    html, body {
+      max-width: 100vw;
+      overflow-x: hidden;
       background-color: var(--bg-canvas);
       color: #1A1A1A;
       font-family: var(--font-serif);
       line-height: 1.7;
-      padding: 24px 16px 80px;
-      max-width: 1300px;
+    }
+
+    body {
+      padding: 16px 12px calc(40px + env(safe-area-inset-bottom, 20px));
+      max-width: 1200px;
       margin: 0 auto;
     }
 
-    /* Neo-Brutalist Top Banner */
+    /* Top Hero Banner */
     header.hero-banner {
       background: var(--brand-yellow);
-      border: 3px solid var(--border-dark);
-      box-shadow: var(--shadow-hard-lg);
-      padding: 28px 24px;
-      margin-bottom: 32px;
+      border: 2.5px solid var(--border-dark);
+      box-shadow: var(--shadow-hard);
+      padding: 20px 16px;
+      margin-bottom: 20px;
       position: relative;
     }
 
@@ -51,112 +61,128 @@
       background: var(--border-dark);
       color: #FFF;
       font-family: var(--font-mono);
-      font-size: 13px;
+      font-size: 11px;
       font-weight: 700;
-      padding: 4px 10px;
-      margin-bottom: 12px;
+      padding: 3px 8px;
+      margin-bottom: 10px;
       text-transform: uppercase;
       letter-spacing: 0.5px;
     }
 
     h1.hero-title {
-      font-size: 32px;
+      font-size: clamp(20px, 5.2vw, 30px);
       font-weight: 900;
       letter-spacing: -0.5px;
       color: #000;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
+      line-height: 1.28;
     }
 
     p.hero-desc {
-      font-size: 15px;
+      font-size: 13.5px;
       color: #2D2D2D;
-      max-width: 950px;
+      line-height: 1.65;
+      margin-bottom: 14px;
     }
 
+    /* Metrics Grid */
     .meta-metrics {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 8px;
     }
 
     .metric-pill {
       background: #FFF;
-      border: 2px solid var(--border-dark);
-      box-shadow: 2px 2px 0px var(--border-dark);
-      padding: 6px 14px;
-      font-size: 13px;
+      border: 1.5px solid var(--border-dark);
+      box-shadow: 1.5px 1.5px 0px var(--border-dark);
+      padding: 6px 8px;
+      font-size: 11.5px;
       font-weight: 700;
       display: flex;
       align-items: center;
-      gap: 6px;
+      justify-content: center;
+      text-align: center;
+      white-space: nowrap;
     }
 
-    /* Nav Tabs */
+    /* Navigation Tabs */
     .tab-bar {
-      display: flex;
-      gap: 12px;
-      margin-bottom: 24px;
-      border-bottom: 3px solid var(--border-dark);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      margin-bottom: 20px;
+      border-bottom: 2.5px solid var(--border-dark);
       padding-bottom: 12px;
-      overflow-x: auto;
     }
 
     .tab-btn {
       background: #FFF;
       border: 2px solid var(--border-dark);
-      box-shadow: var(--shadow-hard);
-      padding: 10px 20px;
-      font-size: 15px;
+      box-shadow: 2px 2px 0px var(--border-dark);
+      padding: 9px 4px;
+      font-size: 13.5px;
       font-weight: 700;
       cursor: pointer;
       font-family: var(--font-serif);
-      transition: all 0.15s ease;
-      white-space: nowrap;
+      transition: all 0.12s ease;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
     }
 
-    .tab-btn:hover {
-      transform: translate(-1px, -1px);
-      box-shadow: 4px 4px 0px var(--border-dark);
+    .tab-btn:active {
+      transform: translate(1px, 1px);
+      box-shadow: 1px 1px 0px var(--border-dark);
     }
 
     .tab-btn.active {
       background: var(--border-dark);
       color: var(--brand-yellow);
-      transform: translate(1px, 1px);
       box-shadow: 1px 1px 0px var(--border-dark);
+      transform: translate(1px, 1px);
     }
 
-    /* Content Panes */
+    /* Panes */
     .tab-pane {
       display: none;
+      animation: fadeIn 0.15s ease-out;
     }
     .tab-pane.active {
       display: block;
     }
 
-    /* Section 1: Corpus Dual Track */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Tab 1: Reader Grid */
     .dual-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-      gap: 24px;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 480px), 1fr));
+      gap: 16px;
     }
 
     .chapter-card {
       background: var(--bg-card);
       border: 2px solid var(--border-dark);
       box-shadow: var(--shadow-hard);
-      padding: 20px;
+      padding: 16px 14px;
       position: relative;
     }
 
     .chapter-head {
       display: flex;
+      flex-wrap: wrap;
       justify-content: space-between;
-      align-items: flex-start;
-      border-bottom: 2px solid var(--border-dark);
-      padding-bottom: 10px;
-      margin-bottom: 14px;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1.5px solid var(--border-dark);
+      padding-bottom: 8px;
+      margin-bottom: 12px;
     }
 
     .purple-num {
@@ -164,67 +190,75 @@
       background: #EDE8F5;
       color: #5F3DC4;
       border: 1.5px solid #5F3DC4;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 700;
-      padding: 2px 8px;
-      border-radius: 4px;
+      padding: 2px 7px;
+      border-radius: 3px;
       cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
     }
-    .purple-num:hover {
+    .purple-num:active {
       background: #5F3DC4;
       color: #FFF;
     }
 
     .chapter-source {
-      font-size: 13px;
+      font-size: 11.5px;
       font-weight: 700;
       color: #666;
     }
 
     .quote-content {
-      font-size: 16px;
-      line-height: 1.9;
+      font-size: 15px;
+      line-height: 1.85;
       color: #111;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
       text-align: justify;
+      word-break: break-word;
     }
 
     .entity-badge {
-      display: inline-block;
-      padding: 1px 6px;
-      margin: 0 2px;
+      display: inline-flex;
+      align-items: center;
+      padding: 1px 5px;
+      margin: 2px 2px;
       border: 1.5px solid var(--border-dark);
-      font-size: 13.5px;
+      font-size: 13px;
       font-weight: 700;
       border-radius: 3px;
       cursor: pointer;
       background: #FFF;
-      transition: background 0.1s;
+      line-height: 1.4;
+      box-shadow: 1px 1px 0px rgba(0,0,0,0.15);
     }
-    .entity-badge:hover {
+    .entity-badge:active {
       background: var(--brand-yellow);
     }
 
     .loc-badge {
       background: #EBFBEE;
       border-color: #2F9E44;
-      color: #2F9E44;
+      color: #2B8A3E;
     }
 
     .badge-sub {
-      font-size: 10px;
-      margin-left: 4px;
-      padding: 0 3px;
-      background: rgba(0,0,0,0.06);
+      font-size: 9.5px;
+      margin-left: 3px;
+      padding: 0 2px;
+      background: rgba(0,0,0,0.08);
       border-radius: 2px;
+      font-weight: 600;
     }
 
     .contrast-box {
       background: #FFF9DB;
       border: 1.5px solid #F59F00;
-      padding: 12px;
-      font-size: 13px;
-      margin-top: 12px;
+      padding: 10px 12px;
+      font-size: 12.5px;
+      margin-top: 10px;
+      line-height: 1.6;
     }
 
     .contrast-label {
@@ -234,121 +268,175 @@
       margin-bottom: 4px;
     }
 
-    /* Section 2: Fact Check Grid */
+    /* Tab 2: Fact Check Grid */
     .fact-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr));
+      gap: 16px;
     }
 
     .fact-card {
       background: #FFF;
       border: 2px solid var(--border-dark);
       box-shadow: var(--shadow-hard);
-      padding: 20px;
+      padding: 16px 14px;
     }
 
     .fact-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 12px;
-      border-bottom: 2px solid var(--border-dark);
+      gap: 8px;
+      margin-bottom: 10px;
+      border-bottom: 1.5px solid var(--border-dark);
       padding-bottom: 8px;
     }
 
     .fact-title {
-      font-size: 18px;
+      font-size: 16.5px;
       font-weight: 900;
     }
 
     .verdict-pill {
-      font-size: 12px;
+      font-size: 10.5px;
       font-weight: 700;
-      padding: 3px 8px;
+      padding: 2px 7px;
       border: 1.5px solid var(--border-dark);
+      border-radius: 3px;
+      white-space: nowrap;
     }
 
     .fact-block {
-      margin-bottom: 12px;
-      font-size: 13.5px;
+      margin-bottom: 10px;
+      font-size: 13px;
+      line-height: 1.6;
     }
 
     .fact-block strong {
       display: block;
-      margin-bottom: 3px;
-      color: #495057;
+      margin-bottom: 2px;
+      color: #333;
+      font-size: 12px;
     }
 
-    /* Section 3: Topology Graph (Interactive Canvas/SVG) */
+    /* Tab 3: Topology Graph */
     .graph-container {
       background: #FFF;
-      border: 3px solid var(--border-dark);
-      box-shadow: var(--shadow-hard-lg);
-      padding: 24px;
-      position: relative;
+      border: 2.5px solid var(--border-dark);
+      box-shadow: var(--shadow-hard);
+      padding: 16px 12px;
+    }
+
+    .graph-scroll-wrapper {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border: 1.5px dashed #BBB;
+      background: #FAFAFA;
+      margin-bottom: 16px;
     }
 
     .graph-svg-box {
-      width: 100%;
-      height: 520px;
-      background: #FAFAFA;
-      border: 2px dashed #CCC;
+      min-width: 680px;
+      height: 420px;
       position: relative;
-      overflow: hidden;
     }
 
-    /* Section 4: Metro Timeline */
+    /* Quick Persona Matrix (Mobile Friendly) */
+    .quick-personas-title {
+      font-size: 14px;
+      font-weight: 900;
+      margin-bottom: 8px;
+      color: #222;
+    }
+
+    .personas-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 8px;
+    }
+
+    .persona-card {
+      background: #FFF;
+      border: 1.5px solid var(--border-dark);
+      box-shadow: 2px 2px 0px var(--border-dark);
+      padding: 8px;
+      cursor: pointer;
+      transition: all 0.1s;
+    }
+    .persona-card:active {
+      transform: translate(1px, 1px);
+      box-shadow: 1px 1px 0px var(--border-dark);
+      background: var(--brand-yellow);
+    }
+
+    .persona-name {
+      font-size: 14px;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .persona-role {
+      font-size: 11px;
+      color: #666;
+      margin-top: 2px;
+    }
+
+    /* Tab 4: Metro Timeline */
     .timeline-container {
       background: #FFF;
-      border: 3px solid var(--border-dark);
-      box-shadow: var(--shadow-hard-lg);
-      padding: 28px;
+      border: 2.5px solid var(--border-dark);
+      box-shadow: var(--shadow-hard);
+      padding: 20px 14px;
     }
 
     .metro-track {
       position: relative;
-      padding-left: 36px;
-      border-left: 4px solid var(--border-dark);
-      margin-left: 20px;
+      padding-left: 24px;
+      border-left: 3px solid var(--border-dark);
+      margin-left: 12px;
     }
 
     .metro-station {
       position: relative;
-      margin-bottom: 36px;
+      margin-bottom: 28px;
     }
 
     .station-node {
       position: absolute;
-      left: -48px;
-      top: 0px;
-      width: 20px;
-      height: 20px;
+      left: -33px;
+      top: 2px;
+      width: 15px;
+      height: 15px;
       background: var(--brand-yellow);
-      border: 3px solid var(--border-dark);
+      border: 2.5px solid var(--border-dark);
       border-radius: 50%;
     }
 
     .station-title {
-      font-size: 17px;
+      font-size: 15px;
       font-weight: 900;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
+      line-height: 1.35;
     }
 
     .station-desc {
-      font-size: 14px;
+      font-size: 13px;
       color: #333;
+      line-height: 1.6;
     }
 
-    /* Modal / Drawer for Entity */
+    /* Modal / Drawer */
     .modal-overlay {
       display: none;
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.4);
-      z-index: 1000;
+      background: rgba(0,0,0,0.5);
+      z-index: 9999;
       justify-content: center;
       align-items: center;
+      padding: 16px;
     }
 
     .modal-overlay.active {
@@ -357,33 +445,79 @@
 
     .modal-card {
       background: #FFF;
-      border: 3px solid var(--border-dark);
-      box-shadow: 8px 8px 0px var(--border-dark);
-      width: 90%;
-      max-width: 520px;
-      padding: 24px;
+      border: 2.5px solid var(--border-dark);
+      box-shadow: 6px 6px 0px var(--border-dark);
+      width: 100%;
+      max-width: 480px;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 20px 16px;
       position: relative;
     }
 
     .modal-close {
       position: absolute;
-      top: 14px; right: 16px;
+      top: 12px; right: 12px;
       background: #FF6B6B;
+      color: #FFF;
       border: 2px solid var(--border-dark);
-      padding: 2px 8px;
+      width: 32px;
+      height: 32px;
       font-weight: 900;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       cursor: pointer;
+    }
+
+    /* Toast Notification */
+    .toast-msg {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: #1A1A1A;
+      color: #FFF;
+      border: 2px solid var(--brand-yellow);
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 700;
+      border-radius: 4px;
+      z-index: 10000;
+      transition: transform 0.25s ease-out;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+    .toast-msg.show {
+      transform: translateX(-50%) translateY(0);
     }
 
     /* Footer */
     footer.app-footer {
-      margin-top: 48px;
+      margin-top: 36px;
       text-align: center;
-      font-size: 13px;
-      color: #666;
-      border-top: 2px solid #DDD;
-      padding-top: 24px;
+      font-size: 11.5px;
+      color: #777;
+      border-top: 1.5px solid #DDD;
+      padding-top: 18px;
       font-family: var(--font-mono);
+      line-height: 1.6;
+    }
+
+    /* Responsive Queries */
+    @media (max-width: 600px) {
+      .tab-bar {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+      .tab-btn {
+        font-size: 13px;
+        padding: 8px 6px;
+      }
+      .meta-metrics {
+        grid-template-columns: 1fr 1fr;
+      }
     }
   </style>
 </head>
@@ -391,26 +525,25 @@
 
   <!-- Hero Banner -->
   <header class="hero-banner">
-    <div class="hero-tag">Digital Humanities · Knowledge Graph v0.1</div>
-    <h1 class="hero-title">三国知识库 · 赤壁战役（建安十三年）双轨考据</h1>
+    <div class="hero-tag">Digital Humanities · KB v0.1</div>
+    <h1 class="hero-title">三国知识库 · 赤壁战役双轨考据</h1>
     <p class="hero-desc">
-      基于《三国志》（魏·武帝纪 / 吴·周瑜传 / 蜀·诸葛亮传）正史全景与《三国演义》经典情节互相对齐。
-      运用 AI 细粒度实体标注、Purple Numbers 永久段落锚点与史实反差研判矩阵，让千年古籍像代码一样清晰可追溯。
+      《三国志》正史全景 vs《三国演义》戏剧虚构。运用细粒度实体标注、Purple Numbers 永久段落锚点与史实反差研判矩阵，重构千年历史网络。
     </p>
     <div class="meta-metrics">
-      <div class="metric-pill">📜 <strong>正史段落</strong>: 6 篇核心节选</div>
-      <div class="metric-pill">🏷️ <strong>实体高亮</strong>: 28 处细粒度锚定</div>
-      <div class="metric-pill">⚖️ <strong>真伪研判</strong>: 6 大经典名场面考据</div>
-      <div class="metric-pill">🚀 <strong>部署状态</strong>: 静态纯轻量自包含</div>
+      <div class="metric-pill">📜 正史: 6 篇节选</div>
+      <div class="metric-pill">🏷️ 实体: 28 处标注</div>
+      <div class="metric-pill">⚖️ 考据: 6 大名场面</div>
+      <div class="metric-pill">🚀 状态: 极轻纯静态</div>
     </div>
   </header>
 
-  <!-- Navigation Bar -->
+  <!-- Navigation Bar (2x2 on mobile, 4x1 on desktop) -->
   <nav class="tab-bar">
-    <button class="tab-btn active" onclick="switchTab('reader')">📜 正史高亮阅读器</button>
-    <button class="tab-btn" onclick="switchTab('fact')">⚖️ 史实 vs 演义对齐矩阵</button>
-    <button class="tab-btn" onclick="switchTab('graph')">🕸️ 三方阵营博弈图谱</button>
-    <button class="tab-btn" onclick="switchTab('timeline')">🚇 战役时序地铁线</button>
+    <button class="tab-btn active" onclick="switchTab('reader', this)">📜 正史阅读</button>
+    <button class="tab-btn" onclick="switchTab('fact', this)">⚖️ 演义考据</button>
+    <button class="tab-btn" onclick="switchTab('graph', this)">🕸️ 阵营图谱</button>
+    <button class="tab-btn" onclick="switchTab('timeline', this)">🚇 战役时序</button>
   </nav>
 
   <!-- Tab 1: Reader -->
@@ -419,7 +552,9 @@
 
       <article class="chapter-card" id="p-1.1">
         <div class="chapter-head">
-          <span class="purple-num" onclick="copyAnchor('p-1.1')" title="点击复制段落锚点">[1.1] 复制引用</span>
+          <span class="purple-num" onclick="copyAnchor('p-1.1')" title="点击复制段落锚点">
+            📌 [1.1] 复制引用
+          </span>
           <span class="chapter-source">《三国志·卷一·魏书·武帝纪》</span>
         </div>
         <div class="quote-content">秋七月，<span class="entity-badge person-badge" data-entity="PERSON:CAO" style="border-color:#c92a2a;">曹操<span class="badge-sub">曹魏</span></span>南征<span class="entity-badge person-badge" data-entity="PERSON:LIU_B" style="border-color:#333;">刘表<span class="badge-sub">人物</span></span>。八月，表卒，其子<span class="entity-badge person-badge" data-entity="PERSON:LIU_C" style="border-color:#333;">刘琮<span class="badge-sub">人物</span></span>代，屯<span class="entity-badge loc-badge">📍襄阳</span>。九月，公到<span class="entity-badge loc-badge">📍新野</span>，琮遂降。<span class="entity-badge person-badge" data-entity="PERSON:LIU_BEI" style="border-color:#1864ab;">刘备<span class="badge-sub">蜀汉</span></span>走<span class="entity-badge loc-badge">📍樊口</span>，进屯<span class="entity-badge loc-badge">📍当阳</span>，公追及于当阳之长坂，获其人众辎重。备奔夏口，遣<span class="entity-badge person-badge" data-entity="PERSON:ZHUGE" style="border-color:#1864ab;">诸葛亮<span class="badge-sub">蜀汉</span></span>诣<span class="entity-badge person-badge" data-entity="PERSON:SUN" style="border-color:#2b8a3e;">孙权<span class="badge-sub">孙吴</span></span>。</div>
@@ -431,7 +566,9 @@
 
       <article class="chapter-card" id="p-1.2">
         <div class="chapter-head">
-          <span class="purple-num" onclick="copyAnchor('p-1.2')" title="点击复制段落锚点">[1.2] 复制引用</span>
+          <span class="purple-num" onclick="copyAnchor('p-1.2')" title="点击复制段落锚点">
+            📌 [1.2] 复制引用
+          </span>
           <span class="chapter-source">《三国志·卷三十五·蜀书·诸葛亮传》</span>
         </div>
         <div class="quote-content">亮至<span class="entity-badge loc-badge">📍柴桑</span>，说<span class="entity-badge person-badge" data-entity="PERSON:SUN" style="border-color:#2b8a3e;">孙权<span class="badge-sub">孙吴</span></span>曰：‘海内大乱，将军起兵江东，刘豫州亦收众汉南，与<span class="entity-badge person-badge" data-entity="PERSON:CAO" style="border-color:#c92a2a;">曹操<span class="badge-sub">曹魏</span></span>并争天下。今操芟夷大难，略已平矣，遂破荆州，威震四海。英雄无所用武，故豫州遁逃至此。愿将军量力而处之：若能以吴、越之众与中国抗衡，不如早与之绝；若不能当，何不按兵束甲，面北而事之！’</div>
@@ -443,7 +580,9 @@
 
       <article class="chapter-card" id="p-1.3">
         <div class="chapter-head">
-          <span class="purple-num" onclick="copyAnchor('p-1.3')" title="点击复制段落锚点">[1.3] 复制引用</span>
+          <span class="purple-num" onclick="copyAnchor('p-1.3')" title="点击复制段落锚点">
+            📌 [1.3] 复制引用
+          </span>
           <span class="chapter-source">《三国志·卷五十四·吴书·周瑜传》</span>
         </div>
         <div class="quote-content"><span class="entity-badge person-badge" data-entity="PERSON:SUN" style="border-color:#2b8a3e;">孙权<span class="badge-sub">孙吴</span></span>得<span class="entity-badge person-badge" data-entity="PERSON:CAO" style="border-color:#c92a2a;">曹操<span class="badge-sub">曹魏</span></span>书，会群下，莫不响震失色。长史<span class="entity-badge person-badge" data-entity="PERSON:ZHANG_Z" style="border-color:#2b8a3e;">张昭<span class="badge-sub">孙吴</span></span>等咸曰：‘操，豺虎也，挟天子以令诸侯，动以朝廷为辞，今日拒之，事更不顺。且将军大势可以拒操者，长江也。今操得荆州，大修舟舰，水陆俱下，此天堑不足恃矣。’<span class="entity-badge person-badge" data-entity="PERSON:ZHOU" style="border-color:#2b8a3e;">周瑜<span class="badge-sub">孙吴</span></span>曰：‘不然。操虽托名汉相，其实汉贼也。操舍鞍马，仗舟楫，与吴越争衡，本非所长。又今盛寒，马无藁草。驱中国士众远涉江湖之间，不习水土，必生疾病。此数者用兵之大患也。瑜请得精兵三万人，进屯夏口，保为将军破之。’</div>
@@ -455,7 +594,9 @@
 
       <article class="chapter-card" id="p-1.4">
         <div class="chapter-head">
-          <span class="purple-num" onclick="copyAnchor('p-1.4')" title="点击复制段落锚点">[1.4] 复制引用</span>
+          <span class="purple-num" onclick="copyAnchor('p-1.4')" title="点击复制段落锚点">
+            📌 [1.4] 复制引用
+          </span>
           <span class="chapter-source">《三国志·卷五十四·吴书·周瑜传》</span>
         </div>
         <div class="quote-content">时<span class="entity-badge person-badge" data-entity="PERSON:LIU_BEI" style="border-color:#1864ab;">刘备<span class="badge-sub">蜀汉</span></span>为<span class="entity-badge person-badge" data-entity="PERSON:CAO" style="border-color:#c92a2a;">曹操<span class="badge-sub">曹魏</span></span>所破，欲引南渡江，与<span class="entity-badge person-badge" data-entity="PERSON:ZHOU" style="border-color:#2b8a3e;">周瑜<span class="badge-sub">孙吴</span></span>等合军逆曹公，遇于<span class="entity-badge loc-badge">📍赤壁</span>。初一交战，公军败退，引次江北，屯于<span class="entity-badge loc-badge">📍乌林</span>。瑜等在南岸。公军吏士皆不习水土，初疾疫，死者甚众。乃取蒙冲斗舰数十艘，以铁锁横牵之。</div>
@@ -467,7 +608,9 @@
 
       <article class="chapter-card" id="p-1.5">
         <div class="chapter-head">
-          <span class="purple-num" onclick="copyAnchor('p-1.5')" title="点击复制段落锚点">[1.5] 复制引用</span>
+          <span class="purple-num" onclick="copyAnchor('p-1.5')" title="点击复制段落锚点">
+            📌 [1.5] 复制引用
+          </span>
           <span class="chapter-source">《三国志·卷五十四·吴书·周瑜传》</span>
         </div>
         <div class="quote-content">瑜部将<span class="entity-badge person-badge" data-entity="PERSON:HUANG" style="border-color:#2b8a3e;">黄盖<span class="badge-sub">孙吴</span></span>曰：‘今寇众我寡，难与持久。然观操军船舰首尾相接，可烧而走也。’乃取蒙冲斗舰数十艘，实以薪草，膏油灌其中，裹以帷幕，上建牙旗，豫备走舸，各系大船后。盖先作书遗曹公，伪言欲降。中江举帆，余船以次俱进。时东南风急，盖发时，去北军二里余，同时发火，火烈风猛，船往如箭，烧尽北军船舰，延及岸上营落。顷之，烟炎张天，人马烧溺死者甚众。</div>
@@ -479,7 +622,9 @@
 
       <article class="chapter-card" id="p-1.6">
         <div class="chapter-head">
-          <span class="purple-num" onclick="copyAnchor('p-1.6')" title="点击复制段落锚点">[1.6] 复制引用</span>
+          <span class="purple-num" onclick="copyAnchor('p-1.6')" title="点击复制段落锚点">
+            📌 [1.6] 复制引用
+          </span>
           <span class="chapter-source">《三国志·卷一·魏书·武帝纪》与裴松之注引《山阳公载记》</span>
         </div>
         <div class="quote-content">公至<span class="entity-badge loc-badge">📍赤壁</span>，与备战，不利。于是大疫，吏士多死者，乃引军还。备遂有荆州江南诸郡。公船舰为备所烧，引军从<span class="entity-badge loc-badge">📍华容道</span>步归，道狭遇泥泞，天又大风，悉使羸兵负草填之，骑乃得过。羸兵为人马所践藉，陷泥中，死者甚众。军既得出，公大喜，诸将问之，公曰：‘刘备，吾俦也。但得计少晚；向使早放火，吾徒无类矣。’备寻亦放火而无及。</div>
@@ -505,7 +650,7 @@
           <strong>📖 《三国演义》桥段渲染：</strong>
           <p>周瑜故意刁难诸葛亮，限十日造十万支箭。孔明巧借大雾草船，向曹营‘借’得二十余万支箭。</p>
         </div>
-        <div class="fact-block" style="background:#F8F9FA; padding:8px; border-left:3px solid var(--border-dark);">
+        <div class="fact-block" style="background:#F8F9FA; padding:8px 10px; border-left:3px solid var(--border-dark);">
           <strong>🔍 《三国志》原始史料还原：</strong>
           <p>《魏略》载建安十八年（赤壁后五年），孙权乘大船观曹操水寨，操令乱箭齐发，箭着船身一面偏沉，权下令掉转船头使另一面受箭，船平后乃还。罗贯中将此神来之笔移花接木给诸葛亮。</p>
         </div>
@@ -520,7 +665,7 @@
           <strong>📖 《三国演义》桥段渲染：</strong>
           <p>周瑜为无东南风焦虑吐血，诸葛亮在南屏山筑七星坛作法，三日三夜借得东南劲风。</p>
         </div>
-        <div class="fact-block" style="background:#F8F9FA; padding:8px; border-left:3px solid var(--border-dark);">
+        <div class="fact-block" style="background:#F8F9FA; padding:8px 10px; border-left:3px solid var(--border-dark);">
           <strong>🔍 《三国志》原始史料还原：</strong>
           <p>长江中游江汉平原在冬季冷高压移出、暖锋过境时，常出现短时局部回暖东南逆风。周瑜、黄盖长期据长江水文，预判出风向转折。孔明借风纯系小说神化。</p>
         </div>
@@ -535,7 +680,7 @@
           <strong>📖 《三国演义》桥段渲染：</strong>
           <p>蒋干过江劝降，周瑜设群英会并伪造蔡瑁、张允降书，借曹操多疑之手斩杀水军都督。</p>
         </div>
-        <div class="fact-block" style="background:#F8F9FA; padding:8px; border-left:3px solid var(--border-dark);">
+        <div class="fact-block" style="background:#F8F9FA; padding:8px 10px; border-left:3px solid var(--border-dark);">
           <strong>🔍 《三国志》原始史料还原：</strong>
           <p>《三国志·周瑜传》注引《江表传》：蒋干谒见周瑜在赤壁战后，且未曾盗书；蔡瑁、张允刘琮投降后即随曹操入朝封侯，根本未在赤壁前被杀。</p>
         </div>
@@ -550,7 +695,7 @@
           <strong>📖 《三国演义》桥段渲染：</strong>
           <p>黄盖在议事堂唱反调顶撞周瑜，被杖责五十皮开肉绽，以此取信于曹操密探蔡中、蔡和。</p>
         </div>
-        <div class="fact-block" style="background:#F8F9FA; padding:8px; border-left:3px solid var(--border-dark);">
+        <div class="fact-block" style="background:#F8F9FA; padding:8px 10px; border-left:3px solid var(--border-dark);">
           <strong>🔍 《三国志》原始史料还原：</strong>
           <p>黄盖确实致书曹操诈降（‘操军船舰首尾相接，可烧而走也...盖先作书遗曹公，伪言欲降’），但杖刑和苦肉计纯属小说增加冲突的文学桥段。</p>
         </div>
@@ -565,7 +710,7 @@
           <strong>📖 《三国演义》桥段渲染：</strong>
           <p>曹操赤壁惨败，三度狂笑引来赵云、张飞与关羽伏兵，最终关羽念及昔日厚恩义释曹操。</p>
         </div>
-        <div class="fact-block" style="background:#F8F9FA; padding:8px; border-left:3px solid var(--border-dark);">
+        <div class="fact-block" style="background:#F8F9FA; padding:8px 10px; border-left:3px solid var(--border-dark);">
           <strong>🔍 《三国志》原始史料还原：</strong>
           <p>正史曹操确实经由华容道败退江陵，道遇深泥断草。刘备亲自率军追击，但到达时曹操已涉泥过关，刘备慨叹‘向使早放火，吾徒无类矣’，并未有关羽私放之事。</p>
         </div>
@@ -580,7 +725,7 @@
           <strong>📖 《三国演义》桥段渲染：</strong>
           <p>诸葛亮受鲁肃之邀赴东吴，在江东议事堂唇枪舌剑驳斥张昭、虞翻、步骘、陆绩等一众名士。</p>
         </div>
-        <div class="fact-block" style="background:#F8F9FA; padding:8px; border-left:3px solid var(--border-dark);">
+        <div class="fact-block" style="background:#F8F9FA; padding:8px 10px; border-left:3px solid var(--border-dark);">
           <strong>🔍 《三国志》原始史料还原：</strong>
           <p>正史诸葛亮至柴桑仅单面孙权，通过激将法分析形势；演义将此扩写为数十位江东名士舌战，展现诸葛孔明经天纬地之外交口才。</p>
         </div>
@@ -592,86 +737,146 @@
   <!-- Tab 3: Interactive Topology Graph -->
   <section id="tab-graph" class="tab-pane">
     <div class="graph-container">
-      <h3 style="margin-bottom:12px; font-size:18px;">赤壁之战 · 魏蜀吴三方地缘与人物战略博弈拓扑</h3>
-      <p style="font-size:14px; color:#555; margin-bottom:16px;">点击任意人物节点，即可调阅详细生平、历史原型与演义考据卡片。</p>
+      <div style="margin-bottom:12px;">
+        <h3 style="font-size:16px; font-weight:900;">魏蜀吴三方地缘与人物博弈图谱</h3>
+        <p style="font-size:12.5px; color:#666;">👈 手机可左右滑动查看完整关系网 · 点击人物节点看档案 👉</p>
+      </div>
       
-      <div class="graph-svg-box" id="svgGraph">
-        <svg width="100%" height="100%" viewBox="0 0 900 500">
-          <defs>
-            <marker id="arrow" viewBox="0 0 10 10" refX="22" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-              <path d="M 0 0 L 10 5 L 0 10 z" fill="#888" />
-            </marker>
-          </defs>
+      <div class="graph-scroll-wrapper">
+        <div class="graph-svg-box">
+          <svg width="680" height="420" viewBox="0 0 680 420" style="display:block;">
+            <defs>
+              <marker id="arrow" viewBox="0 0 10 10" refX="22" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 0 L 10 5 L 0 10 z" fill="#888" />
+              </marker>
+            </defs>
 
-          <!-- Links -->
-          <!-- 曹操 -> 周瑜 (赤壁交战) -->
-          <line x1="200" y1="250" x2="680" y2="170" stroke="#E03131" stroke-width="2.5" stroke-dasharray="4,4" />
-          <!-- 诸葛亮 -> 孙权 (柴桑外交统战) -->
-          <line x1="450" y1="360" x2="680" y2="330" stroke="#2F9E44" stroke-width="3" />
-          <!-- 周瑜 <-> 孙权 (君臣主战) -->
-          <line x1="680" y1="170" x2="680" y2="330" stroke="#2F9E44" stroke-width="2.5" />
-          <!-- 周瑜 <-> 黄盖 (火攻之计) -->
-          <line x1="680" y1="170" x2="800" y2="120" stroke="#F59F00" stroke-width="3" />
-          <!-- 诸葛亮 <-> 刘备 (辅佐结盟) -->
-          <line x1="450" y1="360" x2="330" y2="380" stroke="#1864AB" stroke-width="2.5" />
-          <!-- 周瑜 <-> 张昭 (主战 vs 主降冲突) -->
-          <line x1="680" y1="170" x2="800" y2="250" stroke="#999" stroke-width="1.5" />
+            <!-- Links -->
+            <line x1="150" y1="210" x2="520" y2="130" stroke="#E03131" stroke-width="2.5" stroke-dasharray="4,4" />
+            <line x1="330" y1="310" x2="520" y2="280" stroke="#2F9E44" stroke-width="3" />
+            <line x1="520" y1="130" x2="520" y2="280" stroke="#2F9E44" stroke-width="2" />
+            <line x1="520" y1="130" x2="610" y2="80" stroke="#F59F00" stroke-width="2.5" />
+            <line x1="330" y1="310" x2="230" y2="330" stroke="#1864AB" stroke-width="2.5" />
+            <line x1="520" y1="130" x2="610" y2="200" stroke="#999" stroke-width="1.5" />
 
-          <!-- Relation Labels -->
-          <text x="440" y="190" fill="#E03131" font-size="12" font-weight="bold">赤壁 / 乌林水陆大决战</text>
-          <text x="540" y="360" fill="#2F9E44" font-size="12" font-weight="bold">柴桑会见 · 孙刘结盟</text>
-          <text x="750" y="135" fill="#D9480F" font-size="12" font-weight="bold">献策火攻伪降</text>
+            <!-- Labels -->
+            <text x="320" y="160" fill="#E03131" font-size="11.5" font-weight="bold">赤壁/乌林水陆交战</text>
+            <text x="380" y="315" fill="#2F9E44" font-size="11.5" font-weight="bold">柴桑会晤结盟</text>
+            <text x="570" y="95" fill="#D9480F" font-size="11" font-weight="bold">火攻伪降</text>
 
-          <!-- Nodes -->
-          <!-- Cao Cao -->
-          <g class="graph-node" onclick="openEntity('PERSON:CAO')" style="cursor:pointer;">
-            <circle cx="200" cy="250" r="46" fill="#FFF5F5" stroke="#C92A2A" stroke-width="3" />
-            <text x="200" y="246" text-anchor="middle" font-size="16" font-weight="bold" fill="#C92A2A">曹操</text>
-            <text x="200" y="268" text-anchor="middle" font-size="11" fill="#666">魏王 · 丞相</text>
-          </g>
+            <!-- Nodes -->
+            <!-- Cao Cao -->
+            <g class="graph-node" onclick="openEntity('PERSON:CAO')" style="cursor:pointer;">
+              <circle cx="150" cy="210" r="38" fill="#FFF5F5" stroke="#C92A2A" stroke-width="2.5" />
+              <text x="150" y="206" text-anchor="middle" font-size="15" font-weight="bold" fill="#C92A2A">曹操</text>
+              <text x="150" y="224" text-anchor="middle" font-size="10" fill="#666">魏王·丞相</text>
+            </g>
 
-          <!-- Zhou Yu -->
-          <g class="graph-node" onclick="openEntity('PERSON:ZHOU')" style="cursor:pointer;">
-            <circle cx="680" cy="170" r="46" fill="#EBFBEE" stroke="#2B8A3E" stroke-width="3" />
-            <text x="680" y="166" text-anchor="middle" font-size="16" font-weight="bold" fill="#2B8A3E">周瑜</text>
-            <text x="680" y="188" text-anchor="middle" font-size="11" fill="#666">前部大都督</text>
-          </g>
+            <!-- Zhou Yu -->
+            <g class="graph-node" onclick="openEntity('PERSON:ZHOU')" style="cursor:pointer;">
+              <circle cx="520" cy="130" r="38" fill="#EBFBEE" stroke="#2B8A3E" stroke-width="2.5" />
+              <text x="520" y="126" text-anchor="middle" font-size="15" font-weight="bold" fill="#2B8A3E">周瑜</text>
+              <text x="520" y="144" text-anchor="middle" font-size="10" fill="#666">前部大都督</text>
+            </g>
 
-          <!-- Sun Quan -->
-          <g class="graph-node" onclick="openEntity('PERSON:SUN')" style="cursor:pointer;">
-            <circle cx="680" cy="330" r="42" fill="#EBFBEE" stroke="#2B8A3E" stroke-width="3" />
-            <text x="680" y="326" text-anchor="middle" font-size="15" font-weight="bold" fill="#2B8A3E">孙权</text>
-            <text x="680" y="346" text-anchor="middle" font-size="11" fill="#666">江东之主</text>
-          </g>
+            <!-- Sun Quan -->
+            <g class="graph-node" onclick="openEntity('PERSON:SUN')" style="cursor:pointer;">
+              <circle cx="520" cy="280" r="36" fill="#EBFBEE" stroke="#2B8A3E" stroke-width="2.5" />
+              <text x="520" y="276" text-anchor="middle" font-size="14" font-weight="bold" fill="#2B8A3E">孙权</text>
+              <text x="520" y="294" text-anchor="middle" font-size="10" fill="#666">江东之主</text>
+            </g>
 
-          <!-- Zhuge Liang -->
-          <g class="graph-node" onclick="openEntity('PERSON:ZHUGE')" style="cursor:pointer;">
-            <circle cx="450" cy="360" r="44" fill="#E7F5FF" stroke="#1864AB" stroke-width="3" />
-            <text x="450" y="356" text-anchor="middle" font-size="15" font-weight="bold" fill="#1864AB">诸葛亮</text>
-            <text x="450" y="376" text-anchor="middle" font-size="11" fill="#666">军师中郎将</text>
-          </g>
+            <!-- Zhuge Liang -->
+            <g class="graph-node" onclick="openEntity('PERSON:ZHUGE')" style="cursor:pointer;">
+              <circle cx="330" cy="310" r="36" fill="#E7F5FF" stroke="#1864AB" stroke-width="2.5" />
+              <text x="330" y="306" text-anchor="middle" font-size="14" font-weight="bold" fill="#1864AB">诸葛亮</text>
+              <text x="330" y="324" text-anchor="middle" font-size="10" fill="#666">军师中郎将</text>
+            </g>
 
-          <!-- Liu Bei -->
-          <g class="graph-node" onclick="openEntity('PERSON:LIU_BEI')" style="cursor:pointer;">
-            <circle cx="330" cy="380" r="38" fill="#E7F5FF" stroke="#1864AB" stroke-width="2.5" />
-            <text x="330" y="377" text-anchor="middle" font-size="14" font-weight="bold" fill="#1864AB">刘备</text>
-            <text x="330" y="395" text-anchor="middle" font-size="10" fill="#666">左将军</text>
-          </g>
+            <!-- Liu Bei -->
+            <g class="graph-node" onclick="openEntity('PERSON:LIU_BEI')" style="cursor:pointer;">
+              <circle cx="230" cy="330" r="32" fill="#E7F5FF" stroke="#1864AB" stroke-width="2" />
+              <text x="230" y="327" text-anchor="middle" font-size="13" font-weight="bold" fill="#1864AB">刘备</text>
+              <text x="230" y="343" text-anchor="middle" font-size="9" fill="#666">左将军</text>
+            </g>
 
-          <!-- Huang Gai -->
-          <g class="graph-node" onclick="openEntity('PERSON:HUANG')" style="cursor:pointer;">
-            <circle cx="800" cy="120" r="36" fill="#FFF9DB" stroke="#F59F00" stroke-width="2.5" />
-            <text x="800" y="117" text-anchor="middle" font-size="14" font-weight="bold" fill="#D9480F">黄盖</text>
-            <text x="800" y="135" text-anchor="middle" font-size="10" fill="#666">火攻先锋</text>
-          </g>
+            <!-- Huang Gai -->
+            <g class="graph-node" onclick="openEntity('PERSON:HUANG')" style="cursor:pointer;">
+              <circle cx="610" cy="80" r="30" fill="#FFF9DB" stroke="#F59F00" stroke-width="2" />
+              <text x="610" y="77" text-anchor="middle" font-size="13" font-weight="bold" fill="#D9480F">黄盖</text>
+              <text x="610" y="93" text-anchor="middle" font-size="9" fill="#666">火攻先锋</text>
+            </g>
 
-          <!-- Zhang Zhao -->
-          <g class="graph-node" onclick="openEntity('PERSON:ZHANG_Z')" style="cursor:pointer;">
-            <circle cx="800" cy="250" r="34" fill="#F8F9FA" stroke="#868E96" stroke-width="2" />
-            <text x="800" y="247" text-anchor="middle" font-size="13" font-weight="bold" fill="#495057">张昭</text>
-            <text x="800" y="263" text-anchor="middle" font-size="9" fill="#888">长史·主迎降</text>
-          </g>
-        </svg>
+            <!-- Zhang Zhao -->
+            <g class="graph-node" onclick="openEntity('PERSON:ZHANG_Z')" style="cursor:pointer;">
+              <circle cx="610" cy="200" r="28" fill="#F8F9FA" stroke="#868E96" stroke-width="1.8" />
+              <text x="610" y="197" text-anchor="middle" font-size="12" font-weight="bold" fill="#495057">张昭</text>
+              <text x="610" y="211" text-anchor="middle" font-size="8" fill="#888">主迎降</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Quick Personas List for Mobile -->
+      <div class="quick-personas-title">👥 人物档案快捷速查（点击即开）</div>
+      <div class="personas-grid">
+
+        <div class="persona-card" onclick="openEntity('PERSON:CAO')">
+          <div class="persona-name">
+            <span style="width:10px; height:10px; background:#c92a2a; border:1.5px solid #111; display:inline-block;"></span>
+            曹操
+          </div>
+          <div class="persona-role">曹魏 · 东汉丞相 / 魏王</div>
+        </div>
+
+        <div class="persona-card" onclick="openEntity('PERSON:ZHOU')">
+          <div class="persona-name">
+            <span style="width:10px; height:10px; background:#2b8a3e; border:1.5px solid #111; display:inline-block;"></span>
+            周瑜
+          </div>
+          <div class="persona-role">孙吴 · 东吴前部大都督</div>
+        </div>
+
+        <div class="persona-card" onclick="openEntity('PERSON:ZHUGE')">
+          <div class="persona-name">
+            <span style="width:10px; height:10px; background:#1864ab; border:1.5px solid #111; display:inline-block;"></span>
+            诸葛亮
+          </div>
+          <div class="persona-role">蜀汉 · 军师中郎将 / 丞相</div>
+        </div>
+
+        <div class="persona-card" onclick="openEntity('PERSON:SUN')">
+          <div class="persona-name">
+            <span style="width:10px; height:10px; background:#2b8a3e; border:1.5px solid #111; display:inline-block;"></span>
+            孙权
+          </div>
+          <div class="persona-role">孙吴 · 江东之主 / 吴王</div>
+        </div>
+
+        <div class="persona-card" onclick="openEntity('PERSON:LIU_BEI')">
+          <div class="persona-name">
+            <span style="width:10px; height:10px; background:#1864ab; border:1.5px solid #111; display:inline-block;"></span>
+            刘备
+          </div>
+          <div class="persona-role">蜀汉 · 左将军 / 汉中王</div>
+        </div>
+
+        <div class="persona-card" onclick="openEntity('PERSON:HUANG')">
+          <div class="persona-name">
+            <span style="width:10px; height:10px; background:#2b8a3e; border:1.5px solid #111; display:inline-block;"></span>
+            黄盖
+          </div>
+          <div class="persona-role">孙吴 · 东吴丹阳都尉 / 偏将军</div>
+        </div>
+
+        <div class="persona-card" onclick="openEntity('PERSON:ZHANG_Z')">
+          <div class="persona-name">
+            <span style="width:10px; height:10px; background:#2b8a3e; border:1.5px solid #111; display:inline-block;"></span>
+            张昭
+          </div>
+          <div class="persona-role">孙吴 · 东吴长史</div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -679,42 +884,42 @@
   <!-- Tab 4: Metro Timeline -->
   <section id="tab-timeline" class="tab-pane">
     <div class="timeline-container">
-      <h3 style="margin-bottom:20px; font-size:18px;">建安十三年（公元208年）· 赤壁之战时空演变脉络</h3>
+      <h3 style="margin-bottom:16px; font-size:16.5px; font-weight:900;">建安十三年（公元208年）· 战役时空时序脉络</h3>
       <div class="metro-track">
         <div class="metro-station">
           <div class="station-node"></div>
-          <div class="station-title">① 208年七月~九月 · 曹操挥师下荆州，刘琮望风而降</div>
-          <div class="station-desc">刘表病卒，刘琮束手归降。曹操进占江陵军事重镇，掌控荆州水军与庞大粮草，刘备败走当阳长坂坡，退保夏口。</div>
+          <div class="station-title">① 208年秋 · 曹操挥师下荆州，刘琮望风而降</div>
+          <div class="station-desc">刘表病死，刘琮降曹。曹操夺江陵水军粮秣，刘备溃走当阳长坂坡，退保夏口。</div>
         </div>
 
         <div class="metro-station">
           <div class="station-node"></div>
-          <div class="station-title">② 208年十月 · 诸葛亮单骑使柴桑，孙刘联盟确立</div>
-          <div class="station-desc">诸葛亮至柴桑面见孙权，陈说曹操“远涉江湖、士卒疲惫、水土不服”之致命弱点，力促孙刘并力抗曹。</div>
+          <div class="station-title">② 208年冬 · 诸葛亮单骑使柴桑，孙刘联盟结成</div>
+          <div class="station-desc">孔明柴桑面见孙权，指陈曹操“远涉江湖、士卒疲病、水土不服”，促成联合阵线。</div>
         </div>
 
         <div class="metro-station">
           <div class="station-node"></div>
-          <div class="station-title">③ 208年十一月 · 周瑜廷议辟降表，孙权拔剑斫案誓师</div>
-          <div class="station-desc">张昭等东吴群僚劝降，周瑜归柴桑力陈曹军四大兵家大忌。孙权拔剑斫案立誓：“诸将吏敢言降曹者，与此案同！”</div>
+          <div class="station-title">③ 208年冬 · 周瑜力主抗曹，孙权拔剑斫案誓师</div>
+          <div class="station-desc">张昭主降，周瑜算定曹操四大兵忌。孙权斫案立誓：“敢言降曹者，与此案同！”</div>
         </div>
 
         <div class="metro-station">
           <div class="station-node"></div>
-          <div class="station-title">④ 208年十二月上旬 · 赤壁前哨初战，曹军退保乌林铁锁连舟</div>
-          <div class="station-desc">孙刘联军逆流而上，与曹操先锋交战于赤壁。曹军不习水战初战受挫，退扎北岸乌林；军中疾疫流行，战船连锁避浪。</div>
+          <div class="station-title">④ 208年十二月 · 赤壁前哨初战，曹军退屯乌林</div>
+          <div class="station-desc">联军溯江迎击，曹军初战受挫退守江北乌林，军中大疫，以铁锁连战船避浪。</div>
         </div>
 
         <div class="metro-station">
           <div class="station-node"></div>
-          <div class="station-title">⑤ 208年十二月中旬 · 黄盖伪降突袭，火烧赤壁乌林连营</div>
-          <div class="station-desc">黄盖备蒙冲斗舰数十艘灌油脂干柴，伪修降书。乘冬至东南逆风疾驶，近北军二里举火突袭，火乘风势焚毁曹军水寨与岸营。</div>
+          <div class="station-title">⑤ 208年十二月 · 黄盖伪降突袭，火烧赤壁乌林</div>
+          <div class="station-desc">黄盖备蒙冲斗舰灌油脂干柴，借冬至偏南风直冲曹营，同时举火焚尽北军水陆营寨。</div>
         </div>
 
         <div class="metro-station">
           <div class="station-node"></div>
-          <div class="station-title">⑥ 208年十二月下旬 · 曹军由华容道泥泞败退，天下三分雏形初具</div>
-          <div class="station-desc">曹操大败引军退保江陵，过华容道泥泞死伤甚众。曹操叹刘备放火稍迟；战后刘备趁势收复荆南四郡，三足鼎立基石奠定。</div>
+          <div class="station-title">⑥ 208年十二月 · 曹军由华容道败退，三足鼎立基石奠定</div>
+          <div class="station-desc">曹操大败走华容泥泞险道。曹操叹刘备放火稍迟；战后刘备收荆南四郡，鼎立格局初成。</div>
         </div>
       </div>
     </div>
@@ -723,37 +928,45 @@
   <!-- Entity Detail Modal -->
   <div class="modal-overlay" id="entityModal" onclick="closeModal(event)">
     <div class="modal-card" onclick="event.stopPropagation()">
-      <button class="modal-close" onclick="closeModalDirect()">✕</button>
+      <button class="modal-close" onclick="closeModalDirect()" aria-label="关闭">✕</button>
       <div id="modalContent"></div>
     </div>
   </div>
 
+  <!-- Toast Message -->
+  <div id="toastMsg" class="toast-msg">已复制段落引用链接</div>
+
   <footer class="app-footer">
-    三国知识库 (Sanguo KB) · Powered by AI Knowledge Engineering &amp; Hermes Agent<br>
-    All canonical citations sourced from Chen Shou's Record of the Three Kingdoms.
+    三国知识库 (Sanguo KB) · AI 知识工程驱动<br>
+    正史引证全部出自陈寿《三国志》· 裴松之注
   </footer>
 
   <script>
     const ENTITY_DB = {"PERSON:CAO": {"name": "曹操", "alias": ["孟德", "魏武帝", "阿瞒"], "faction": "曹魏", "role": "东汉丞相 / 魏王", "avatar_color": "#c92a2a", "bio": "建安十三年统一北方后率大军南下，降刘琮、逐刘备。赤壁战败后回保江陵，奠定天下三分雏形。", "historical_fact": "赤壁战败后《武帝纪》强调‘自烧其余船引退’与‘疾疫多死’，与周瑜传互为多视角对照。"}, "PERSON:ZHOU": {"name": "周瑜", "alias": ["公瑾", "周郎"], "faction": "孙吴", "role": "东吴前部大都督", "avatar_color": "#2b8a3e", "bio": "赤壁之战东吴最高统帅与第一功臣。力主抗曹，指出曹军四大兵患，采纳黄盖火攻之策大破曹军。", "historical_fact": "演义中‘三气周瑜’与‘既生瑜何生亮’系彻底罗织，历史上周瑜雅量高致、器宇恢弘，孙权叹其有‘王佐之资’。"}, "PERSON:ZHUGE": {"name": "诸葛亮", "alias": ["孔明", "卧龙"], "faction": "蜀汉", "role": "军师中郎将 / 丞相", "avatar_color": "#1864ab", "bio": "赤壁战前单骑使吴，在柴桑以高超外交说服孙权抗曹结盟，奠定孙刘联合阵线。", "historical_fact": "正史诸葛亮在赤壁的主要功绩是外交统战结盟，并未参与战役前线火攻指挥，无‘借东风’‘草船借箭’之事。"}, "PERSON:SUN": {"name": "孙权", "alias": ["仲谋", "吴大帝"], "faction": "孙吴", "role": "江东之主 / 吴王", "avatar_color": "#2b8a3e", "bio": "面对曹操大兵压境，顶住群臣降曹压力，断案誓师，命周瑜、程普率精兵三万迎战。", "historical_fact": "濡须坞乘轻舟观曹营‘草船借箭’的真正历史原型主角其实是孙权本人（建安十八年）。"}, "PERSON:LIU_BEI": {"name": "刘备", "alias": ["玄德", "刘豫州", "昭烈帝"], "faction": "蜀汉", "role": "左将军 / 汉中王", "avatar_color": "#1864ab", "bio": "当阳长坂败退后屯兵樊口，派诸葛亮联吴抗曹。赤壁战后乘胜收复荆南四郡（武陵、长沙、桂阳、零陵）。", "historical_fact": "赤壁决战中刘备率部与周瑜并进，并在华容道后方尾随追击曹操。"}, "PERSON:HUANG": {"name": "黄盖", "alias": ["公覆"], "faction": "孙吴", "role": "东吴丹阳都尉 / 偏将军", "avatar_color": "#2b8a3e", "bio": "历仕孙坚、孙策、孙权三世老将，赤壁决战火攻破敌的关键提议者与前锋执行官。", "historical_fact": "火攻突袭时不幸中流矢坠入寒江，被吴军韩当所救，脱险立下首功。"}, "PERSON:ZHANG_Z": {"name": "张昭", "alias": ["子布"], "faction": "孙吴", "role": "东吴长史", "avatar_color": "#2b8a3e", "bio": "孙策托孤重臣，赤壁战前代表文官保守派力主迎降曹操，被周瑜、鲁肃驳斥。", "historical_fact": "张昭主降从保全江东士族社稷出发，并非演义中所渲染的懦弱腐儒。"}};
 
-    function switchTab(name) {
+    function switchTab(name, btn) {
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
       document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
       
       const targetPane = document.getElementById('tab-' + name);
       if (targetPane) targetPane.classList.add('active');
-      
-      // highlight active button
-      event.currentTarget.classList.add('active');
+      if (btn) btn.classList.add('active');
     }
 
     function copyAnchor(id) {
       const url = window.location.origin + window.location.pathname + '#' + id;
-      navigator.clipboard.writeText(url).then(() => {
-        alert('段落引用链接已复制到剪贴板：\n' + url);
-      }).catch(() => {
-        alert('链接：' + url);
-      });
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(() => showToast('已复制段落引用：' + id));
+      } else {
+        showToast('段落锚点：' + id);
+      }
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById('toastMsg');
+      t.innerText = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2000);
     }
 
     function openEntity(id) {
@@ -761,18 +974,18 @@
       if (!data) return;
       
       const html = `
-        <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px; border-bottom:2px solid #111; padding-bottom:8px;">
-          <div style="width:16px; height:16px; background:${data.avatar_color}; border:2px solid #111;"></div>
-          <h2 style="font-size:22px; font-weight:900;">${data.name}</h2>
-          <span style="font-size:12px; background:#EEE; border:1px solid #111; padding:2px 8px;">${data.faction} · ${data.role}</span>
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px; border-bottom:2px solid #111; padding-bottom:8px; padding-right:32px;">
+          <div style="width:14px; height:14px; background:${data.avatar_color}; border:1.5px solid #111; flex-shrink:0;"></div>
+          <h2 style="font-size:20px; font-weight:900;">${data.name}</h2>
+          <span style="font-size:11px; background:#EEE; border:1px solid #111; padding:2px 6px; white-space:nowrap;">${data.faction} · ${data.role}</span>
         </div>
-        <p style="font-size:13px; color:#666; margin-bottom:10px;">别名/字号：${data.alias.join(' / ')}</p>
-        <div style="font-size:14px; line-height:1.7; margin-bottom:14px;">
-          <strong>【生平档案】</strong><br>
+        <p style="font-size:12px; color:#666; margin-bottom:8px;">别名字号：${data.alias.join(' / ')}</p>
+        <div style="font-size:13.5px; line-height:1.65; margin-bottom:12px;">
+          <strong>【人物档案】</strong><br>
           ${data.bio}
         </div>
-        <div style="font-size:13px; background:#FFF9DB; border:1.5px solid #F59F00; padding:10px;">
-          <strong style="color:#D9480F;">🔍 史料考证与虚构消歧：</strong><br>
+        <div style="font-size:12.5px; background:#FFF9DB; border:1.5px solid #F59F00; padding:8px 10px; line-height:1.6;">
+          <strong style="color:#D9480F;">🔍 史料还原与消歧：</strong><br>
           ${data.historical_fact}
         </div>
       `;
@@ -787,7 +1000,6 @@
       document.getElementById('entityModal').classList.remove('active');
     }
 
-    // Bind entity clicks in reader
     document.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('.person-badge').forEach(el => {
         el.addEventListener('click', (e) => {
