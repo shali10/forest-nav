@@ -664,7 +664,7 @@
         <div class="brand-logo">⚡ HERMES</div>
         <div class="brand-title">
           <h1>MISSION CONTROL // INFRA HUD</h1>
-          <p>新野兽派全网极客状态看板 · 14 核心节点实况</p>
+          <p>新野兽派全网极客状态看板 · 核心节点实况</p>
         </div>
       </div>
       <div class="header-right">
@@ -673,7 +673,7 @@
         </a>
         <div class="clock-pill">
           <span class="status-dot dot-pulse-green"></span>
-          <span id="beijing-clock">2026-09-07 10:35:00 CST</span>
+          <span id="beijing-clock">2026-09-20 23:25:00 CST</span>
         </div>
         <button class="btn-action" id="theme-toggle" onclick="toggleTheme()">
           🌓 <span id="theme-text">TACTICAL DARK</span>
@@ -692,7 +692,7 @@
           <span class="pill pill-mint">100% ONLINE</span>
         </div>
         <div class="kpi-value">
-          14 <span style="font-size: 1rem; color: var(--text-muted);">/ 14 节点</span>
+          ALL <span style="font-size: 1rem; color: var(--text-muted);">NODES</span>
         </div>
         <div class="kpi-sub">
           <span class="status-dot dot-pulse-green"></span> 亚太 / 欧 / 美 / 中 全球覆盖
@@ -701,14 +701,14 @@
 
       <div class="kpi-card kpi-containers">
         <div class="kpi-header">
-          <span class="kpi-label">raksmart 生产业务容器</span>
-          <span class="pill pill-cyan">11/11 HEALTHY</span>
+          <span class="kpi-label">hytron2 生产业务容器</span>
+          <span class="pill pill-cyan">8/8 HEALTHY</span>
         </div>
         <div class="kpi-value">
-          11 <span style="font-size: 1rem; color: var(--text-muted);">CONTAINERS</span>
+          8 <span style="font-size: 1rem; color: var(--text-muted);">CONTAINERS</span>
         </div>
         <div class="kpi-sub">
-          ⚡ 1Panel v2.2.5 托管 · 8 子域全回源
+          ⚡ 1Panel v2.2.5 托管 · 7 子域全回源
         </div>
       </div>
 
@@ -734,7 +734,7 @@
           03:02 <span style="font-size: 1rem; color: var(--text-muted);">CST TODAY</span>
         </div>
         <div class="kpi-sub">
-          💾 303MB raksmart 全量 + 219MB state.db
+          💾 生产集群全量 + 异地双保险温备
         </div>
       </div>
 
@@ -807,29 +807,29 @@
         </div>
       </div>
 
-      <!-- 2. raksmart -->
+      <!-- 2. hytron2 -->
       <div class="node-card highlight" data-category="prod">
         <div class="node-card-top">
           <div class="node-name-group">
-            <span class="node-flag">🇺🇸</span>
+            <span class="node-flag">🇭🇰</span>
             <div>
-              <div class="node-title">raksmart (Prod Cluster)</div>
-              <div class="node-region">San Jose, US · Cluster US-West</div>
+              <div class="node-title">hytron2 (Prod Cluster)</div>
+              <div class="node-region">Hong Kong · Cluster HK-02</div>
             </div>
           </div>
           <span class="pill pill-mint"><span class="status-dot dot-pulse-green"></span> ONLINE</span>
         </div>
         <div class="node-meta">
-          <div class="meta-row"><span class="meta-key">CPU / RAM</span><span class="meta-val">2C Broadwell / 3.8GB / 2G Swap</span></div>
-          <div class="meta-row"><span class="meta-key">DISK POOL</span><span class="meta-val">50G (26% 占，余 37G)</span></div>
-          <div class="meta-row"><span class="meta-key">ORCHESTRATOR</span><span class="meta-val">1Panel v2.2.5 · 11 Containers</span></div>
+          <div class="meta-row"><span class="meta-key">CPU / RAM</span><span class="meta-val">2C Xeon Gold / 2.9GB / 3G Swap</span></div>
+          <div class="meta-row"><span class="meta-key">DISK POOL</span><span class="meta-val">30G (SSD / BBR+fq)</span></div>
+          <div class="meta-row"><span class="meta-key">ORCHESTRATOR</span><span class="meta-val">1Panel v2.2.5 · 8 Containers</span></div>
         </div>
         <div class="node-desc">
-          <strong>核心生产容器集群</strong> · 0000996.xyz 全部 8 个业务子域回源 · WireGuard 直连 cloudnium。
+          <strong>核心生产容器集群</strong> · 0000996.xyz 全部 7 个业务子域回源 · 1Panel 集中管理。
         </div>
         <div class="node-footer">
-          <span class="pill pill-cyan">11 CONTAINERS</span>
-          <span class="latency-tag">⚡ 138ms</span>
+          <span class="pill pill-cyan">8 CONTAINERS</span>
+          <span class="latency-tag">⚡ 1ms (LAN)</span>
         </div>
       </div>
 
@@ -873,7 +873,7 @@
         </div>
         <div class="node-meta">
           <div class="meta-row"><span class="meta-key">CPU / RAM</span><span class="meta-val">1.9GB / 20G Disk (Debian 12)</span></div>
-          <div class="meta-row"><span class="meta-key">BACKUP TARGET</span><span class="meta-val">/opt/raksmart-backups (双份保全)</span></div>
+          <div class="meta-row"><span class="meta-key">BACKUP TARGET</span><span class="meta-val">/opt/hermes-standby/backups (异地双份)</span></div>
           <div class="meta-row"><span class="meta-key">SERVICES</span><span class="meta-val">vps-monitor + 温备 + 安全中继</span></div>
         </div>
         <div class="node-desc">
@@ -1192,21 +1192,9 @@
               <td><span class="pill pill-mint">RUNNING</span></td>
             </tr>
             <tr>
-              <td><strong>openlist</strong></td>
-              <td><code>Web</code></td>
-              <td>AList 存储与云盘挂载</td>
-              <td><span class="pill pill-mint">RUNNING</span></td>
-            </tr>
-            <tr>
               <td><strong>smart_group_bot</strong></td>
               <td><code>Bot Daemon</code></td>
               <td>Telegram 群管 LLM 机器人</td>
-              <td><span class="pill pill-mint">RUNNING</span></td>
-            </tr>
-            <tr>
-              <td><strong>qbittorrent</strong></td>
-              <td><code>WebUI</code></td>
-              <td>离线下载与资源调度</td>
               <td><span class="pill pill-mint">RUNNING</span></td>
             </tr>
             <tr>
@@ -1256,7 +1244,7 @@
             &nbsp;&nbsp;<span class="term-highlight">"status"</span>: <span class="term-success">"NOMINAL"</span>,<br>
             &nbsp;&nbsp;<span class="term-highlight">"hytron_load"</span>: <span class="term-success">0.01</span>,<br>
             &nbsp;&nbsp;<span class="term-highlight">"disk_usage"</span>: <span class="term-success">"31% (33GB Avail)"</span>,<br>
-            &nbsp;&nbsp;<span class="term-highlight">"last_dr_backup"</span>: <span class="term-highlight">"2026-09-07 03:02 CST (303MB)"</span>,<br>
+            &nbsp;&nbsp;<span class="term-highlight">"last_dr_backup"</span>: <span class="term-highlight">"2026-09-20 (Verified)"</span>,<br>
             &nbsp;&nbsp;<span class="term-highlight">"standby_sync"</span>: <span class="term-success">"London Offsite OK"</span><br>
             }
           </div>
@@ -1266,7 +1254,7 @@
             <span class="term-cmd">tail -n 2 /var/log/guard.log</span>
           </div>
           <div class="term-out term-success">[SEC-OK] State-Guard Active: rm/unlink/truncate on state.db locked down.</div>
-          <div class="term-out term-success">[SYNC-OK] 14 Nodes Heartbeat verified in 100% nominal state.</div>
+          <div class="term-out term-success">[SYNC-OK] Nodes Heartbeat verified in 100% nominal state.</div>
           <div class="term-line" style="margin-top: 8px;">
             <span class="term-prompt">❯</span>
             <span class="term-cmd">hermes token-audit --today</span>
