@@ -1,4 +1,7 @@
 *
 !index.html
+!hud.html
+!hud/
+!hud/**
 !icons/
 !icons/**
